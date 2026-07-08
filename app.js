@@ -151,6 +151,52 @@ const songPacks = [
   },
 ];
 
+const ambientRooms = [
+  {
+    title: "亞洲街食 24/7",
+    subtitle: "熱鍋、攤販、人聲、街邊節奏，當作有人陪的白噪音",
+    kind: "直播",
+    id: "K8Sz64VF0gU",
+    tone: "teal",
+  },
+  {
+    title: "中國市集散步",
+    subtitle: "白天市場、買菜人聲、攤位移動感",
+    kind: "直播/長片",
+    id: "p-QAMn82huw",
+    tone: "cloud",
+  },
+  {
+    title: "北方夜市人潮",
+    subtitle: "乾淨熱鬧的夜市、街食和人群背景",
+    kind: "長時間",
+    id: "WJqybSOdR-g",
+    tone: "mahogany",
+  },
+  {
+    title: "貴陽夜城漫遊",
+    subtitle: "夜晚城市、市集燈光、走路視角",
+    kind: "4K 夜景",
+    id: "LkZh7mykMdw",
+    tone: "violet",
+  },
+  {
+    title: "計程車窗外",
+    subtitle: "找現正開車直播，像坐在後座看城市流動",
+    kind: "直播搜尋",
+    href: "https://www.youtube.com/results?search_query=taxi+driver+live+stream+night+drive+city",
+    imageId: "DWeiS6-r3Js",
+    tone: "blue",
+  },
+  {
+    title: "中國夜市備用",
+    subtitle: "沒直播時就開這類市集長片，讓背景聲一直有人氣",
+    kind: "白噪音",
+    id: "7IRqQs-vr28",
+    tone: "amber",
+  },
+];
+
 const packGrid = document.querySelector("#packGrid");
 const songGrid = document.querySelector("#songGrid");
 const songTitle = document.querySelector("#songTitle");
@@ -169,6 +215,8 @@ const tickerTrack = document.querySelector("#tickerTrack");
 const signalCount = document.querySelector("#signalCount");
 const signalSource = document.querySelector("#signalSource");
 const signalMode = document.querySelector("#signalMode");
+const ambientGrid = document.querySelector("#ambientGrid");
+const ambientPlayAll = document.querySelector("#ambientPlayAll");
 
 let deferredInstallPrompt = null;
 let selectedPackKey = "today";
@@ -204,6 +252,14 @@ function playlistUrl(songList) {
 
 function thumbnail(id) {
   return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+}
+
+function ambientHref(room) {
+  return room.href ?? youtubeWatch(room.id);
+}
+
+function ambientImage(room) {
+  return thumbnail(room.imageId ?? room.id);
 }
 
 function encode(value) {
@@ -305,6 +361,27 @@ function renderTicker() {
   tickerTrack.innerHTML = `${items}${items}`;
 }
 
+function renderAmbientRooms() {
+  ambientPlayAll.href = youtubeWatch(ambientRooms[0].id);
+  ambientGrid.innerHTML = ambientRooms
+    .map(
+      (room, index) => `
+        <a class="ambient-card" href="${ambientHref(room)}" target="_blank" rel="noreferrer" data-tone="${room.tone}" style="--delay: ${index * 70}ms">
+          <span class="ambient-thumb">
+            <img src="${ambientImage(room)}" alt="${room.title}" loading="lazy" />
+            <span class="live-pill">${room.kind}</span>
+            <span class="ambient-pulse" aria-hidden="true"></span>
+          </span>
+          <span class="ambient-copy">
+            <strong>${room.title}</strong>
+            <span>${room.subtitle}</span>
+          </span>
+        </a>
+      `,
+    )
+    .join("");
+}
+
 function selectPack(key, shouldScroll = false) {
   selectedPackKey = key;
   const pack = getPack(key);
@@ -389,6 +466,7 @@ form.addEventListener("submit", (event) => {
 });
 
 renderTicker();
+renderAmbientRooms();
 selectPack(selectedPackKey);
 enablePointerGlow();
 registerServiceWorker();
