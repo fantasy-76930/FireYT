@@ -40,12 +40,31 @@
 
       <main>
         <section class="hero" aria-labelledby="pageTitle">
+          <div class="hero-visual" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
           <div class="hero-copy">
             <p class="eyebrow">更新 2026.07.08 · Taiwan first</p>
             <h1 id="pageTitle">你不用找，我先挑好了</h1>
             <p class="intro">
               打開就播今天台灣 YouTube 音樂趨勢，聽膩了再切 K-pop、華語新歌、夜晚、開車。
             </p>
+            <div class="signal-row" aria-label="推薦狀態">
+              <span>
+                <strong id="signalCount">6</strong>
+                首歌
+              </span>
+              <span>
+                <strong id="signalSource">TW</strong>
+                趨勢
+              </span>
+              <span>
+                <strong id="signalMode">LIVE</strong>
+                推薦
+              </span>
+            </div>
             <div class="hero-actions">
               <a class="primary-action" id="heroPlay" target="_blank" rel="noreferrer">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -58,7 +77,18 @@
           </div>
 
           <article class="now-card" aria-labelledby="nowTitle">
-            <img id="featuredImage" alt="" />
+            <div class="now-media">
+              <img id="featuredImage" alt="" />
+              <div class="equalizer" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
             <div class="now-card-body">
               <p class="now-label">現在先播</p>
               <h2 id="nowTitle"></h2>
@@ -66,6 +96,12 @@
               <div class="mini-list" id="miniList"></div>
             </div>
           </article>
+        </section>
+
+        <section class="ticker-strip" aria-label="今日音樂趨勢">
+          <div class="ticker-window">
+            <div class="ticker-track" id="tickerTrack"></div>
+          </div>
         </section>
 
         <section class="pack-section" id="packs" aria-labelledby="packTitle">

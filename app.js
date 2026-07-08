@@ -90,6 +90,7 @@ const songPacks = [
     key: "today",
     title: "今天台灣在聽",
     subtitle: "不用想，先從台灣音樂趨勢前段開始",
+    mark: "TW",
     tone: "red",
     source: "Kworb / YouTube Taiwan Music Trending",
     songKeys: ["cosmosNoOne", "idleGimme", "babyMonster", "loveIsPain", "diorGirl", "morning"],
@@ -98,6 +99,7 @@ const songPacks = [
     key: "mandarin",
     title: "華語新鮮感",
     subtitle: "中文、台灣、R&B、獨立歌一起換口味",
+    mark: "華語",
     tone: "green",
     source: "Taiwan trending picks",
     songKeys: ["cosmosNoOne", "diorGirl", "liviaBrave", "courtesy", "nineOneOne", "xiaoYuDream"],
@@ -106,6 +108,7 @@ const songPacks = [
     key: "kpop",
     title: "K-pop 熱門",
     subtitle: "i-dle、BABYMONSTER、ATEEZ、Stray Kids",
+    mark: "KPOP",
     tone: "cyan",
     source: "YouTube music trending",
     songKeys: ["idleGimme", "babyMonster", "ateezBad", "strayKidsRun", "bansanka", "morning"],
@@ -114,6 +117,7 @@ const songPacks = [
     key: "night",
     title: "夜晚循環",
     subtitle: "比較適合放空、滑手機、洗澡後慢慢聽",
+    mark: "NITE",
     tone: "violet",
     source: "Mood edit",
     songKeys: ["loveIsPain", "raining", "liviaBrave", "xiaoYuDream", "courtesy", "cosmosNoOne"],
@@ -122,6 +126,7 @@ const songPacks = [
     key: "drive",
     title: "開車有精神",
     subtitle: "節奏明顯一點，聽起來不會太懶",
+    mark: "DRIVE",
     tone: "amber",
     source: "Energy edit",
     songKeys: ["babyMonster", "ateezBad", "strayKidsRun", "idleGimme", "nineOneOne", "morning"],
@@ -130,6 +135,7 @@ const songPacks = [
     key: "shuffle",
     title: "我真的聽膩了",
     subtitle: "華語、K-pop、流行混著來，直接洗掉舊歌單",
+    mark: "MIX",
     tone: "blue",
     source: "FireYT mix",
     songKeys: [
@@ -159,9 +165,22 @@ const form = document.querySelector("#searchForm");
 const input = document.querySelector("#searchInput");
 const resultGrid = document.querySelector("#resultGrid");
 const installButton = document.querySelector("#installButton");
+const tickerTrack = document.querySelector("#tickerTrack");
+const signalCount = document.querySelector("#signalCount");
+const signalSource = document.querySelector("#signalSource");
+const signalMode = document.querySelector("#signalMode");
 
 let deferredInstallPrompt = null;
 let selectedPackKey = "today";
+
+const toneColors = {
+  red: "#ff3131",
+  cyan: "#25d0c0",
+  amber: "#f1b642",
+  green: "#39c979",
+  violet: "#9f7aea",
+  blue: "#5aa7ff",
+};
 
 function getPack(key) {
   return songPacks.find((pack) => pack.key === key) ?? songPacks[0];
@@ -218,11 +237,15 @@ function renderPacks() {
 function renderHero(pack) {
   const packSongs = getSongs(pack);
   const featured = packSongs[0];
+  document.documentElement.style.setProperty("--accent", toneColors[pack.tone] ?? toneColors.red);
   heroPlay.href = playlistUrl(packSongs);
   featuredImage.src = thumbnail(featured.id);
   featuredImage.alt = `${featured.artist} - ${featured.title}`;
   nowTitle.textContent = pack.title;
   nowMeta.textContent = `${pack.source} · ${packSongs.length} 首`;
+  signalCount.textContent = packSongs.length;
+  signalSource.textContent = pack.mark;
+  signalMode.textContent = pack.key === "shuffle" ? "MIX" : "LIVE";
   miniList.innerHTML = packSongs
     .slice(0, 4)
     .map(
@@ -245,7 +268,7 @@ function renderSongs(pack) {
   songGrid.innerHTML = packSongs
     .map(
       (song, index) => `
-        <article class="song-card">
+        <article class="song-card" style="--delay: ${index * 55}ms">
           <a class="song-art" href="${youtubeWatch(song.id)}" target="_blank" rel="noreferrer">
             <img src="${thumbnail(song.id)}" alt="${song.artist} - ${song.title}" loading="lazy" />
             <span class="rank">${String(index + 1).padStart(2, "0")}</span>
@@ -270,6 +293,18 @@ function renderSongs(pack) {
     .join("");
 }
 
+function renderTicker() {
+  const tickerSongs = [
+    ...getSongs(getPack("today")),
+    ...getSongs(getPack("mandarin")).slice(1, 4),
+    ...getSongs(getPack("kpop")).slice(2, 5),
+  ];
+  const items = tickerSongs
+    .map((song) => `<span><strong>${song.title}</strong> ${song.artist}</span>`)
+    .join("");
+  tickerTrack.innerHTML = `${items}${items}`;
+}
+
 function selectPack(key, shouldScroll = false) {
   selectedPackKey = key;
   const pack = getPack(key);
@@ -279,6 +314,13 @@ function selectPack(key, shouldScroll = false) {
   if (shouldScroll) {
     document.querySelector(".song-section").scrollIntoView({ behavior: "smooth", block: "start" });
   }
+}
+
+function enablePointerGlow() {
+  document.addEventListener("pointermove", (event) => {
+    document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
+    document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
+  });
 }
 
 function renderSearchLinks(query) {
@@ -346,5 +388,7 @@ form.addEventListener("submit", (event) => {
   renderSearchLinks(input.value);
 });
 
+renderTicker();
 selectPack(selectedPackKey);
+enablePointerGlow();
 registerServiceWorker();
