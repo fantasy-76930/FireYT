@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff2d2d"/>
+      <stop offset=".45" stop-color="#30d5c8"/>
+      <stop offset="1" stop-color="#f1b941"/>
+    </linearGradient>
+    <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="800" fill="#111111"/>
+  <g opacity=".8">
+    <path d="M56 525c139-99 262-94 370 14 121 122 282 95 401-63 109-145 265-177 467-94" fill="none" stroke="url(#g)" stroke-width="26" stroke-linecap="round"/>
+    <path d="M110 612c168-66 292-36 372 88 73 112 214 103 358-27 144-132 292-153 444-64" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity=".28"/>
+    <path d="M740 101v302M825 155v196M910 89v280M995 191v129M1080 132v250M1165 199v104" stroke="url(#g)" stroke-width="22" stroke-linecap="round" filter="url(#blur)" opacity=".65"/>
+    <path d="M740 101v302M825 155v196M910 89v280M995 191v129M1080 132v250M1165 199v104" stroke="#f5f5f5" stroke-width="7" stroke-linecap="round" opacity=".52"/>
+  </g>
+</svg>

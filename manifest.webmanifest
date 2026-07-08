@@ -1,0 +1,19 @@
+{
+  "name": "FireYT",
+  "short_name": "FireYT",
+  "description": "FireYT 專門搜尋 YouTube 上現在最多人在聽的好聽音樂。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0b0d",
+  "theme_color": "#111111",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

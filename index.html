@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="FireYT 專門搜尋 YouTube 上現在最多人在聽、適合重複播放的音樂。"
+    />
+    <meta name="theme-color" content="#111111" />
+    <title>FireYT</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar" aria-label="主要導覽">
+        <a class="brand" href="./" aria-label="FireYT 首頁">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img">
+              <path d="M10 8.5v7l6-3.5-6-3.5Z"></path>
+              <path
+                d="M21.2 7.1a3 3 0 0 0-2.1-2.1C17.2 4.5 12 4.5 12 4.5s-5.2 0-7.1.5a3 3 0 0 0-2.1 2.1A31 31 0 0 0 2.3 12a31 31 0 0 0 .5 4.9 3 3 0 0 0 2.1 2.1c1.9.5 7.1.5 7.1.5s5.2 0 7.1-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.9 31 31 0 0 0-.5-4.9Z"
+              ></path>
+            </svg>
+          </span>
+          <span>FireYT</span>
+        </a>
+        <button class="icon-button" id="installButton" type="button" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v12"></path>
+            <path d="m7 10 5 5 5-5"></path>
+            <path d="M5 21h14"></path>
+          </svg>
+          <span>安裝</span>
+        </button>
+      </header>
+
+      <main>
+        <section class="search-stage" aria-labelledby="pageTitle">
+          <div class="stage-copy">
+            <p class="eyebrow">FireYT · YouTube only</p>
+            <h1 id="pageTitle">找現在最多人在聽的好聽音樂</h1>
+            <p class="intro">
+              輸入歌手、歌曲、語言或情境，產生 YouTube Music、YouTube 搜尋、Charts 與播放清單入口。
+            </p>
+          </div>
+
+          <form class="search-panel" id="searchForm">
+            <label for="searchInput">搜尋關鍵字</label>
+            <div class="search-row">
+              <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m21 21-4.3-4.3"></path>
+                <circle cx="11" cy="11" r="7"></circle>
+              </svg>
+              <input
+                id="searchInput"
+                name="q"
+                type="search"
+                autocomplete="off"
+                placeholder="例如：華語 熱門 情歌、K-pop 新歌、lofi 讀書"
+                required
+              />
+              <button type="submit">搜尋</button>
+            </div>
+            <div class="filters" aria-label="搜尋模式">
+              <label>
+                <input type="radio" name="intent" value="popular" checked />
+                <span>最多人在聽</span>
+              </label>
+              <label>
+                <input type="radio" name="intent" value="fresh" />
+                <span>最新好歌</span>
+              </label>
+              <label>
+                <input type="radio" name="intent" value="playlist" />
+                <span>播放清單</span>
+              </label>
+            </div>
+          </form>
+        </section>
+
+        <section class="quick-section" aria-labelledby="quickTitle">
+          <div class="section-heading">
+            <h2 id="quickTitle">快速找歌</h2>
+            <a class="text-link" href="https://charts.youtube.com/" target="_blank" rel="noreferrer">
+              YouTube Charts
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 17 17 7"></path>
+                <path d="M8 7h9v9"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="quick-grid" id="quickGrid"></div>
+        </section>
+
+        <section class="results-section" aria-labelledby="resultsTitle">
+          <div class="section-heading">
+            <h2 id="resultsTitle">YouTube 入口</h2>
+            <p id="resultCaption">選一個情境，或直接搜尋。</p>
+          </div>
+          <div class="result-grid" id="resultGrid"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
