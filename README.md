@@ -1,6 +1,6 @@
 # FireYT
 
-FireYT 是一個純靜態 PWA，用來快速搜尋 YouTube / YouTube Music 上熱門、好聽、適合重複播放的音樂。
+FireYT 是一個純靜態 PWA，用來整理近期 YouTube 熱門音樂，打開就能一鍵播放歌包或單首歌曲。
 
 ## GitHub Pages
 

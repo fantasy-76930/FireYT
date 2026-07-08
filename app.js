@@ -1,174 +1,316 @@
-const quickSearches = [
+const songs = {
+  cosmosNoOne: {
+    id: "dRSZhZT6r-Y",
+    title: "沒有人像我一樣",
+    artist: "宇宙人 Cosmos People",
+    tag: "台灣 #1 音樂趨勢",
+  },
+  idleGimme: {
+    id: "FFjDEkZg-54",
+    title: "Gimme Dat Love",
+    artist: "i-dle",
+    tag: "台灣/全球趨勢",
+  },
+  babyMonster: {
+    id: "9cS2wv6AfHk",
+    title: "I LIKE IT",
+    artist: "BABYMONSTER",
+    tag: "K-pop 熱門",
+  },
+  loveIsPain: {
+    id: "Bkqk196gGOc",
+    title: "Love Is Pain",
+    artist: "Trending track",
+    tag: "情緒流行",
+  },
+  diorGirl: {
+    id: "lpPccyGOPOU",
+    title: "她已不再是那個女孩",
+    artist: "DIOR 大穎",
+    tag: "華語新歌",
+  },
+  morning: {
+    id: "MnPQxn20BRM",
+    title: "Morning",
+    artist: "Trending track",
+    tag: "清爽流行",
+  },
+  ateezBad: {
+    id: "-q_S27LbNKU",
+    title: "BAD",
+    artist: "ATEEZ",
+    tag: "K-pop 高能量",
+  },
+  liviaBrave: {
+    id: "U4h0MiIcVWY",
+    title: "其實我沒有比較勇敢",
+    artist: "林知夏 Livia Lin",
+    tag: "華語情緒歌",
+  },
+  raining: {
+    id: "LW5ROCc5SEw",
+    title: "一直下",
+    artist: "Trending track",
+    tag: "夜晚循環",
+  },
+  bansanka: {
+    id: "UOKLtaE2U90",
+    title: "Bansanka",
+    artist: "Trending track",
+    tag: "日韓熱聽",
+  },
+  strayKidsRun: {
+    id: "Q7IFjVUUb_E",
+    title: "RUN IT",
+    artist: "Stray Kids",
+    tag: "K-pop 新鮮",
+  },
+  courtesy: {
+    id: "CADmiI5tdbc",
+    title: "客客氣氣 COURTESY",
+    artist: "The Crane",
+    tag: "台灣獨立",
+  },
+  nineOneOne: {
+    id: "BFAuO-mrhcA",
+    title: "有你有我",
+    artist: "玖壹壹 春風 feat. 王識賢",
+    tag: "台味合唱",
+  },
+  xiaoYuDream: {
+    id: "gjbG_zhsH5o",
+    title: "我還有個夢",
+    artist: "小宇 宋念宇",
+    tag: "華語 R&B",
+  },
+};
+
+const songPacks = [
   {
-    title: "台灣熱門歌",
-    description: "華語、台語、獨立新歌一起找",
-    query: "台灣 熱門 音樂 現在最多人在聽",
+    key: "today",
+    title: "今天台灣在聽",
+    subtitle: "不用想，先從台灣音樂趨勢前段開始",
     tone: "red",
+    source: "Kworb / YouTube Taiwan Music Trending",
+    songKeys: ["cosmosNoOne", "idleGimme", "babyMonster", "loveIsPain", "diorGirl", "morning"],
   },
   {
-    title: "全球流行",
-    description: "Pop、K-pop、Billboard 感的熱門播放",
-    query: "global top songs popular music",
-    tone: "cyan",
-  },
-  {
-    title: "開車歌單",
-    description: "節奏清楚、適合長時間播放",
-    query: "開車 好聽 音樂 播放清單",
-    tone: "amber",
-  },
-  {
-    title: "讀書工作",
-    description: "lofi、jazz、輕電子與無人聲",
-    query: "lofi study music playlist",
+    key: "mandarin",
+    title: "華語新鮮感",
+    subtitle: "中文、台灣、R&B、獨立歌一起換口味",
     tone: "green",
+    source: "Taiwan trending picks",
+    songKeys: ["cosmosNoOne", "diorGirl", "liviaBrave", "courtesy", "nineOneOne", "xiaoYuDream"],
   },
   {
-    title: "夜晚情歌",
-    description: "慢歌、R&B、抒情歌集中搜尋",
-    query: "夜晚 情歌 R&B 熱門",
+    key: "kpop",
+    title: "K-pop 熱門",
+    subtitle: "i-dle、BABYMONSTER、ATEEZ、Stray Kids",
     tone: "cyan",
+    source: "YouTube music trending",
+    songKeys: ["idleGimme", "babyMonster", "ateezBad", "strayKidsRun", "bansanka", "morning"],
   },
   {
-    title: "派對節奏",
-    description: "舞曲、EDM、嘻哈與高能量音樂",
-    query: "party music hits playlist",
-    tone: "red",
+    key: "night",
+    title: "夜晚循環",
+    subtitle: "比較適合放空、滑手機、洗澡後慢慢聽",
+    tone: "violet",
+    source: "Mood edit",
+    songKeys: ["loveIsPain", "raining", "liviaBrave", "xiaoYuDream", "courtesy", "cosmosNoOne"],
   },
   {
-    title: "新歌速找",
-    description: "最近上架與本週熱門新歌",
-    query: "本週 新歌 熱門 音樂",
-    tone: "green",
-  },
-  {
-    title: "日韓熱門",
-    description: "J-pop、K-pop、韓劇原聲帶",
-    query: "J-pop K-pop 熱門 音樂",
+    key: "drive",
+    title: "開車有精神",
+    subtitle: "節奏明顯一點，聽起來不會太懶",
     tone: "amber",
+    source: "Energy edit",
+    songKeys: ["babyMonster", "ateezBad", "strayKidsRun", "idleGimme", "nineOneOne", "morning"],
+  },
+  {
+    key: "shuffle",
+    title: "我真的聽膩了",
+    subtitle: "華語、K-pop、流行混著來，直接洗掉舊歌單",
+    tone: "blue",
+    source: "FireYT mix",
+    songKeys: [
+      "cosmosNoOne",
+      "babyMonster",
+      "diorGirl",
+      "ateezBad",
+      "liviaBrave",
+      "bansanka",
+      "nineOneOne",
+      "strayKidsRun",
+    ],
   },
 ];
 
-const intentText = {
-  popular: "現在最多人在聽 熱門",
-  fresh: "最新 新歌 this week",
-  playlist: "播放清單 playlist mix",
-};
-
+const packGrid = document.querySelector("#packGrid");
+const songGrid = document.querySelector("#songGrid");
+const songTitle = document.querySelector("#songTitle");
+const songEyebrow = document.querySelector("#songEyebrow");
+const playAll = document.querySelector("#playAll");
+const heroPlay = document.querySelector("#heroPlay");
+const featuredImage = document.querySelector("#featuredImage");
+const nowTitle = document.querySelector("#nowTitle");
+const nowMeta = document.querySelector("#nowMeta");
+const miniList = document.querySelector("#miniList");
 const form = document.querySelector("#searchForm");
 const input = document.querySelector("#searchInput");
-const quickGrid = document.querySelector("#quickGrid");
 const resultGrid = document.querySelector("#resultGrid");
-const caption = document.querySelector("#resultCaption");
 const installButton = document.querySelector("#installButton");
 
 let deferredInstallPrompt = null;
+let selectedPackKey = "today";
+
+function getPack(key) {
+  return songPacks.find((pack) => pack.key === key) ?? songPacks[0];
+}
+
+function getSongs(pack) {
+  return pack.songKeys.map((key) => songs[key]).filter(Boolean);
+}
+
+function youtubeWatch(id) {
+  return `https://www.youtube.com/watch?v=${id}`;
+}
+
+function youtubeMusicWatch(id) {
+  return `https://music.youtube.com/watch?v=${id}`;
+}
+
+function playlistUrl(songList) {
+  return `https://www.youtube.com/watch_videos?video_ids=${songList.map((song) => song.id).join(",")}`;
+}
+
+function thumbnail(id) {
+  return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+}
 
 function encode(value) {
   return encodeURIComponent(value.trim().replace(/\s+/g, " "));
 }
 
-function getIntent() {
-  const selected = form.querySelector("input[name='intent']:checked");
-  return selected?.value ?? "popular";
-}
-
-function buildLinks(rawQuery, intent = getIntent()) {
-  const query = rawQuery.trim() || "熱門 音樂";
-  const weightedQuery = `${query} ${intentText[intent]}`;
-  const encoded = encode(weightedQuery);
-  const cleanEncoded = encode(query);
-
-  return [
-    {
-      badge: "Music",
-      title: "YouTube Music 搜尋",
-      description: "直接進 YouTube Music 搜尋歌曲、專輯、歌手與官方播放清單。",
-      href: `https://music.youtube.com/search?q=${encoded}`,
-      source: "music.youtube.com",
-    },
-    {
-      badge: "Search",
-      title: "YouTube 熱門搜尋",
-      description: "用目前關鍵字加上熱門、最多人在聽等條件找影片與音樂內容。",
-      href: `https://www.youtube.com/results?search_query=${encoded}`,
-      source: "youtube.com",
-    },
-    {
-      badge: "Playlist",
-      title: "只找播放清單",
-      description: "適合想要一鍵連續播放，不想一首一首挑的時候。",
-      href: `https://www.youtube.com/results?search_query=${encode(`${query} playlist 播放清單`)}`,
-      source: "youtube.com",
-    },
-    {
-      badge: "Charts",
-      title: "YouTube Charts",
-      description: "查看 YouTube 官方排行榜，再用你的關鍵字縮小類型或地區。",
-      href: `https://charts.youtube.com/`,
-      source: "charts.youtube.com",
-    },
-    {
-      badge: "Live",
-      title: "現正直播音樂",
-      description: "找 live radio、lofi 或連續播放直播，適合背景音樂。",
-      href: `https://www.youtube.com/results?search_query=${encode(`${query} live radio music`)}`,
-      source: "youtube.com",
-    },
-    {
-      badge: "Mix",
-      title: "找相似推薦",
-      description: "用 mix、radio、similar songs 幫你延伸同風格音樂。",
-      href: `https://www.youtube.com/results?search_query=${encode(`${query} mix radio similar songs`)}`,
-      source: "youtube.com",
-    },
-  ];
-}
-
-function renderQuickSearches() {
-  quickGrid.innerHTML = quickSearches
-    .map(
-      (item) => `
-        <button class="quick-card" type="button" data-query="${item.query}" data-tone="${item.tone}">
-          <span>${item.description}</span>
-          <strong>${item.title}</strong>
+function renderPacks() {
+  packGrid.innerHTML = songPacks
+    .map((pack) => {
+      const firstSong = songs[pack.songKeys[0]];
+      const isActive = pack.key === selectedPackKey;
+      return `
+        <button class="pack-card ${isActive ? "is-active" : ""}" type="button" data-pack="${pack.key}" data-tone="${pack.tone}">
+          <span class="pack-thumb" style="background-image: url('${thumbnail(firstSong.id)}')"></span>
+          <span class="pack-copy">
+            <strong>${pack.title}</strong>
+            <span>${pack.subtitle}</span>
+          </span>
+          <span class="play-chip">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 5v14l11-7Z"></path>
+            </svg>
+            播
+          </span>
         </button>
-      `,
-    )
+      `;
+    })
     .join("");
 }
 
-function renderResults(query, intent = getIntent()) {
-  const links = buildLinks(query, intent);
-  caption.textContent = `關鍵字：${query.trim() || "熱門 音樂"}`;
-  resultGrid.innerHTML = links
+function renderHero(pack) {
+  const packSongs = getSongs(pack);
+  const featured = packSongs[0];
+  heroPlay.href = playlistUrl(packSongs);
+  featuredImage.src = thumbnail(featured.id);
+  featuredImage.alt = `${featured.artist} - ${featured.title}`;
+  nowTitle.textContent = pack.title;
+  nowMeta.textContent = `${pack.source} · ${packSongs.length} 首`;
+  miniList.innerHTML = packSongs
+    .slice(0, 4)
     .map(
-      (link) => `
-        <a class="result-card" href="${link.href}" target="_blank" rel="noreferrer">
-          <span class="card-top">
-            <span class="badge">${link.badge}</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 17 17 7"></path>
-              <path d="M8 7h9v9"></path>
-            </svg>
-          </span>
-          <span>
-            <strong>${link.title}</strong>
-            <p>${link.description}</p>
-          </span>
-          <small>${link.source}</small>
+      (song, index) => `
+        <a href="${youtubeWatch(song.id)}" target="_blank" rel="noreferrer">
+          <span>${index + 1}</span>
+          <strong>${song.title}</strong>
+          <small>${song.artist}</small>
         </a>
       `,
     )
     .join("");
 }
 
-function submitSearch(event) {
-  event.preventDefault();
-  const query = input.value.trim();
-  if (!query) return;
-  renderResults(query);
-  resultGrid.querySelector("a")?.focus({ preventScroll: true });
+function renderSongs(pack) {
+  const packSongs = getSongs(pack);
+  songEyebrow.textContent = pack.source;
+  songTitle.textContent = pack.title;
+  playAll.href = playlistUrl(packSongs);
+  songGrid.innerHTML = packSongs
+    .map(
+      (song, index) => `
+        <article class="song-card">
+          <a class="song-art" href="${youtubeWatch(song.id)}" target="_blank" rel="noreferrer">
+            <img src="${thumbnail(song.id)}" alt="${song.artist} - ${song.title}" loading="lazy" />
+            <span class="rank">${String(index + 1).padStart(2, "0")}</span>
+            <span class="play-overlay">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14l11-7Z"></path>
+              </svg>
+            </span>
+          </a>
+          <div class="song-body">
+            <p>${song.tag}</p>
+            <h3>${song.title}</h3>
+            <span>${song.artist}</span>
+          </div>
+          <div class="song-actions">
+            <a href="${youtubeWatch(song.id)}" target="_blank" rel="noreferrer">YouTube</a>
+            <a href="${youtubeMusicWatch(song.id)}" target="_blank" rel="noreferrer">Music</a>
+          </div>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function selectPack(key, shouldScroll = false) {
+  selectedPackKey = key;
+  const pack = getPack(key);
+  renderPacks();
+  renderHero(pack);
+  renderSongs(pack);
+  if (shouldScroll) {
+    document.querySelector(".song-section").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function renderSearchLinks(query) {
+  const cleanQuery = query.trim();
+  if (!cleanQuery) {
+    resultGrid.innerHTML = "";
+    return;
+  }
+
+  const links = [
+    {
+      title: "YouTube Music 找同類型",
+      href: `https://music.youtube.com/search?q=${encode(`${cleanQuery} 新歌 熱門`)}`,
+      label: "Music",
+    },
+    {
+      title: "YouTube 找播放清單",
+      href: `https://www.youtube.com/results?search_query=${encode(`${cleanQuery} playlist 2026`)}`,
+      label: "Playlist",
+    },
+  ];
+
+  resultGrid.innerHTML = links
+    .map(
+      (link) => `
+        <a class="result-card" href="${link.href}" target="_blank" rel="noreferrer">
+          <span>${link.label}</span>
+          <strong>${link.title}</strong>
+        </a>
+      `,
+    )
+    .join("");
 }
 
 function registerServiceWorker() {
@@ -193,17 +335,16 @@ installButton.addEventListener("click", async () => {
   installButton.hidden = true;
 });
 
-quickGrid.addEventListener("click", (event) => {
-  const button = event.target.closest(".quick-card");
+packGrid.addEventListener("click", (event) => {
+  const button = event.target.closest(".pack-card");
   if (!button) return;
-  input.value = button.dataset.query;
-  renderResults(button.dataset.query);
-  document.querySelector(".results-section").scrollIntoView({ behavior: "smooth", block: "start" });
+  selectPack(button.dataset.pack, true);
 });
 
-form.addEventListener("submit", submitSearch);
-form.addEventListener("change", () => renderResults(input.value || "熱門 音樂"));
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  renderSearchLinks(input.value);
+});
 
-renderQuickSearches();
-renderResults("熱門 音樂");
+selectPack(selectedPackKey);
 registerServiceWorker();
