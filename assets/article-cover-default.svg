@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Fantasy Tune article cover</title>
+  <desc id="desc">Ocean light, music waves, and a calm editorial cover style.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fafdff"/>
+      <stop offset=".45" stop-color="#b9ecf8"/>
+      <stop offset="1" stop-color="#07588f"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".84"/>
+      <stop offset=".58" stop-color="#fff8ce" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="612" cy="-16" r="126" fill="#fff" opacity=".95" filter="url(#soft)"/>
+  <path d="M0 132c132-35 204 29 330 0s201-72 336-26 220 41 322 5 168-42 212-20v81c-104-24-156 12-276 37s-206 1-310-35-194-13-314 15S98 211 0 180Z" fill="#fff" opacity=".62"/>
+  <g opacity=".36">
+    <path d="M312 0 162 630" stroke="url(#beam)" stroke-width="42"/>
+    <path d="M548 0 498 630" stroke="url(#beam)" stroke-width="18"/>
+    <path d="M778 0 916 630" stroke="url(#beam)" stroke-width="34"/>
+    <path d="M1018 0 1104 630" stroke="url(#beam)" stroke-width="12"/>
+  </g>
+  <g fill="none" stroke="#f7ffff" stroke-linecap="round" opacity=".56">
+    <path d="M80 500c115-68 219-65 312 8s209 72 346-8 258-86 382-18" stroke-width="5"/>
+    <path d="M104 548c148-48 236-33 340 21s214 42 318-5 201-54 334 6" stroke-width="3"/>
+    <path d="M34 588c110-25 232-18 346 18s214 25 320-16 246-42 464 18" stroke-width="2"/>
+  </g>
+  <g transform="translate(840 282)" fill="#063e69" opacity=".88">
+    <circle cx="88" cy="88" r="86" fill="#fff" opacity=".84"/>
+    <path d="M72 42v92l74-46Z" fill="#0b79a8"/>
+    <path d="M0 148c31-18 58-18 84 0s56 18 89 0 63-18 98 0" fill="none" stroke="#0b79a8" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g fill="#fff" opacity=".64">
+    <circle cx="184" cy="280" r="8"/>
+    <circle cx="238" cy="384" r="3"/>
+    <circle cx="1002" cy="220" r="5"/>
+    <circle cx="1080" cy="352" r="11"/>
+    <circle cx="708" cy="292" r="4"/>
+  </g>
+</svg>

@@ -1,7 +1,9 @@
-const CACHE_NAME = "fantasy-tune-v29";
+const CACHE_NAME = "fantasy-tune-v30";
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./articles.html",
+  "./articles/2026-07-10-fantasy-tune-start.html",
   "./privacy.html",
   "./styles.css",
   "./app.js",
@@ -13,6 +15,7 @@ const APP_SHELL = [
   "./assets/icon-192.png",
   "./assets/icon-512.png",
   "./assets/og-image.png",
+  "./assets/article-cover-default.svg",
   "./assets/deepsea-background.webp",
   "./assets/music-wave.svg",
   "./assets/ambient-street-market.svg",
