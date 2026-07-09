@@ -133,16 +133,19 @@ img {
   width: 38px;
   height: 38px;
   place-items: center;
-  border: 1px solid rgb(255 255 255 / 12%);
-  border-radius: 8px;
-  background: #e82222;
-  box-shadow: 0 14px 30px rgb(232 34 34 / 30%);
+  overflow: hidden;
+  border: 1px solid rgb(10 108 148 / 14%);
+  border-radius: 10px;
+  background: #f8fdff;
+  box-shadow: 0 14px 30px rgb(255 111 50 / 18%), 0 10px 26px rgb(22 148 190 / 14%);
   animation: brandPulse 3.6s ease-in-out infinite;
 }
 
-.brand-mark svg {
-  width: 25px;
-  fill: #fff;
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .icon-button,
@@ -1428,11 +1431,11 @@ h1 span {
 @keyframes brandPulse {
   0%,
   100% {
-    box-shadow: 0 14px 30px rgb(232 34 34 / 30%);
+    box-shadow: 0 14px 30px rgb(255 111 50 / 18%), 0 10px 26px rgb(22 148 190 / 14%);
   }
 
   50% {
-    box-shadow: 0 14px 38px rgb(232 34 34 / 48%);
+    box-shadow: 0 16px 42px rgb(255 111 50 / 30%), 0 12px 34px rgb(22 148 190 / 24%);
   }
 }
 
