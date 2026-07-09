@@ -165,7 +165,7 @@ const fallbackSongPacks = [
     subtitle: "華語、K-pop、流行混著來，直接洗掉舊歌單",
     mark: "MIX",
     tone: "blue",
-    source: "FireYT mix",
+    source: "Fantasy Tune mix",
     coverId: "w1v3Zwy622Q",
     heroId: "OA3coTpbDfw",
     songKeys: [
@@ -550,14 +550,14 @@ function setupVisitorCounter() {
     return;
   }
 
-  const path = encodeURIComponent("FireYT-home");
+  const path = encodeURIComponent("fantasy-tune-home");
   const label = encodeURIComponent("TODAY/TOTAL");
   visitorBadge.src = `https://api.visitorbadge.io/api/combined?path=${path}&label=${label}&labelColor=%230b4f86&countColor=%23ff6f32&style=flat-square`;
 }
 
 async function copyShareLink() {
   const url = "https://fantasy-76930.github.io/FireYT/";
-  const title = "FireYT - 你不用找，我先挑好了";
+  const title = "Fantasy Tune - 你不用找，我先挑好了";
   const text = "近期熱門歌單、K-pop、華語新歌、療癒直播聲景，一鍵直接播放。";
 
   try {

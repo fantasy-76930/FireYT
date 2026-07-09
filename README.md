@@ -1,6 +1,6 @@
-# FireYT
+# Fantasy Tune
 
-FireYT 是一個純靜態 PWA，用來整理近期 YouTube 熱門音樂，打開就能一鍵播放歌包或單首歌曲。
+Fantasy Tune 是一個純靜態 PWA，用來整理近期 YouTube 熱門音樂，打開就能一鍵播放歌包或單首歌曲。
 
 ## GitHub Pages
 

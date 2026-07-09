@@ -364,6 +364,30 @@ h1 span {
   line-height: 1.8;
 }
 
+.terms-note {
+  max-width: 620px;
+  margin-top: 14px;
+  padding: 10px 12px;
+  color: rgb(46 72 88 / 82%);
+  border: 1px solid rgb(11 79 134 / 12%);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 56%);
+  font-size: 0.86rem;
+  font-weight: 720;
+  line-height: 1.7;
+  backdrop-filter: blur(12px);
+}
+
+.terms-note a {
+  color: #0b4f86;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.terms-note a:hover {
+  text-decoration: underline;
+}
+
 .signal-row {
   display: flex;
   flex-wrap: wrap;

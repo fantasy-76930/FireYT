@@ -1,6 +1,6 @@
 {
-  "name": "FireYT",
-  "short_name": "FireYT",
+  "name": "Fantasy Tune",
+  "short_name": "Fantasy Tune",
   "description": "近期熱門歌單、K-pop、華語新歌、療癒直播聲景，一鍵直接播放。",
   "start_url": "./",
   "scope": "./",
