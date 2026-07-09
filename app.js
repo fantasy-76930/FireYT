@@ -1,4 +1,5 @@
 const AUTO_PICKS_URL = "./data/auto-picks.json";
+const AUTO_PICKS_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
 
 const fallbackSongs = {
   cosmosNoOne: {
@@ -189,7 +190,7 @@ const ambientRooms = [
     subtitle: "到 YouTube 搜尋公開直播，優先選官方或原創頻道",
     kind: "平台搜尋",
     href: "https://www.youtube.com/results?search_query=asia+street+food+live+stream+official",
-    imageId: "K8Sz64VF0gU",
+    image: "./assets/ambient-street-market.svg",
     tone: "teal",
   },
   {
@@ -197,7 +198,7 @@ const ambientRooms = [
     subtitle: "搜尋白天市場、買菜人聲、攤位移動感的公開內容",
     kind: "平台搜尋",
     href: "https://www.youtube.com/results?search_query=%E4%B8%AD%E5%9C%8B+%E5%B8%82%E9%9B%86+%E6%95%A3%E6%AD%A5+4K+%E5%8E%9F%E5%89%B5",
-    imageId: "p-QAMn82huw",
+    image: "./assets/ambient-china-market.svg",
     tone: "cloud",
   },
   {
@@ -205,7 +206,7 @@ const ambientRooms = [
     subtitle: "找夜市、街食、人群背景聲，避開重傳或來源不明影片",
     kind: "平台搜尋",
     href: "https://www.youtube.com/results?search_query=%E5%A4%9C%E5%B8%82+%E8%A1%97%E9%A3%9F+%E4%BA%BA%E7%BE%A4+%E8%81%B2%E6%99%AF+%E5%8E%9F%E5%89%B5",
-    imageId: "WJqybSOdR-g",
+    image: "./assets/ambient-night-market.svg",
     tone: "mahogany",
   },
   {
@@ -213,7 +214,7 @@ const ambientRooms = [
     subtitle: "搜尋夜晚城市、市集燈光、走路視角的公開影片",
     kind: "平台搜尋",
     href: "https://www.youtube.com/results?search_query=%E5%9F%8E%E5%B8%82+%E5%A4%9C%E9%96%93+%E6%BC%AB%E9%81%8A+4K+%E5%8E%9F%E5%89%B5",
-    imageId: "LkZh7mykMdw",
+    image: "./assets/ambient-city-walk.svg",
     tone: "violet",
   },
   {
@@ -221,7 +222,7 @@ const ambientRooms = [
     subtitle: "找現正開車直播，像坐在後座看城市流動",
     kind: "直播搜尋",
     href: "https://www.youtube.com/results?search_query=taxi+driver+live+stream+night+drive+city",
-    imageId: "DWeiS6-r3Js",
+    image: "./assets/ambient-taxi-window.svg",
     tone: "blue",
   },
   {
@@ -229,7 +230,7 @@ const ambientRooms = [
     subtitle: "沒直播時找市集背景聲，留在 YouTube 平台內播放",
     kind: "平台搜尋",
     href: "https://www.youtube.com/results?search_query=market+ambience+walking+tour+no+music+original",
-    imageId: "7IRqQs-vr28",
+    image: "./assets/ambient-market-noise.svg",
     tone: "amber",
   },
 ];
@@ -304,7 +305,7 @@ function ambientHref(room) {
 }
 
 function ambientImage(room) {
-  return thumbnail(room.imageId ?? room.id);
+  return room.image ?? thumbnail(room.imageId ?? room.id);
 }
 
 function encode(value) {
@@ -315,8 +316,15 @@ function makeAutoSongKey(song, index) {
   return `auto${index + 1}${song.id.replace(/[^a-zA-Z0-9]/g, "")}`;
 }
 
+function isFreshAutoPickData(data) {
+  const updatedAt = Date.parse(data?.meta?.updatedAt ?? "");
+  if (!Number.isFinite(updatedAt)) return false;
+  return Date.now() - updatedAt <= AUTO_PICKS_MAX_AGE_MS;
+}
+
 function applyAutoPicks(data) {
   if (!data || !Array.isArray(data.songs) || data.songs.length < 3) return;
+  if (!isFreshAutoPickData(data)) return;
 
   const autoSongs = data.songs
     .filter((song) => /^[\w-]{8,}$/.test(song.id ?? ""))
@@ -556,7 +564,7 @@ function setupVisitorCounter() {
 }
 
 async function copyShareLink() {
-  const url = "https://fantasy-76930.github.io/FireYT/";
+  const url = "https://fantasy-76930.github.io/Fantasy-Tune/";
   const title = "Fantasy Tune - 你不用找，我先挑好了";
   const text = "近期熱門歌單、K-pop、華語新歌、療癒直播聲景，一鍵直接播放。";
 

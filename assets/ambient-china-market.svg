@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" role="img" aria-label="中國市集散步插圖">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f8fdff"/>
+      <stop offset=".52" stop-color="#d6f8ff"/>
+      <stop offset="1" stop-color="#ffd6b0"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="460" fill="url(#bg)"/>
+  <path fill="#0b4f86" opacity=".1" d="M58 316c88-66 178-76 270-32s191 58 334-22v198H58z"/>
+  <g opacity=".78">
+    <rect x="76" y="134" width="124" height="228" rx="8" fill="#fff7df"/>
+    <rect x="222" y="104" width="172" height="258" rx="8" fill="#eafcff"/>
+    <rect x="420" y="126" width="222" height="236" rx="8" fill="#fff0cc"/>
+  </g>
+  <path fill="#cf3f46" d="M64 120h150l-18 54H82z"/>
+  <path fill="#0ea5c7" d="M210 92h196l-25 62H238z"/>
+  <path fill="#ff9c52" d="M404 110h250l-30 62H428z"/>
+  <g fill="#b92d38" opacity=".88">
+    <circle cx="154" cy="204" r="24"/><rect x="148" y="204" width="12" height="76"/>
+    <circle cx="548" cy="204" r="24"/><rect x="542" y="204" width="12" height="76"/>
+  </g>
+  <path fill="none" stroke="#0b4f86" stroke-width="8" stroke-linecap="round" opacity=".3" d="M112 388h496M154 418h410"/>
+  <g fill="#102536" opacity=".58">
+    <circle cx="286" cy="354" r="12"/><path d="M280 366h12l10 42h-32z"/>
+    <circle cx="362" cy="344" r="12"/><path d="M356 356h12l10 44h-32z"/>
+    <circle cx="444" cy="358" r="10"/><path d="M439 368h10l9 34h-28z"/>
+  </g>
+  <g fill="#fff">
+    <circle cx="276" cy="194" r="12" opacity=".75"/><circle cx="326" cy="194" r="12" opacity=".75"/><circle cx="476" cy="204" r="12" opacity=".75"/>
+  </g>
+</svg>

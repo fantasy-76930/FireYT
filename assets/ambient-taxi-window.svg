@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" role="img" aria-label="計程車窗外插圖">
+  <defs>
+    <linearGradient id="road" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#112434"/>
+      <stop offset=".5" stop-color="#0b4f86"/>
+      <stop offset="1" stop-color="#e9fbff"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="460" fill="url(#road)"/>
+  <path fill="#ffffff" opacity=".1" d="M0 96h720v210H0z"/>
+  <g fill="#082033" opacity=".82">
+    <rect x="70" y="96" width="76" height="182"/><rect x="180" y="62" width="112" height="216"/><rect x="330" y="118" width="90" height="160"/><rect x="462" y="74" width="138" height="204"/>
+  </g>
+  <path fill="#07111d" opacity=".82" d="M0 320h720v140H0z"/>
+  <path fill="#ffcf6a" d="M136 318h448c38 0 68 31 68 68v12H68v-12c0-37 30-68 68-68Z"/>
+  <rect x="170" y="276" width="306" height="84" rx="38" fill="#ffcf6a"/>
+  <path fill="#102536" d="M198 288h226c24 0 44 20 44 44v12H154v-12c0-24 20-44 44-44Z" opacity=".72"/>
+  <circle cx="180" cy="402" r="30" fill="#102536"/><circle cx="540" cy="402" r="30" fill="#102536"/>
+  <circle cx="180" cy="402" r="12" fill="#dffcff"/><circle cx="540" cy="402" r="12" fill="#dffcff"/>
+  <path fill="none" stroke="#fff4a8" stroke-linecap="round" stroke-width="8" opacity=".82" d="M82 246h142M494 238h98"/>
+  <path fill="none" stroke="#dffcff" stroke-linecap="round" stroke-width="4" opacity=".45" d="M56 126c158 48 318 48 608 0"/>
+</svg>

@@ -4,7 +4,7 @@ Fantasy Tune 是一個純靜態 PWA，用來整理近期 YouTube 熱門音樂，
 
 ## GitHub Pages
 
-1. 建立 GitHub repository：`FireYT`
+1. 建立 GitHub repository：`Fantasy-Tune`
 2. 上傳本資料夾所有檔案到 repository 根目錄
 3. 到 GitHub repository 的 `Settings` -> `Pages`
 4. `Build and deployment` 選 `Deploy from a branch`
@@ -14,5 +14,5 @@ Fantasy Tune 是一個純靜態 PWA，用來整理近期 YouTube 熱門音樂，
 公開網址通常會是：
 
 ```text
-https://你的GitHub帳號.github.io/FireYT/
+https://你的GitHub帳號.github.io/Fantasy-Tune/
 ```

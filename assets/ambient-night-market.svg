@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" role="img" aria-label="夜市人潮聲景插圖">
+  <defs>
+    <linearGradient id="night" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#102536"/>
+      <stop offset=".55" stop-color="#183a68"/>
+      <stop offset="1" stop-color="#6b4bd8"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="460" fill="url(#night)"/>
+  <path fill="#ffffff" opacity=".08" d="M0 270c120-44 202-38 318 12 101 43 214 38 402-44v222H0z"/>
+  <g opacity=".9">
+    <rect x="72" y="170" width="148" height="188" rx="12" fill="#193f62"/>
+    <rect x="248" y="142" width="160" height="216" rx="12" fill="#124d72"/>
+    <rect x="436" y="166" width="210" height="192" rx="12" fill="#23456f"/>
+  </g>
+  <path fill="#ffcf6a" d="M58 150h176l-22 64H82z"/>
+  <path fill="#ff6f9f" d="M232 118h194l-24 68H256z"/>
+  <path fill="#29d7e8" d="M420 146h244l-30 68H448z"/>
+  <g fill="#fff3a3">
+    <circle cx="118" cy="94" r="7"/><circle cx="186" cy="86" r="5"/><circle cx="304" cy="76" r="6"/><circle cx="512" cy="92" r="7"/><circle cx="610" cy="76" r="5"/>
+  </g>
+  <path fill="none" stroke="#ffd36d" stroke-width="3" opacity=".65" d="M118 94 186 86 304 76 512 92 610 76"/>
+  <g fill="#fff6c8" opacity=".95">
+    <circle cx="128" cy="240" r="12"/><circle cx="176" cy="252" r="10"/><circle cx="314" cy="240" r="14"/><circle cx="502" cy="248" r="12"/><circle cx="568" cy="240" r="10"/>
+  </g>
+  <g fill="#07111d" opacity=".62">
+    <circle cx="162" cy="364" r="12"/><path d="M156 376h12l10 42h-32z"/>
+    <circle cx="246" cy="354" r="12"/><path d="M240 366h12l10 42h-32z"/>
+    <circle cx="352" cy="372" r="11"/><path d="M347 383h10l9 36h-28z"/>
+    <circle cx="468" cy="360" r="12"/><path d="M462 372h12l10 42h-32z"/>
+    <circle cx="558" cy="368" r="10"/><path d="M553 378h10l8 34h-26z"/>
+  </g>
+</svg>
