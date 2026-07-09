@@ -1,4 +1,4 @@
-const CACHE_NAME = "fantasy-tune-v23";
+const CACHE_NAME = "fantasy-tune-v24";
 const APP_SHELL = [
   "./",
   "./index.html",
