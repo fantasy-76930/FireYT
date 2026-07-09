@@ -1,4 +1,4 @@
-const CACHE_NAME = "fireyt-v15";
+const CACHE_NAME = "fireyt-v17";
 const APP_SHELL = [
   "./",
   "./index.html",
