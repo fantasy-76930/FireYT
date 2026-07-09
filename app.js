@@ -1,84 +1,98 @@
 const songs = {
   cosmosNoOne: {
     id: "dRSZhZT6r-Y",
+    visualId: "Z2Pym3k9CvI",
     title: "沒有人像我一樣",
     artist: "宇宙人 Cosmos People",
     tag: "台灣 #1 音樂趨勢",
   },
   idleGimme: {
     id: "FFjDEkZg-54",
+    visualId: "nCIfydOldxI",
     title: "Gimme Dat Love",
     artist: "i-dle",
     tag: "台灣/全球趨勢",
   },
   babyMonster: {
     id: "9cS2wv6AfHk",
+    visualId: "p9XYm7b3yzA",
     title: "I LIKE IT",
     artist: "BABYMONSTER",
     tag: "K-pop 熱門",
   },
   loveIsPain: {
     id: "Bkqk196gGOc",
+    visualId: "VGh7JxBs3aM",
     title: "Love Is Pain",
     artist: "Trending track",
     tag: "情緒流行",
   },
   diorGirl: {
     id: "lpPccyGOPOU",
+    visualId: "3rB3n_XR23o",
     title: "她已不再是那個女孩",
     artist: "DIOR 大穎",
     tag: "華語新歌",
   },
   morning: {
     id: "MnPQxn20BRM",
+    visualId: "cw4GnaYYjH4",
     title: "Morning",
     artist: "Trending track",
     tag: "清爽流行",
   },
   ateezBad: {
     id: "-q_S27LbNKU",
+    visualId: "HsBWmc8y0h0",
     title: "BAD",
     artist: "ATEEZ",
     tag: "K-pop 高能量",
   },
   liviaBrave: {
     id: "U4h0MiIcVWY",
+    visualId: "179K9wQB6wo",
     title: "其實我沒有比較勇敢",
     artist: "林知夏 Livia Lin",
     tag: "華語情緒歌",
   },
   raining: {
     id: "LW5ROCc5SEw",
+    visualId: "07Sfixrv39k",
     title: "一直下",
     artist: "Trending track",
     tag: "夜晚循環",
   },
   bansanka: {
     id: "UOKLtaE2U90",
+    visualId: "AtPkUCqkbUM",
     title: "Bansanka",
     artist: "Trending track",
     tag: "日韓熱聽",
   },
   strayKidsRun: {
     id: "Q7IFjVUUb_E",
+    visualId: "QTVlYd8Jdro",
     title: "RUN IT",
     artist: "Stray Kids",
     tag: "K-pop 新鮮",
   },
   courtesy: {
     id: "CADmiI5tdbc",
+    visualId: "CGQl2xW-7tk",
     title: "客客氣氣 COURTESY",
     artist: "The Crane",
     tag: "台灣獨立",
   },
   nineOneOne: {
     id: "BFAuO-mrhcA",
+    visualId: "8ki1Y5wpjiA",
     title: "有你有我",
     artist: "玖壹壹 春風 feat. 王識賢",
     tag: "台味合唱",
   },
   xiaoYuDream: {
     id: "gjbG_zhsH5o",
+    visualId: "EIiC8gIAMgE",
     title: "我還有個夢",
     artist: "小宇 宋念宇",
     tag: "華語 R&B",
@@ -93,7 +107,8 @@ const songPacks = [
     mark: "TW",
     tone: "red",
     source: "Kworb / YouTube Taiwan Music Trending",
-    thumbKey: "cosmosNoOne",
+    coverId: "w3r6Cru8e_4",
+    heroId: "wY8n1ExAN-s",
     songKeys: ["cosmosNoOne", "idleGimme", "babyMonster", "loveIsPain", "diorGirl", "morning"],
   },
   {
@@ -103,7 +118,8 @@ const songPacks = [
     mark: "華語",
     tone: "green",
     source: "Taiwan trending picks",
-    thumbKey: "diorGirl",
+    coverId: "yM3jz8xVEqo",
+    heroId: "rNpeCVWahkY",
     songKeys: ["cosmosNoOne", "diorGirl", "liviaBrave", "courtesy", "nineOneOne", "xiaoYuDream"],
   },
   {
@@ -113,7 +129,8 @@ const songPacks = [
     mark: "KPOP",
     tone: "cyan",
     source: "YouTube music trending",
-    thumbKey: "babyMonster",
+    coverId: "hJMGlRTzxLo",
+    heroId: "5_6GRFK13vc",
     songKeys: ["idleGimme", "babyMonster", "ateezBad", "strayKidsRun", "bansanka", "morning"],
   },
   {
@@ -123,7 +140,8 @@ const songPacks = [
     mark: "NITE",
     tone: "violet",
     source: "Mood edit",
-    thumbKey: "raining",
+    coverId: "KcF1cQmvbj4",
+    heroId: "f6masGOa75Q",
     songKeys: ["loveIsPain", "raining", "liviaBrave", "xiaoYuDream", "courtesy", "cosmosNoOne"],
   },
   {
@@ -133,7 +151,8 @@ const songPacks = [
     mark: "DRIVE",
     tone: "amber",
     source: "Energy edit",
-    thumbKey: "ateezBad",
+    coverId: "5ki3c8Szt7Y",
+    heroId: "hQUVIT8m-c0",
     songKeys: ["babyMonster", "ateezBad", "strayKidsRun", "idleGimme", "nineOneOne", "morning"],
   },
   {
@@ -143,7 +162,8 @@ const songPacks = [
     mark: "MIX",
     tone: "blue",
     source: "FireYT mix",
-    thumbKey: "bansanka",
+    coverId: "w1v3Zwy622Q",
+    heroId: "OA3coTpbDfw",
     songKeys: [
       "cosmosNoOne",
       "babyMonster",
@@ -228,7 +248,7 @@ let deferredInstallPrompt = null;
 let selectedPackKey = "today";
 
 const toneColors = {
-  red: "#ff3131",
+  red: "#0b4f86",
   cyan: "#25d0c0",
   amber: "#f1b642",
   green: "#39c979",
@@ -260,6 +280,10 @@ function thumbnail(id) {
   return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
 }
 
+function visualThumbnail(item) {
+  return thumbnail(item.visualId ?? item.id);
+}
+
 function ambientHref(room) {
   return room.href ?? youtubeWatch(room.id);
 }
@@ -275,11 +299,10 @@ function encode(value) {
 function renderPacks() {
   packGrid.innerHTML = songPacks
     .map((pack) => {
-      const coverSong = songs[pack.thumbKey] ?? songs[pack.songKeys[0]];
       const isActive = pack.key === selectedPackKey;
       return `
         <button class="pack-card ${isActive ? "is-active" : ""}" type="button" data-pack="${pack.key}" data-tone="${pack.tone}">
-          <span class="pack-thumb" style="background-image: url('${thumbnail(coverSong.id)}')"></span>
+          <span class="pack-thumb" style="background-image: url('${thumbnail(pack.coverId)}')"></span>
           <span class="pack-copy">
             <strong>${pack.title}</strong>
             <span>${pack.subtitle}</span>
@@ -301,7 +324,7 @@ function renderHero(pack) {
   const featured = packSongs[0];
   document.documentElement.style.setProperty("--accent", toneColors[pack.tone] ?? toneColors.red);
   heroPlay.href = playlistUrl(packSongs);
-  featuredImage.src = thumbnail(featured.id);
+  featuredImage.src = thumbnail(pack.heroId);
   featuredImage.alt = `${featured.artist} - ${featured.title}`;
   nowTitle.textContent = pack.title;
   nowMeta.textContent = `${pack.source} · ${packSongs.length} 首`;
@@ -332,7 +355,7 @@ function renderSongs(pack) {
       (song, index) => `
         <article class="song-card" style="--delay: ${index * 55}ms">
           <a class="song-art" href="${youtubeWatch(song.id)}" target="_blank" rel="noreferrer">
-            <img src="${thumbnail(song.id)}" alt="${song.artist} - ${song.title}" loading="lazy" />
+            <img src="${visualThumbnail(song)}" alt="${song.artist} - ${song.title}" loading="lazy" />
             <span class="rank">${String(index + 1).padStart(2, "0")}</span>
             <span class="play-overlay">
               <svg viewBox="0 0 24 24" aria-hidden="true">

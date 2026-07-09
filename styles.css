@@ -104,10 +104,10 @@ img {
 .app-shell {
   position: relative;
   z-index: 1;
-  width: min(1180px, calc(100% - 32px));
+  width: min(1220px, calc(100% - 32px));
   min-height: 100vh;
   margin: 0 auto;
-  padding: 18px 0 46px;
+  padding: 18px 0 56px;
 }
 
 .topbar {
@@ -197,19 +197,19 @@ img {
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.78fr);
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.62fr);
   align-items: stretch;
-  gap: 18px;
-  min-height: 520px;
-  padding: clamp(20px, 4vw, 48px);
+  gap: 24px;
+  min-height: 510px;
+  padding: clamp(26px, 5vw, 60px);
   overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 12%);
+  border: 1px solid rgb(11 79 134 / 12%);
   border-radius: 8px;
   background:
     linear-gradient(102deg, rgb(255 255 255 / 88%) 0%, rgb(248 252 255 / 72%) 42%, rgb(0 114 178 / 24%) 72%, rgb(6 47 95 / 38%) 100%),
     url("./assets/music-wave.svg") center / cover no-repeat,
     rgb(248 251 255 / 78%);
-  box-shadow: 0 26px 86px rgb(6 47 95 / 14%);
+  box-shadow: 0 30px 90px rgb(6 47 95 / 12%);
   backdrop-filter: blur(22px);
 }
 
@@ -302,11 +302,15 @@ p {
 }
 
 h1 {
-  max-width: 9.8ch;
+  max-width: 8.6ch;
   margin-bottom: 20px;
-  font-size: clamp(3rem, 8vw, 6.6rem);
-  line-height: 0.93;
+  font-size: clamp(3rem, 7.4vw, 6.25rem);
+  line-height: 0.92;
   letter-spacing: 0;
+}
+
+h1 span {
+  display: block;
 }
 
 .intro {
@@ -369,8 +373,8 @@ h1 {
 .primary-action {
   gap: 8px;
   color: #fff;
-  background: var(--accent);
-  box-shadow: 0 18px 34px color-mix(in srgb, var(--accent) 28%, transparent);
+  background: linear-gradient(135deg, var(--accent), #0095cc);
+  box-shadow: 0 18px 34px color-mix(in srgb, var(--accent) 22%, transparent);
   animation: actionPulse 2.8s ease-in-out infinite;
 }
 
@@ -391,15 +395,15 @@ h1 {
 .now-card {
   position: relative;
   display: grid;
-  grid-template-rows: minmax(190px, 0.9fr) auto;
+  grid-template-rows: minmax(230px, 0.82fr) auto;
   min-width: 0;
   overflow: hidden;
   border: 1px solid rgb(38 35 31 / 12%);
   border-radius: 8px;
-  background: rgb(255 255 255 / 72%);
+  background: rgb(255 255 255 / 78%);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 70%),
-    0 20px 46px rgb(75 58 53 / 14%);
+    0 20px 52px rgb(6 47 95 / 13%);
   backdrop-filter: blur(18px);
   transform: translateZ(0);
 }
@@ -422,7 +426,7 @@ h1 {
 .now-media img {
   width: 100%;
   height: 100%;
-  min-height: 230px;
+  min-height: 250px;
   object-fit: cover;
   transform: scale(1.02);
   transition: transform 600ms ease;
@@ -556,7 +560,7 @@ h1 {
 .pack-section,
 .song-section,
 .search-section {
-  margin-top: 34px;
+  margin-top: 42px;
 }
 
 .ticker-strip {
@@ -610,7 +614,7 @@ h1 {
 }
 
 .ambient-section {
-  margin-top: 34px;
+  margin-top: 42px;
 }
 
 .ambient-stage {
@@ -831,22 +835,24 @@ h1 {
 .pack-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
 }
 
 .pack-card {
   position: relative;
   display: grid;
-  grid-template-columns: 82px 1fr auto;
+  grid-template-columns: 94px 1fr auto;
   align-items: center;
-  gap: 13px;
+  gap: 15px;
   min-width: 0;
-  min-height: 116px;
-  padding: 12px;
+  min-height: 112px;
+  padding: 12px 14px;
   color: var(--text);
   border: 1px solid rgb(38 35 31 / 11%);
   border-radius: 8px;
-  background: var(--panel);
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / 82%), rgb(238 249 255 / 54%)),
+    var(--panel);
   text-align: left;
   cursor: pointer;
   overflow: hidden;
@@ -875,8 +881,8 @@ h1 {
 }
 
 .pack-thumb {
-  width: 82px;
-  height: 82px;
+  width: 94px;
+  height: 74px;
   border-radius: 8px;
   background-position: center;
   background-size: cover;
@@ -960,8 +966,8 @@ h1 {
 
 .song-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: 16px;
 }
 
 .song-card {
@@ -971,10 +977,13 @@ h1 {
   overflow: hidden;
   border: 1px solid rgb(38 35 31 / 11%);
   border-radius: 8px;
-  background: var(--panel);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 86%), rgb(239 249 255 / 62%)),
+    var(--panel);
   animation: cardIn 520ms ease both;
   animation-delay: var(--delay);
-  box-shadow: 0 14px 38px rgb(75 58 53 / 10%);
+  box-shadow: 0 16px 42px rgb(6 47 95 / 10%);
+  backdrop-filter: blur(14px);
 }
 
 .song-card::after {
@@ -994,7 +1003,7 @@ h1 {
 .song-art {
   position: relative;
   display: block;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1.55 / 1;
   overflow: hidden;
   background: #101114;
 }
