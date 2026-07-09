@@ -1,10 +1,10 @@
 {
   "meta": {
-    "updatedAt": "2026-07-09T10:04:53.937Z",
+    "updatedAt": "2026-07-09T13:37:52.115Z",
     "updatedLabel": "2026.07.09",
-    "source": "Kworb / YouTube Taiwan Music Trending",
-    "sourceUrl": "https://kworb.net/youtube/trending/tw.html",
-    "sourceTimestamp": "Videos trending in Taiwan | 2026-07-09 05:40 EDT"
+    "source": "YouTube Data API v3 / Taiwan Music mostPopular",
+    "sourceUrl": "https://developers.google.com/youtube/v3/docs/videos/list",
+    "sourceTimestamp": "YouTube Data API v3 videos.list chart=mostPopular regionCode=TW videoCategoryId=10"
   },
   "songs": [
     {
