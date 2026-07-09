@@ -1,4 +1,4 @@
-name: Update FireYT daily picks
+name: Update Fantasy Tune daily picks
 
 on:
   schedule:
@@ -34,5 +34,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/auto-picks.json
-          git commit -m "Update daily FireYT picks"
+          git commit -m "Update daily Fantasy Tune picks"
           git push
