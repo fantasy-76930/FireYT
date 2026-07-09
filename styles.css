@@ -36,6 +36,7 @@ html {
 
 body {
   position: relative;
+  isolation: isolate;
   min-width: 320px;
   margin: 0;
   color: var(--text);
@@ -52,14 +53,30 @@ body {
 body::before {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   content: "";
   background:
-    linear-gradient(115deg, transparent 0 34%, rgb(241 238 231 / 8%) 42%, transparent 50% 100%),
-    linear-gradient(180deg, transparent, rgb(31 143 134 / 11%) 48%, transparent 74%);
+    linear-gradient(115deg, transparent 0 26%, rgb(241 238 231 / 22%) 39%, transparent 54% 100%),
+    linear-gradient(180deg, rgb(241 238 231 / 10%), rgb(31 143 134 / 13%) 48%, transparent 74%);
   background-size: 160% 160%, 100% 100%;
-  opacity: 0.82;
+  opacity: 0.9;
   animation: lightSweep 16s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  background:
+    repeating-linear-gradient(128deg, transparent 0 78px, rgb(241 238 231 / 12%) 78px 112px, transparent 112px 220px),
+    linear-gradient(90deg, rgb(241 238 231 / 11%), transparent 30% 70%, rgb(241 238 231 / 9%));
+  background-size: 180% 180%, 100% 100%;
+  mix-blend-mode: screen;
+  opacity: 0.78;
+  animation: cloudRhythm 22s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
 button,
@@ -78,6 +95,7 @@ img {
 
 .app-shell {
   position: relative;
+  z-index: 1;
   width: min(1180px, calc(100% - 32px));
   min-height: 100vh;
   margin: 0 auto;
@@ -179,7 +197,7 @@ img {
   border: 1px solid rgb(255 255 255 / 12%);
   border-radius: 8px;
   background:
-    linear-gradient(90deg, rgb(12 12 15 / 96%), rgb(12 12 15 / 72%)),
+    linear-gradient(100deg, rgb(241 238 231 / 18%) 0%, rgb(12 12 15 / 88%) 28%, rgb(12 12 15 / 74%) 74%, rgb(31 143 134 / 18%) 100%),
     url("./assets/music-wave.svg") center / cover no-repeat,
     #121214;
   box-shadow: var(--shadow);
@@ -196,17 +214,18 @@ img {
 
 .hero::before {
   background:
+    linear-gradient(110deg, transparent 0 28%, rgb(241 238 231 / 24%) 38%, transparent 51%),
     linear-gradient(110deg, transparent 0 42%, color-mix(in srgb, var(--accent) 18%, transparent) 48%, transparent 56%),
-    repeating-linear-gradient(90deg, transparent 0 58px, rgb(255 255 255 / 4%) 58px 59px);
-  background-size: 180% 100%, auto;
-  opacity: 0.72;
+    repeating-linear-gradient(90deg, transparent 0 58px, rgb(241 238 231 / 8%) 58px 59px);
+  background-size: 180% 100%, 180% 100%, auto;
+  opacity: 0.9;
   animation: stageSweep 8s ease-in-out infinite;
 }
 
 .hero::after {
   background:
-    linear-gradient(0deg, rgb(0 0 0 / 42%), transparent 30%),
-    linear-gradient(90deg, color-mix(in srgb, var(--accent) 16%, transparent), transparent 42%);
+    linear-gradient(0deg, rgb(0 0 0 / 34%), transparent 30%),
+    linear-gradient(90deg, rgb(241 238 231 / 12%), color-mix(in srgb, var(--accent) 16%, transparent), transparent 48%);
   mix-blend-mode: screen;
   opacity: 0.48;
 }
@@ -1264,11 +1283,21 @@ h1 {
 @keyframes stageSweep {
   0%,
   100% {
-    background-position: 140% 0, 0 0;
+    background-position: 140% 0, 140% 0, 0 0;
   }
 
   50% {
-    background-position: -40% 0, 0 0;
+    background-position: -40% 0, -40% 0, 0 0;
+  }
+}
+
+@keyframes cloudRhythm {
+  from {
+    background-position: 0% 50%, 0 0;
+  }
+
+  to {
+    background-position: 100% 50%, 0 0;
   }
 }
 
