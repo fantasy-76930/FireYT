@@ -1,4 +1,4 @@
-const CACHE_NAME = "fantasy-tune-v26";
+const CACHE_NAME = "fantasy-tune-v27";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -13,6 +13,7 @@ const APP_SHELL = [
   "./assets/icon-192.png",
   "./assets/icon-512.png",
   "./assets/og-image.png",
+  "./assets/deepsea-background.webp",
   "./assets/music-wave.svg",
   "./assets/ambient-street-market.svg",
   "./assets/ambient-china-market.svg",

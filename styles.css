@@ -47,60 +47,17 @@ body {
   margin: 0;
   color: var(--text);
   background:
-    radial-gradient(circle at 49% -8%, rgb(255 255 255 / 100%) 0 4%, rgb(255 255 255 / 68%) 5%, transparent 18%),
-    linear-gradient(180deg, rgb(255 255 255 / 92%) 0 10%, rgb(234 251 255 / 78%) 28%, rgb(0 177 216 / 34%) 48%, rgb(4 107 151 / 48%) 68%, rgb(4 53 94 / 62%) 100%),
-    radial-gradient(ellipse at 50% 28%, rgb(255 255 255 / 56%), transparent 22%),
-    radial-gradient(ellipse at 18% 76%, rgb(0 226 255 / 24%), transparent 46%),
-    radial-gradient(ellipse at 78% 88%, rgb(0 94 160 / 34%), transparent 48%),
-    linear-gradient(180deg, #ffffff 0%, #effcff 18%, #2db7d0 50%, #05345f 100%);
-  background-attachment: fixed;
-  background-size: 100% 100%, 100% 100%, 130% 110%, 150% 130%, 150% 130%, auto;
-  animation: oceanBreath 22s ease-in-out infinite alternate;
+    linear-gradient(180deg, rgb(255 255 255 / 52%) 0%, rgb(255 255 255 / 26%) 32%, rgb(0 59 96 / 10%) 100%),
+    url("./assets/deepsea-background.webp") 54% top / cover no-repeat,
+    #effcff;
 }
 
 body::before {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  content: "";
-  background:
-    radial-gradient(circle at 49% -5%, rgb(255 255 255 / 96%) 0 3.8%, rgb(214 248 255 / 46%) 5.8%, transparent 18%),
-    linear-gradient(99deg, transparent 0 31%, rgb(255 255 255 / 56%) 38%, rgb(201 246 255 / 30%) 43%, transparent 55%),
-    linear-gradient(105deg, transparent 0 43%, rgb(255 244 199 / 38%) 50%, transparent 64%),
-    linear-gradient(180deg, transparent 0 24%, rgb(255 255 255 / 78%) 25%, rgb(255 255 255 / 22%) 26%, transparent 31%),
-    radial-gradient(circle at 4% 82%, rgb(255 255 255 / 58%) 0 1.4px, transparent 2.8px),
-    radial-gradient(circle at 11% 48%, rgb(255 255 255 / 68%) 0 3px, transparent 5px),
-    radial-gradient(circle at 18% 91%, rgb(255 255 255 / 44%) 0 1.8px, transparent 3.4px),
-    radial-gradient(circle at 29% 64%, rgb(255 255 255 / 62%) 0 5px, transparent 8px),
-    radial-gradient(circle at 42% 38%, rgb(255 255 255 / 34%) 0 1.2px, transparent 2.6px),
-    radial-gradient(circle at 55% 87%, rgb(255 255 255 / 52%) 0 6px, transparent 10px),
-    radial-gradient(circle at 64% 58%, rgb(255 255 255 / 48%) 0 2.8px, transparent 5px),
-    radial-gradient(circle at 76% 80%, rgb(255 255 255 / 42%) 0 1.4px, transparent 3px),
-    radial-gradient(circle at 86% 36%, rgb(255 255 255 / 64%) 0 4px, transparent 7px),
-    radial-gradient(circle at 96% 72%, rgb(255 255 255 / 48%) 0 1.5px, transparent 3px);
-  background-size: 100% 100%, 160% 100%, 180% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-  opacity: 0.96;
-  animation: sunlightDrift 18s ease-in-out infinite alternate;
-  pointer-events: none;
+  display: none;
 }
 
 body::after {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  content: "";
-  background:
-    linear-gradient(180deg, transparent 0 30%, rgb(255 255 255 / 16%) 34%, rgb(0 116 156 / 18%) 46%, transparent 58%) 0 0 / 100% 100% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 34%) 18%, rgb(80 236 255 / 18%) 54%, transparent 86%) 7% -70% / 5px 190% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 22%) 26%, rgb(49 220 255 / 13%) 62%, transparent 92%) 18% -42% / 16px 175% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 28%) 16%, rgb(255 244 199 / 14%) 50%, transparent 82%) 39% -86% / 8px 205% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(80 236 255 / 18%) 24%, rgb(255 255 255 / 20%) 58%, transparent 90%) 64% -58% / 22px 195% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 20%) 20%, transparent 78%) 87% -76% / 4px 180% no-repeat;
-  background-size: 100% 100%, 5px 190%, 16px 175%, 8px 205%, 22px 195%, 4px 180%;
-  filter: blur(5px) saturate(1.2);
-  opacity: 0.84;
-  animation: waterCaustics 20s ease-in-out infinite alternate;
-  pointer-events: none;
+  display: none;
 }
 
 button,
@@ -161,7 +118,6 @@ img {
   border-radius: 10px;
   background: #f8fdff;
   box-shadow: 0 14px 30px rgb(255 111 50 / 18%), 0 10px 26px rgb(22 148 190 / 14%);
-  animation: brandPulse 3.6s ease-in-out infinite;
 }
 
 .brand-mark img {
@@ -283,32 +239,15 @@ img {
 }
 
 .hero::before {
-  background:
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 46%) 18%, rgb(255 244 199 / 26%) 42%, transparent 72%) 9% -45% / 5px 170% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 34%) 24%, rgb(0 149 204 / 16%) 54%, transparent 82%) 21% -70% / 12px 190% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 55%) 16%, rgb(255 255 255 / 18%) 48%, transparent 76%) 37% -35% / 3px 160% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 244 199 / 32%) 22%, rgb(255 255 255 / 18%) 56%, transparent 86%) 58% -80% / 18px 200% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 36%) 28%, rgb(0 149 204 / 12%) 62%, transparent 90%) 76% -52% / 8px 180% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 28%) 20%, transparent 70%) 91% -62% / 2px 170% no-repeat;
-  opacity: 0.9;
-  animation: lightFall 16s ease-in-out infinite alternate;
+  display: none;
 }
 
 .hero::after {
-  background:
-    linear-gradient(0deg, rgb(255 255 255 / 24%), transparent 34%),
-    linear-gradient(90deg, rgb(255 255 255 / 32%), rgb(0 149 204 / 12%), transparent 56%);
-  mix-blend-mode: screen;
-  opacity: 0.7;
+  display: none;
 }
 
 .hero-visual {
-  position: absolute;
-  inset: 5% -6% 4% auto;
-  z-index: -1;
-  width: min(48vw, 560px);
-  opacity: 0.5;
-  transform: skewX(-7deg);
+  display: none;
 }
 
 .hero-visual span {
@@ -319,7 +258,6 @@ img {
   border-radius: 999px;
   background: linear-gradient(180deg, transparent, rgb(255 255 255 / 54%) 18%, rgb(73 218 255 / 22%) 52%, transparent 86%);
   filter: blur(var(--line-blur, 2px)) drop-shadow(0 0 20px rgb(80 190 230 / 26%));
-  animation: lineDrift 9s ease-in-out infinite;
 }
 
 .hero-visual span:nth-child(1) {
@@ -467,7 +405,6 @@ h1 span {
   color: #fff;
   background: linear-gradient(135deg, var(--accent), #0095cc);
   box-shadow: 0 18px 34px color-mix(in srgb, var(--accent) 22%, transparent);
-  animation: actionPulse 2.8s ease-in-out infinite;
 }
 
 .secondary-action {
@@ -551,7 +488,6 @@ h1 span {
   border-radius: 99px;
   background: var(--accent);
   box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 70%, transparent);
-  animation: equalize 880ms ease-in-out infinite alternate;
 }
 
 .equalizer span:nth-child(2) {
@@ -683,7 +619,6 @@ h1 span {
   color: var(--muted);
   font-size: 0.88rem;
   white-space: nowrap;
-  animation: tickerMove 34s linear infinite;
 }
 
 .ticker-track span {
@@ -729,17 +664,7 @@ h1 span {
 }
 
 .ambient-stage::before {
-  position: absolute;
-  inset: -40% -10%;
-  content: "";
-  background:
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 36%) 20%, rgb(255 244 199 / 24%) 48%, transparent 82%) 8% -50% / 4px 180% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 24%) 28%, rgb(11 79 134 / 14%) 62%, transparent 92%) 24% -78% / 14px 210% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 244 199 / 28%) 18%, rgb(255 255 255 / 18%) 56%, transparent 86%) 43% -45% / 7px 180% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 30%) 24%, rgb(0 149 204 / 12%) 58%, transparent 88%) 67% -65% / 20px 205% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 22%) 18%, transparent 72%) 88% -40% / 3px 170% no-repeat;
-  filter: blur(1px);
-  animation: columnFlow 17s ease-in-out infinite alternate;
+  display: none;
 }
 
 .ambient-stage > * {
@@ -785,7 +710,6 @@ h1 span {
   border-radius: 8px;
   background: rgb(255 255 255 / 72%);
   text-decoration: none;
-  animation: cardIn 520ms ease both;
   animation-delay: var(--delay);
   transition:
     transform 180ms ease,
@@ -813,18 +737,7 @@ h1 span {
 .pack-card::before,
 .song-card::before,
 .result-card::before {
-  position: absolute;
-  inset: 0;
-  content: "";
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 24%) 22%, transparent 70%) 12% -70% / 3px 190% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 244 199 / 18%) 26%, rgb(0 149 204 / 9%) 58%, transparent 86%) 36% -48% / 9px 180% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 18%) 18%, transparent 76%) 69% -82% / 15px 210% no-repeat,
-    linear-gradient(180deg, transparent 0%, rgb(255 255 255 / 16%) 30%, transparent 84%) 91% -58% / 5px 185% no-repeat;
-  opacity: 0.72;
-  mix-blend-mode: screen;
-  animation: cardColumnFlow 14s ease-in-out infinite alternate;
+  display: none;
 }
 
 .ambient-card:hover::after {
@@ -887,7 +800,6 @@ h1 span {
     linear-gradient(90deg, transparent 13px, var(--cloud) 13px 17px, transparent 17px 22px, var(--cloud) 22px 26px, transparent 26px 31px, var(--cloud) 31px 35px, transparent 35px),
     var(--ocean);
   box-shadow: 0 14px 34px rgb(11 79 134 / 32%);
-  animation: ambientPulse 1.35s ease-in-out infinite;
 }
 
 .ambient-copy {
@@ -1091,7 +1003,6 @@ h1 span {
   background:
     linear-gradient(180deg, rgb(255 255 255 / 86%), rgb(239 249 255 / 62%)),
     var(--panel);
-  animation: cardIn 520ms ease both;
   animation-delay: var(--delay);
   box-shadow: 0 16px 42px rgb(6 47 95 / 10%);
   backdrop-filter: blur(14px);
