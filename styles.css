@@ -118,6 +118,13 @@ img {
   margin-bottom: 22px;
 }
 
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -176,6 +183,39 @@ img {
   background: rgb(255 255 255 / 62%);
   box-shadow: 0 10px 26px rgb(75 58 53 / 8%);
   cursor: pointer;
+}
+
+.share-button {
+  color: #fff;
+  border-color: rgb(11 79 134 / 16%);
+  background: linear-gradient(135deg, #0b4f86, #0ea5c7 55%, #ff7a3d);
+  box-shadow: 0 16px 32px rgb(14 127 170 / 18%);
+}
+
+.visitor-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 11px;
+  color: #0b4f86;
+  border: 1px solid rgb(11 79 134 / 13%);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 74%);
+  box-shadow: 0 12px 26px rgb(17 96 128 / 8%);
+  backdrop-filter: blur(14px);
+}
+
+.visitor-counter > span {
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.visitor-counter img {
+  display: block;
+  width: 108px;
+  height: 20px;
+  border-radius: 5px;
 }
 
 .icon-button svg,
@@ -1235,8 +1275,25 @@ h1 span {
     align-items: flex-start;
   }
 
+  .topbar-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
   .icon-button span {
     display: none;
+  }
+
+  .visitor-counter {
+    order: 3;
+    width: 100%;
+    justify-content: flex-end;
+    min-height: 34px;
+    padding-inline: 8px;
+  }
+
+  .visitor-counter > span {
+    display: inline;
   }
 
   .hero {

@@ -243,6 +243,9 @@ const form = document.querySelector("#searchForm");
 const input = document.querySelector("#searchInput");
 const resultGrid = document.querySelector("#resultGrid");
 const installButton = document.querySelector("#installButton");
+const shareButton = document.querySelector("#shareButton");
+const shareButtonLabel = document.querySelector("#shareButtonLabel");
+const visitorBadge = document.querySelector("#visitorBadge");
 const tickerTrack = document.querySelector("#tickerTrack");
 const signalCount = document.querySelector("#signalCount");
 const signalSource = document.querySelector("#signalSource");
@@ -532,6 +535,43 @@ function registerServiceWorker() {
   }
 }
 
+function setupVisitorCounter() {
+  if (!visitorBadge) return;
+
+  if (!location.hostname.includes("fantasy-76930.github.io")) {
+    visitorBadge.alt = "上線後開始記錄今日 / 總到訪";
+    visitorBadge.replaceWith(document.createTextNode("上線後開始記錄"));
+    return;
+  }
+
+  const path = encodeURIComponent("FireYT-home");
+  const label = encodeURIComponent("TODAY/TOTAL");
+  visitorBadge.src = `https://api.visitorbadge.io/api/combined?path=${path}&label=${label}&labelColor=%230b4f86&countColor=%23ff6f32&style=flat-square`;
+}
+
+async function copyShareLink() {
+  const url = "https://fantasy-76930.github.io/FireYT/";
+  const title = "FireYT - 你不用找，我先挑好了";
+  const text = "近期熱門歌單、K-pop、華語新歌、療癒直播聲景，一鍵直接播放。";
+
+  try {
+    if (navigator.share) {
+      await navigator.share({ title, text, url });
+    } else {
+      await navigator.clipboard.writeText(url);
+      shareButtonLabel.textContent = "已複製";
+      window.setTimeout(() => {
+        shareButtonLabel.textContent = "分享";
+      }, 1800);
+    }
+  } catch {
+    shareButtonLabel.textContent = "再試一次";
+    window.setTimeout(() => {
+      shareButtonLabel.textContent = "分享";
+    }, 1800);
+  }
+}
+
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
   deferredInstallPrompt = event;
@@ -545,6 +585,8 @@ installButton.addEventListener("click", async () => {
   deferredInstallPrompt = null;
   installButton.hidden = true;
 });
+
+shareButton.addEventListener("click", copyShareLink);
 
 packGrid.addEventListener("click", (event) => {
   const button = event.target.closest(".pack-card");
@@ -562,6 +604,7 @@ async function init() {
   renderTicker();
   renderAmbientRooms();
   selectPack(selectedPackKey);
+  setupVisitorCounter();
   enablePointerGlow();
   registerServiceWorker();
 }
