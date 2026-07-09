@@ -68,10 +68,17 @@ body::before {
     linear-gradient(99deg, transparent 0 31%, rgb(255 255 255 / 56%) 38%, rgb(201 246 255 / 30%) 43%, transparent 55%),
     linear-gradient(105deg, transparent 0 43%, rgb(255 244 199 / 38%) 50%, transparent 64%),
     linear-gradient(180deg, transparent 0 24%, rgb(255 255 255 / 78%) 25%, rgb(255 255 255 / 22%) 26%, transparent 31%),
-    radial-gradient(circle at 18% 30%, rgb(255 255 255 / 62%) 0 1px, transparent 2px),
-    radial-gradient(circle at 70% 37%, rgb(255 255 255 / 52%) 0 1px, transparent 2px),
-    radial-gradient(circle at 44% 46%, rgb(255 255 255 / 45%) 0 1.5px, transparent 2.5px);
-  background-size: 100% 100%, 160% 100%, 180% 100%, 100% 100%, 148px 176px, 198px 222px, 112px 150px;
+    radial-gradient(circle at 4% 82%, rgb(255 255 255 / 58%) 0 1.4px, transparent 2.8px),
+    radial-gradient(circle at 11% 48%, rgb(255 255 255 / 68%) 0 3px, transparent 5px),
+    radial-gradient(circle at 18% 91%, rgb(255 255 255 / 44%) 0 1.8px, transparent 3.4px),
+    radial-gradient(circle at 29% 64%, rgb(255 255 255 / 62%) 0 5px, transparent 8px),
+    radial-gradient(circle at 42% 38%, rgb(255 255 255 / 34%) 0 1.2px, transparent 2.6px),
+    radial-gradient(circle at 55% 87%, rgb(255 255 255 / 52%) 0 6px, transparent 10px),
+    radial-gradient(circle at 64% 58%, rgb(255 255 255 / 48%) 0 2.8px, transparent 5px),
+    radial-gradient(circle at 76% 80%, rgb(255 255 255 / 42%) 0 1.4px, transparent 3px),
+    radial-gradient(circle at 86% 36%, rgb(255 255 255 / 64%) 0 4px, transparent 7px),
+    radial-gradient(circle at 96% 72%, rgb(255 255 255 / 48%) 0 1.5px, transparent 3px);
+  background-size: 100% 100%, 160% 100%, 180% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
   opacity: 0.96;
   animation: sunlightDrift 18s ease-in-out infinite alternate;
   pointer-events: none;
@@ -1583,11 +1590,11 @@ h1 span {
 
 @keyframes sunlightDrift {
   from {
-    background-position: 50% 0, 0% 0, 14% 0, 0 0, 0 0, 40px 22px, 18px 42px;
+    background-position: 50% 0, 0% 0, 14% 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
   }
 
   to {
-    background-position: 48% 0, 100% 0, 84% 0, 0 0, 24px -70px, -34px -88px, 52px -42px;
+    background-position: 48% 0, 100% 0, 84% 0, 0 0, -8px -48px, 14px -82px, -18px -64px, 22px -108px, -12px -58px, 18px -126px, -24px -92px, 12px -76px, -18px -116px, 10px -70px;
   }
 }
 
