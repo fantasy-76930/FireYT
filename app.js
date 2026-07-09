@@ -93,6 +93,7 @@ const songPacks = [
     mark: "TW",
     tone: "red",
     source: "Kworb / YouTube Taiwan Music Trending",
+    thumbKey: "cosmosNoOne",
     songKeys: ["cosmosNoOne", "idleGimme", "babyMonster", "loveIsPain", "diorGirl", "morning"],
   },
   {
@@ -102,6 +103,7 @@ const songPacks = [
     mark: "華語",
     tone: "green",
     source: "Taiwan trending picks",
+    thumbKey: "diorGirl",
     songKeys: ["cosmosNoOne", "diorGirl", "liviaBrave", "courtesy", "nineOneOne", "xiaoYuDream"],
   },
   {
@@ -111,6 +113,7 @@ const songPacks = [
     mark: "KPOP",
     tone: "cyan",
     source: "YouTube music trending",
+    thumbKey: "babyMonster",
     songKeys: ["idleGimme", "babyMonster", "ateezBad", "strayKidsRun", "bansanka", "morning"],
   },
   {
@@ -120,6 +123,7 @@ const songPacks = [
     mark: "NITE",
     tone: "violet",
     source: "Mood edit",
+    thumbKey: "raining",
     songKeys: ["loveIsPain", "raining", "liviaBrave", "xiaoYuDream", "courtesy", "cosmosNoOne"],
   },
   {
@@ -129,6 +133,7 @@ const songPacks = [
     mark: "DRIVE",
     tone: "amber",
     source: "Energy edit",
+    thumbKey: "ateezBad",
     songKeys: ["babyMonster", "ateezBad", "strayKidsRun", "idleGimme", "nineOneOne", "morning"],
   },
   {
@@ -138,6 +143,7 @@ const songPacks = [
     mark: "MIX",
     tone: "blue",
     source: "FireYT mix",
+    thumbKey: "bansanka",
     songKeys: [
       "cosmosNoOne",
       "babyMonster",
@@ -269,11 +275,11 @@ function encode(value) {
 function renderPacks() {
   packGrid.innerHTML = songPacks
     .map((pack) => {
-      const firstSong = songs[pack.songKeys[0]];
+      const coverSong = songs[pack.thumbKey] ?? songs[pack.songKeys[0]];
       const isActive = pack.key === selectedPackKey;
       return `
         <button class="pack-card ${isActive ? "is-active" : ""}" type="button" data-pack="${pack.key}" data-tone="${pack.tone}">
-          <span class="pack-thumb" style="background-image: url('${thumbnail(firstSong.id)}')"></span>
+          <span class="pack-thumb" style="background-image: url('${thumbnail(coverSong.id)}')"></span>
           <span class="pack-copy">
             <strong>${pack.title}</strong>
             <span>${pack.subtitle}</span>
