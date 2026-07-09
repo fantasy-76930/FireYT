@@ -1,4 +1,6 @@
-const songs = {
+const AUTO_PICKS_URL = "./data/auto-picks.json";
+
+const fallbackSongs = {
   cosmosNoOne: {
     id: "dRSZhZT6r-Y",
     visualId: "Z2Pym3k9CvI",
@@ -99,7 +101,9 @@ const songs = {
   },
 };
 
-const songPacks = [
+let songs = { ...fallbackSongs };
+
+const fallbackSongPacks = [
   {
     key: "today",
     title: "今天台灣在聽",
@@ -177,6 +181,8 @@ const songPacks = [
   },
 ];
 
+let songPacks = fallbackSongPacks.map((pack) => ({ ...pack, songKeys: [...pack.songKeys] }));
+
 const ambientRooms = [
   {
     title: "亞洲街食 24/7",
@@ -243,6 +249,7 @@ const signalSource = document.querySelector("#signalSource");
 const signalMode = document.querySelector("#signalMode");
 const ambientGrid = document.querySelector("#ambientGrid");
 const ambientPlayAll = document.querySelector("#ambientPlayAll");
+const updateLabel = document.querySelector("#updateLabel");
 
 let deferredInstallPrompt = null;
 let selectedPackKey = "today";
@@ -294,6 +301,62 @@ function ambientImage(room) {
 
 function encode(value) {
   return encodeURIComponent(value.trim().replace(/\s+/g, " "));
+}
+
+function makeAutoSongKey(song, index) {
+  return `auto${index + 1}${song.id.replace(/[^a-zA-Z0-9]/g, "")}`;
+}
+
+function applyAutoPicks(data) {
+  if (!data || !Array.isArray(data.songs) || data.songs.length < 3) return;
+
+  const autoSongs = data.songs
+    .filter((song) => /^[\w-]{8,}$/.test(song.id ?? ""))
+    .slice(0, 8)
+    .map((song, index) => {
+      const key = makeAutoSongKey(song, index);
+      return {
+        key,
+        id: song.id,
+        visualId: song.visualId ?? song.id,
+        title: song.title || "今日趨勢歌曲",
+        artist: song.artist || "YouTube Trending",
+        tag: song.tag || `台灣音樂趨勢 #${index + 1}`,
+      };
+    });
+
+  if (autoSongs.length < 3) return;
+
+  songs = { ...fallbackSongs };
+  autoSongs.forEach((song) => {
+    songs[song.key] = song;
+  });
+
+  songPacks = fallbackSongPacks.map((pack) => {
+    if (pack.key !== "today") return { ...pack, songKeys: [...pack.songKeys] };
+    return {
+      ...pack,
+      subtitle: "每天自動抓台灣音樂趨勢，打開就是新鮮的",
+      source: data.meta?.source || "Kworb / YouTube Taiwan Music Trending",
+      coverId: autoSongs[1]?.id || autoSongs[0].id,
+      heroId: autoSongs[0].id,
+      songKeys: autoSongs.slice(0, 6).map((song) => song.key),
+    };
+  });
+
+  if (updateLabel && data.meta?.updatedLabel) {
+    updateLabel.textContent = `更新 ${data.meta.updatedLabel} · Taiwan auto`;
+  }
+}
+
+async function loadAutoPicks() {
+  try {
+    const response = await fetch(`${AUTO_PICKS_URL}?v=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) return;
+    applyAutoPicks(await response.json());
+  } catch {
+    // Keep the hand-picked fallback list when the daily update file is unavailable.
+  }
 }
 
 function renderPacks() {
@@ -494,8 +557,13 @@ form.addEventListener("submit", (event) => {
   renderSearchLinks(input.value);
 });
 
-renderTicker();
-renderAmbientRooms();
-selectPack(selectedPackKey);
-enablePointerGlow();
-registerServiceWorker();
+async function init() {
+  await loadAutoPicks();
+  renderTicker();
+  renderAmbientRooms();
+  selectPack(selectedPackKey);
+  enablePointerGlow();
+  registerServiceWorker();
+}
+
+init();

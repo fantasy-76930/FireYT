@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "updatedAt": "2026-07-09T10:02:16.414Z",
+    "updatedLabel": "2026.07.09",
+    "source": "Kworb / YouTube Taiwan Music Trending",
+    "sourceUrl": "https://kworb.net/youtube/trending/tw.html",
+    "sourceTimestamp": "Videos trending in Taiwan | 2026-07-09 05:40 EDT"
+  },
+  "songs": [
+    {
+      "id": "FFjDEkZg-54",
+      "title": "i-dle (아이들) 'Gimme Dat Love'",
+      "artist": "i-dle (아이들)",
+      "tag": "台灣音樂趨勢 #1"
+    },
+    {
+      "id": "dRSZhZT6r-Y",
+      "title": "Cosmos People 宇宙人 [ 沒有人像我一樣 No One Like You ]",
+      "artist": "宇宙人Cosmos People",
+      "tag": "台灣音樂趨勢 #2"
+    },
+    {
+      "id": "9cS2wv6AfHk",
+      "title": "BABYMONSTER - 'I LIKE IT'",
+      "artist": "BABYMONSTER",
+      "tag": "台灣音樂趨勢 #3"
+    },
+    {
+      "id": "Bkqk196gGOc",
+      "title": "Love Is Pain",
+      "artist": "i-dle - Topic",
+      "tag": "台灣音樂趨勢 #4"
+    },
+    {
+      "id": "MnPQxn20BRM",
+      "title": "Morning",
+      "artist": "i-dle - Topic",
+      "tag": "台灣音樂趨勢 #5"
+    },
+    {
+      "id": "lpPccyGOPOU",
+      "title": "DIOR大穎 - 她已不再是那個女孩",
+      "artist": "DIOR大穎",
+      "tag": "台灣音樂趨勢 #6"
+    },
+    {
+      "id": "LW5ROCc5SEw",
+      "title": "一直下",
+      "artist": "陳宇祥 - Topic",
+      "tag": "台灣音樂趨勢 #7"
+    },
+    {
+      "id": "-q_S27LbNKU",
+      "title": "ATEEZ(에이티즈) - 'BAD'",
+      "artist": "KQ ENTERTAINMENT",
+      "tag": "台灣音樂趨勢 #8"
+    }
+  ]
+}

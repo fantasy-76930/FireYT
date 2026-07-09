@@ -1,10 +1,11 @@
-const CACHE_NAME = "fireyt-v13";
+const CACHE_NAME = "fireyt-v14";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
   "./manifest.webmanifest",
+  "./data/auto-picks.json",
   "./assets/favicon.ico",
   "./assets/favicon-32.png",
   "./assets/apple-touch-icon.png",
