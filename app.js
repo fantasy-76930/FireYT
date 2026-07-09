@@ -438,6 +438,7 @@ function renderSongs(pack) {
             <p>${song.tag}</p>
             <h3>${song.title}</h3>
             <span>${song.artist}</span>
+            <small>音樂資料與縮圖來源：YouTube</small>
           </div>
           <div class="song-actions">
             <a href="${youtubeWatch(song.id)}" target="_blank" rel="noreferrer">YouTube</a>
@@ -462,7 +463,7 @@ function renderTicker() {
 }
 
 function renderAmbientRooms() {
-  ambientPlayAll.href = youtubeWatch(ambientRooms[0].id);
+  ambientPlayAll.href = ambientHref(ambientRooms[0]);
   ambientGrid.innerHTML = ambientRooms
     .map(
       (room, index) => `

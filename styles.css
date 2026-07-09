@@ -1126,6 +1126,15 @@ h1 span {
   line-height: 1.4;
 }
 
+.song-body small {
+  display: block;
+  margin-top: 10px;
+  color: rgb(46 72 88 / 68%);
+  font-size: 0.72rem;
+  font-weight: 760;
+  line-height: 1.45;
+}
+
 .song-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1202,6 +1211,91 @@ h1 span {
 
 .site-footer details p {
   margin-top: 8px;
+}
+
+.privacy-page {
+  max-width: 1040px;
+}
+
+.privacy-home-link {
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+.privacy-main {
+  display: grid;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.privacy-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(28px, 6vw, 54px);
+  border: 1px solid rgb(11 79 134 / 12%);
+  border-radius: 8px;
+  background:
+    linear-gradient(115deg, rgb(255 255 255 / 90%), rgb(236 249 255 / 72%)),
+    radial-gradient(circle at 80% 10%, rgb(255 220 141 / 42%), transparent 34%);
+  box-shadow: 0 18px 42px rgb(6 47 95 / 10%);
+}
+
+.privacy-hero h1 {
+  max-width: 760px;
+  margin: 0 0 12px;
+  font-size: clamp(2.1rem, 6vw, 4.2rem);
+}
+
+.privacy-hero p {
+  max-width: 760px;
+  color: rgb(46 72 88 / 86%);
+  line-height: 1.8;
+}
+
+.privacy-date {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.privacy-card {
+  padding: 20px;
+  border: 1px solid rgb(11 79 134 / 11%);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 76%);
+  box-shadow: 0 16px 34px rgb(17 96 128 / 8%);
+  backdrop-filter: blur(14px);
+}
+
+.privacy-card h2 {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+}
+
+.privacy-card p,
+.policy-list {
+  color: rgb(46 72 88 / 88%);
+  line-height: 1.85;
+}
+
+.privacy-card p + p {
+  margin-top: 10px;
+}
+
+.privacy-card a {
+  color: #0b4f86;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.privacy-card a:hover {
+  text-decoration: underline;
+}
+
+.policy-list {
+  display: grid;
+  gap: 8px;
+  padding-left: 1.2em;
 }
 
 .search-panel {
