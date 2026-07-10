@@ -69,6 +69,12 @@ function toSong(item, index, tagPrefix) {
   };
 }
 
+function hasUsableMusicTitle(title) {
+  const cleaned = cleanTitle(title);
+  if (!cleaned || cleaned.length > 90) return false;
+  return !/(合集|合輯|歌單|排行榜|必聽|冥想|靜心|睡眠|放鬆|白噪音|八段錦|Zen Trip-Hop)/i.test(cleaned);
+}
+
 async function fetchTaiwanMusicTrending() {
   const params = new URLSearchParams({
     part: "snippet,contentDetails,statistics",
@@ -87,7 +93,7 @@ async function fetchTaiwanMusicTrending() {
   return data.items
     .filter((item) => {
       const duration = parseIsoDuration(item.contentDetails?.duration);
-      return duration >= 90 && duration <= 1200;
+      return duration >= 90 && duration <= 1200 && hasUsableMusicTitle(item.snippet?.title ?? "");
     })
     .map((item, index) => toSong(item, index, "台灣音樂熱門"));
 }
@@ -137,7 +143,12 @@ async function fetchRecentTaiwanMusic() {
   return details
     .filter((item) => {
       const duration = parseIsoDuration(item.contentDetails?.duration);
-      return duration >= 90 && duration <= 1200 && item.snippet?.liveBroadcastContent !== "live";
+      return (
+        duration >= 90 &&
+        duration <= 1200 &&
+        item.snippet?.liveBroadcastContent !== "live" &&
+        hasUsableMusicTitle(item.snippet?.title ?? "")
+      );
     })
     .sort((a, b) => Number(b.statistics?.viewCount ?? 0) - Number(a.statistics?.viewCount ?? 0))
     .slice(0, 8)
