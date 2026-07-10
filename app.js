@@ -535,13 +535,6 @@ function selectPack(key, shouldScroll = false) {
   }
 }
 
-function enablePointerGlow() {
-  document.addEventListener("pointermove", (event) => {
-    document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
-    document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
-  });
-}
-
 function renderSearchLinks(query) {
   const cleanQuery = query.trim();
   if (!cleanQuery) {
@@ -594,6 +587,36 @@ function setupVisitorCounter() {
   const path = encodeURIComponent("fantasy-tune-home");
   const label = encodeURIComponent("TODAY/TOTAL");
   visitorBadge.src = `https://api.visitorbadge.io/api/combined?path=${path}&label=${label}&labelColor=%230b4f86&countColor=%23ff6f32&style=flat-square`;
+}
+
+function setupSectionNavigation() {
+  const links = [...document.querySelectorAll(".primary-nav a[href^='#'], .content-map a[href^='#']")];
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter((section, index, items) => section && items.indexOf(section) === index);
+
+  if (!("IntersectionObserver" in window) || !sections.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries.find((entry) => entry.isIntersecting);
+      if (!visible) return;
+
+      links.forEach((link) => {
+        link.classList.toggle("is-current", link.getAttribute("href") === `#${visible.target.id}`);
+      });
+    },
+    { rootMargin: "-18% 0px -68%", threshold: 0.01 },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+function restoreHashPosition() {
+  if (!location.hash) return;
+  const target = document.querySelector(location.hash);
+  if (!target) return;
+  window.setTimeout(() => target.scrollIntoView({ block: "start", behavior: "auto" }), 0);
 }
 
 async function copyShareLink() {
@@ -652,6 +675,8 @@ async function init() {
   renderAmbientRooms();
   selectPack(selectedPackKey);
   setupVisitorCounter();
+  setupSectionNavigation();
+  restoreHashPosition();
   registerServiceWorker();
 }
 

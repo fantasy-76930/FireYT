@@ -46,10 +46,10 @@
           <span>Fantasy Tune</span>
         </a>
         <nav class="primary-nav" aria-label="首頁區塊">
-          <a href="#today">今日歌單</a>
-          <a href="#packs">歌單分類</a>
+          <a href="#packs">選歌單</a>
+          <a href="#today">今日排行</a>
           <a href="#ambient">療癒聲景</a>
-          <a href="./articles.html">文章</a>
+          <a href="#journal">音樂文章</a>
         </nav>
         <div class="topbar-actions">
           <div class="visitor-counter" aria-label="今日到訪與總到訪人數">
@@ -143,8 +143,32 @@
           </div>
         </section>
 
+        <nav class="content-map" aria-label="網站內容導覽">
+          <a href="#packs">
+            <span>01</span>
+            <strong>選一種方向</strong>
+            <small>12 種歌單</small>
+          </a>
+          <a href="#today">
+            <span>02</span>
+            <strong>今天正在聽</strong>
+            <small>24 首先看</small>
+          </a>
+          <a href="#ambient">
+            <span>03</span>
+            <strong>留一點人聲</strong>
+            <small>6 個聲景</small>
+          </a>
+          <a href="#journal">
+            <span>04</span>
+            <strong>慢慢讀一篇</strong>
+            <small>音樂文章</small>
+          </a>
+        </nav>
+
         <section class="pack-section" id="packs" aria-labelledby="packTitle">
           <div class="section-heading">
+            <span class="section-number" aria-hidden="true">01</span>
             <div>
               <p class="eyebrow">Choose a direction</p>
               <h2 id="packTitle">從一種方向開始</h2>
@@ -163,6 +187,7 @@
 
         <section class="song-section" id="today" aria-labelledby="songTitle">
           <div class="section-heading">
+            <span class="section-number" aria-hidden="true">02</span>
             <div>
               <p class="eyebrow" id="songEyebrow"></p>
               <h2 id="songTitle"></h2>
@@ -182,6 +207,7 @@
         <section class="ambient-section" id="ambient" aria-labelledby="ambientTitle">
           <div class="ambient-stage">
             <div>
+              <span class="section-number ambient-number" aria-hidden="true">03</span>
               <p class="eyebrow">Healing live room</p>
               <h2 id="ambientTitle">房間裡有一點人間聲音，就不那麼空。</h2>
               <p>
@@ -224,8 +250,9 @@
           <div class="result-grid" id="resultGrid"></div>
         </section>
 
-        <section class="article-section" aria-labelledby="latestArticleTitle">
+        <section class="article-section" id="journal" aria-labelledby="latestArticleTitle">
           <div class="section-heading">
+            <span class="section-number" aria-hidden="true">04</span>
             <div>
               <p class="eyebrow">Listening notes</p>
               <h2 id="latestArticleTitle">把聽見的感覺留下一點</h2>
