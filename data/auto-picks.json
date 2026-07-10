@@ -1,59 +1,59 @@
 {
   "meta": {
-    "updatedAt": "2026-07-10T04:05:33.808Z",
+    "updatedAt": "2026-07-10T04:12:22.352Z",
     "updatedLabel": "2026.07.10",
-    "source": "YouTube Data API v3 / Taiwan Music mostPopular",
-    "sourceUrl": "https://developers.google.com/youtube/v3/docs/videos/list",
-    "sourceTimestamp": "YouTube Data API v3 videos.list chart=mostPopular regionCode=TW videoCategoryId=10"
+    "source": "YouTube Data API v3 / Taiwan recent high-view music + mostPopular",
+    "sourceUrl": "https://developers.google.com/youtube/v3/docs",
+    "sourceTimestamp": "YouTube Data API v3 search.list publishedAfter=30d order=viewCount + videos.list chart=mostPopular regionCode=TW videoCategoryId=10"
   },
   "songs": [
+    {
+      "id": "aGsrg1NO1cM",
+      "title": "Jay Chou 周杰倫【My Daughter, Your Highness女兒殿下】",
+      "artist": "周杰倫 Jay Chou",
+      "tag": "近30天高觀看新歌 #1"
+    },
     {
       "id": "FFjDEkZg-54",
       "title": "i-dle (아이들) 'Gimme Dat Love'",
       "artist": "i-dle (아이들)",
-      "tag": "台灣音樂趨勢 #1"
+      "tag": "台灣音樂熱門 #1"
+    },
+    {
+      "id": "kCA93dLzKP4",
+      "title": "A-Lin《一個人 Alone》",
+      "artist": "A-Lin官方專屬頻道",
+      "tag": "近30天高觀看新歌 #2"
     },
     {
       "id": "dRSZhZT6r-Y",
       "title": "Cosmos People 宇宙人 [ 沒有人像我一樣 No One Like You ]",
       "artist": "宇宙人Cosmos People",
-      "tag": "台灣音樂趨勢 #2"
+      "tag": "台灣音樂熱門 #2"
+    },
+    {
+      "id": "u1R5nqy5BNM",
+      "title": "徐暐翔Vash Hsu feat. 閻奕格 Janice Yan - '不要救我 Burn Me Down'",
+      "artist": "徐暐翔Vash Hsu",
+      "tag": "近30天高觀看新歌 #3"
     },
     {
       "id": "9cS2wv6AfHk",
       "title": "BABYMONSTER - 'I LIKE IT'",
       "artist": "BABYMONSTER",
-      "tag": "台灣音樂趨勢 #3"
+      "tag": "台灣音樂熱門 #3"
+    },
+    {
+      "id": "jK-8GBBORWM",
+      "title": "【2026華語新歌】八段錦融合Zen Trip-Hop，海內外華人靜心冥想必聽！《氣引山河》用音樂打一套八段錦，斬斷內耗！「一呼一吸間萬物皆空」🧘‍♀️當古老神功遇上迷幻重低音，聽完徹底放鬆洗滌靈魂！",
+      "artist": "梅杞熒時空聲影Studio",
+      "tag": "近30天高觀看新歌 #4"
     },
     {
       "id": "Bkqk196gGOc",
       "title": "Love Is Pain",
       "artist": "i-dle - Topic",
-      "tag": "台灣音樂趨勢 #4"
-    },
-    {
-      "id": "MnPQxn20BRM",
-      "title": "Morning",
-      "artist": "i-dle - Topic",
-      "tag": "台灣音樂趨勢 #5"
-    },
-    {
-      "id": "lpPccyGOPOU",
-      "title": "DIOR大穎 - 她已不再是那個女孩",
-      "artist": "DIOR大穎",
-      "tag": "台灣音樂趨勢 #6"
-    },
-    {
-      "id": "LW5ROCc5SEw",
-      "title": "一直下",
-      "artist": "陳宇祥 - Topic",
-      "tag": "台灣音樂趨勢 #7"
-    },
-    {
-      "id": "-q_S27LbNKU",
-      "title": "ATEEZ(에이티즈) - 'BAD'",
-      "artist": "KQ ENTERTAINMENT",
-      "tag": "台灣音樂趨勢 #8"
+      "tag": "台灣音樂熱門 #4"
     }
   ]
 }
