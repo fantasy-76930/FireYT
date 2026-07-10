@@ -405,8 +405,8 @@ function renderHero(pack) {
   heroPlay.href = playlistUrl(packSongs);
   featuredImage.src = thumbnail(pack.heroId);
   featuredImage.alt = `${featured.artist} - ${featured.title}`;
-  nowTitle.textContent = pack.title;
-  nowMeta.textContent = `${pack.source} · ${packSongs.length} 首`;
+  nowTitle.textContent = featured ? featured.title : pack.title;
+  nowMeta.textContent = `${pack.title} · ${pack.source} · ${packSongs.length} 首`;
   signalCount.textContent = packSongs.length;
   signalSource.textContent = pack.mark;
   signalMode.textContent = pack.key === "shuffle" ? "MIX" : "LIVE";
@@ -427,7 +427,7 @@ function renderHero(pack) {
 function renderSongs(pack) {
   const packSongs = getSongs(pack);
   songEyebrow.textContent = pack.source;
-  songTitle.textContent = pack.title;
+  songTitle.textContent = "完整歌單";
   playAll.href = playlistUrl(packSongs);
   songGrid.innerHTML = packSongs
     .map(
