@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updatedAt": "2026-07-09T13:37:52.115Z",
-    "updatedLabel": "2026.07.09",
+    "updatedAt": "2026-07-10T04:05:33.808Z",
+    "updatedLabel": "2026.07.10",
     "source": "YouTube Data API v3 / Taiwan Music mostPopular",
     "sourceUrl": "https://developers.google.com/youtube/v3/docs/videos/list",
     "sourceTimestamp": "YouTube Data API v3 videos.list chart=mostPopular regionCode=TW videoCategoryId=10"
