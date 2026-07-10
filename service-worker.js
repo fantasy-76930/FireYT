@@ -1,4 +1,4 @@
-const CACHE_NAME = "fantasy-tune-v33";
+const CACHE_NAME = "fantasy-tune-v34";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -20,12 +20,12 @@ const APP_SHELL = [
   "./assets/article-cover-default.svg",
   "./assets/deepsea-background.webp",
   "./assets/music-wave.svg",
-  "./assets/ambient-street-market.svg",
-  "./assets/ambient-china-market.svg",
-  "./assets/ambient-night-market.svg",
-  "./assets/ambient-city-walk.svg",
-  "./assets/ambient-taxi-window.svg",
-  "./assets/ambient-market-noise.svg",
+  "./assets/ambient-street-market.webp",
+  "./assets/ambient-china-market.webp",
+  "./assets/ambient-night-market.webp",
+  "./assets/ambient-city-walk.webp",
+  "./assets/ambient-taxi-window.webp",
+  "./assets/ambient-market-noise.webp",
 ];
 
 self.addEventListener("install", (event) => {

@@ -190,7 +190,7 @@ const ambientRooms = [
     subtitle: "到 YouTube 搜尋公開直播，優先選官方或原創頻道",
     kind: "平台搜尋",
     href: "https://www.youtube.com/results?search_query=asia+street+food+live+stream+official",
-    image: "./assets/ambient-street-market.svg",
+    image: "./assets/ambient-street-market.webp",
     tone: "teal",
   },
   {
@@ -198,7 +198,7 @@ const ambientRooms = [
     subtitle: "搜尋白天市場、買菜人聲、攤位移動感的公開內容",
     kind: "平台搜尋",
     href: "https://www.youtube.com/results?search_query=%E4%B8%AD%E5%9C%8B+%E5%B8%82%E9%9B%86+%E6%95%A3%E6%AD%A5+4K+%E5%8E%9F%E5%89%B5",
-    image: "./assets/ambient-china-market.svg",
+    image: "./assets/ambient-china-market.webp",
     tone: "cloud",
   },
   {
@@ -206,7 +206,7 @@ const ambientRooms = [
     subtitle: "找夜市、街食、人群背景聲，避開重傳或來源不明影片",
     kind: "平台搜尋",
     href: "https://www.youtube.com/results?search_query=%E5%A4%9C%E5%B8%82+%E8%A1%97%E9%A3%9F+%E4%BA%BA%E7%BE%A4+%E8%81%B2%E6%99%AF+%E5%8E%9F%E5%89%B5",
-    image: "./assets/ambient-night-market.svg",
+    image: "./assets/ambient-night-market.webp",
     tone: "mahogany",
   },
   {
@@ -214,7 +214,7 @@ const ambientRooms = [
     subtitle: "搜尋夜晚城市、市集燈光、走路視角的公開影片",
     kind: "平台搜尋",
     href: "https://www.youtube.com/results?search_query=%E5%9F%8E%E5%B8%82+%E5%A4%9C%E9%96%93+%E6%BC%AB%E9%81%8A+4K+%E5%8E%9F%E5%89%B5",
-    image: "./assets/ambient-city-walk.svg",
+    image: "./assets/ambient-city-walk.webp",
     tone: "violet",
   },
   {
@@ -222,7 +222,7 @@ const ambientRooms = [
     subtitle: "找現正開車直播，像坐在後座看城市流動",
     kind: "直播搜尋",
     href: "https://www.youtube.com/results?search_query=taxi+driver+live+stream+night+drive+city",
-    image: "./assets/ambient-taxi-window.svg",
+    image: "./assets/ambient-taxi-window.webp",
     tone: "blue",
   },
   {
@@ -230,7 +230,7 @@ const ambientRooms = [
     subtitle: "沒直播時找市集背景聲，留在 YouTube 平台內播放",
     kind: "平台搜尋",
     href: "https://www.youtube.com/results?search_query=market+ambience+walking+tour+no+music+original",
-    image: "./assets/ambient-market-noise.svg",
+    image: "./assets/ambient-market-noise.webp",
     tone: "amber",
   },
 ];
@@ -509,7 +509,7 @@ function renderAmbientRooms() {
       (room, index) => `
         <a class="ambient-card" href="${ambientHref(room)}" target="_blank" rel="noreferrer" data-tone="${room.tone}" style="--delay: ${index * 70}ms">
           <span class="ambient-thumb">
-            <img src="${ambientImage(room)}" alt="${room.title}" loading="lazy" />
+            <img src="${ambientImage(room)}" alt="${room.title}" loading="lazy" decoding="async" />
             <span class="live-pill">${room.kind}</span>
             <span class="ambient-pulse" aria-hidden="true"></span>
           </span>
