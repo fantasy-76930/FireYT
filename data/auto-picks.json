@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-10T04:12:22.352Z",
+    "updatedAt": "2026-07-10T04:14:04.097Z",
     "updatedLabel": "2026.07.10",
     "source": "YouTube Data API v3 / Taiwan recent high-view music + mostPopular",
     "sourceUrl": "https://developers.google.com/youtube/v3/docs",
@@ -44,16 +44,16 @@
       "tag": "台灣音樂熱門 #3"
     },
     {
-      "id": "jK-8GBBORWM",
-      "title": "【2026華語新歌】八段錦融合Zen Trip-Hop，海內外華人靜心冥想必聽！《氣引山河》用音樂打一套八段錦，斬斷內耗！「一呼一吸間萬物皆空」🧘‍♀️當古老神功遇上迷幻重低音，聽完徹底放鬆洗滌靈魂！",
-      "artist": "梅杞熒時空聲影Studio",
-      "tag": "近30天高觀看新歌 #4"
-    },
-    {
       "id": "Bkqk196gGOc",
       "title": "Love Is Pain",
       "artist": "i-dle - Topic",
       "tag": "台灣音樂熱門 #4"
+    },
+    {
+      "id": "MnPQxn20BRM",
+      "title": "Morning",
+      "artist": "i-dle - Topic",
+      "tag": "台灣音樂熱門 #5"
     }
   ]
 }
