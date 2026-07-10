@@ -1,4 +1,4 @@
-const CACHE_NAME = "fantasy-tune-v37";
+const CACHE_NAME = "fantasy-tune-v38";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -7,8 +7,8 @@ const APP_SHELL = [
   "./articles/2026-07-10-night-drive-music-companion.html",
   "./articles/2026-07-10-fantasy-tune-start.html",
   "./privacy.html",
-  "./styles.css",
-  "./app.js",
+  "./styles.css?v=38",
+  "./app.js?v=38",
   "./manifest.webmanifest",
   "./data/auto-picks.json",
   "./assets/favicon.ico",
