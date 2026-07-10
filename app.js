@@ -421,7 +421,6 @@ function renderPacks() {
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M8 5v14l11-7Z"></path>
             </svg>
-            播
           </span>
         </button>
       `;
@@ -459,15 +458,15 @@ function renderSongs(pack) {
   const packSongs = getSongs(pack);
   const visibleSongs = packSongs.slice(0, SONG_CARD_DISPLAY_LIMIT);
   songEyebrow.textContent = pack.source;
-  songTitle.textContent = "完整歌單";
+  songTitle.textContent = pack.title;
   playAll.href = playlistUrl(packSongs);
   songGrid.innerHTML = visibleSongs
     .map(
       (song, index) => `
-        <article class="song-card" style="--delay: ${index * 55}ms">
+        <article class="song-card" style="--delay: ${index * 35}ms">
+          <span class="rank">${String(index + 1).padStart(2, "0")}</span>
           <a class="song-art" href="${youtubeWatch(song.id)}" target="_blank" rel="noreferrer">
             <img src="${visualThumbnail(song)}" alt="${song.artist} - ${song.title}" loading="lazy" />
-            <span class="rank">${String(index + 1).padStart(2, "0")}</span>
             <span class="play-overlay">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8 5v14l11-7Z"></path>
@@ -478,7 +477,7 @@ function renderSongs(pack) {
             <p>${song.tag}</p>
             <h3>${song.title}</h3>
             <span>${song.artist}</span>
-            <small>音樂資料與縮圖來源：YouTube</small>
+            <small>資料與縮圖：YouTube</small>
           </div>
           <div class="song-actions">
             <a href="${youtubeWatch(song.id)}" target="_blank" rel="noreferrer">YouTube</a>
@@ -511,7 +510,9 @@ function renderAmbientRooms() {
           <span class="ambient-thumb">
             <img src="${ambientImage(room)}" alt="${room.title}" loading="lazy" decoding="async" />
             <span class="live-pill">${room.kind}</span>
-            <span class="ambient-pulse" aria-hidden="true"></span>
+            <span class="ambient-pulse" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg>
+            </span>
           </span>
           <span class="ambient-copy">
             <strong>${room.title}</strong>
@@ -651,7 +652,6 @@ async function init() {
   renderAmbientRooms();
   selectPack(selectedPackKey);
   setupVisitorCounter();
-  enablePointerGlow();
   registerServiceWorker();
 }
 

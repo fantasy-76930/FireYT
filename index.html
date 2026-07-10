@@ -45,12 +45,17 @@
           </span>
           <span>Fantasy Tune</span>
         </a>
+        <nav class="primary-nav" aria-label="首頁區塊">
+          <a href="#today">今日歌單</a>
+          <a href="#packs">歌單分類</a>
+          <a href="#ambient">療癒聲景</a>
+          <a href="./articles.html">文章</a>
+        </nav>
         <div class="topbar-actions">
           <div class="visitor-counter" aria-label="今日到訪與總到訪人數">
             <span>到訪</span>
             <img id="visitorBadge" alt="今日 / 總到訪" />
           </div>
-          <a class="icon-button" href="./articles.html">文章</a>
           <button class="icon-button share-button" id="shareButton" type="button">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M18 8a3 3 0 1 0-2.8-4H15a3 3 0 0 0 .4 1.5L8.9 9.1a3 3 0 1 0 0 5.8l6.5 3.6A3 3 0 1 0 16.2 17l-6.5-3.6a3.1 3.1 0 0 0 0-2.8L16.2 7a3 3 0 0 0 1.8 1Zm0-6a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM6 13a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm12 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path>
@@ -70,20 +75,15 @@
 
       <main>
         <section class="hero" aria-labelledby="pageTitle">
-          <div class="hero-visual" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
           <div class="hero-copy">
             <p class="eyebrow" id="updateLabel">更新 2026.07.08 · Taiwan first</p>
             <h1 id="pageTitle">
-              <span>你不用找</span>
-              <span>我先挑好了</span>
+              <span>今天播什麼，</span>
+              <span>先替你挑好。</span>
             </h1>
             <p class="intro">
-              打開就播今天台灣 YouTube 音樂趨勢。<br />
-              聽膩了再切新歌、夜晚、開車。
+              從台灣正在聽的歌開始，整理成一整天不重複的播放方向。<br />
+              不必先搜尋，按下去就走。
             </p>
             <p class="terms-note">
               使用本網站即表示你同意 <a href="./privacy.html">隱私權政策</a>，並理解 YouTube 內容受
@@ -93,7 +93,7 @@
             <div class="signal-row" aria-label="推薦狀態">
               <span>
                 <strong id="signalCount">6</strong>
-                首歌
+                首可播放
               </span>
               <span>
                 <strong id="signalSource">TW</strong>
@@ -101,7 +101,7 @@
               </span>
               <span>
                 <strong id="signalMode">LIVE</strong>
-                推薦
+                今日選曲
               </span>
             </div>
             <div class="hero-actions">
@@ -111,7 +111,7 @@
                 </svg>
                 直接播放
               </a>
-              <a class="secondary-action" href="#packs">換一包</a>
+              <a class="secondary-action" href="#packs">選擇歌單</a>
             </div>
           </div>
 
@@ -143,30 +143,12 @@
           </div>
         </section>
 
-        <section class="ambient-section" aria-labelledby="ambientTitle">
-          <div class="ambient-stage">
-            <div>
-              <p class="eyebrow">Healing live room</p>
-              <h2 id="ambientTitle">療癒直播中的陪伴感</h2>
-              <p>
-                熱鬧市集、夜市叫賣、計程車窗外、城市移動聲。想放空時不一定要聽歌，也可以開一個有人間煙火的背景。
-              </p>
-            </div>
-            <a class="primary-action ambient-play" id="ambientPlayAll" target="_blank" rel="noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8 5v14l11-7Z"></path>
-              </svg>
-              開市集聲
-            </a>
-          </div>
-          <div class="ambient-grid" id="ambientGrid"></div>
-        </section>
-
         <section class="pack-section" id="packs" aria-labelledby="packTitle">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Pick a mood</p>
-              <h2 id="packTitle">一鍵歌包</h2>
+              <p class="eyebrow">Choose a direction</p>
+              <h2 id="packTitle">從一種方向開始</h2>
+              <p class="section-deck">台灣熱門、各國音樂與情境歌單都整理成可直接播放的入口。</p>
             </div>
             <a class="text-link" href="https://developers.google.com/youtube/v3/docs/videos/list" target="_blank" rel="noreferrer">
               API 來源
@@ -179,11 +161,12 @@
           <div class="pack-grid" id="packGrid"></div>
         </section>
 
-        <section class="song-section" aria-labelledby="songTitle">
+        <section class="song-section" id="today" aria-labelledby="songTitle">
           <div class="section-heading">
             <div>
               <p class="eyebrow" id="songEyebrow"></p>
               <h2 id="songTitle"></h2>
+              <p class="section-deck">首頁先呈現 24 首，完整內容會在播放時一次帶走。</p>
             </div>
             <a class="text-link" id="playAll" target="_blank" rel="noreferrer">
               播放整包
@@ -196,10 +179,30 @@
           <div class="song-grid" id="songGrid"></div>
         </section>
 
+        <section class="ambient-section" id="ambient" aria-labelledby="ambientTitle">
+          <div class="ambient-stage">
+            <div>
+              <p class="eyebrow">Healing live room</p>
+              <h2 id="ambientTitle">房間裡有一點人間聲音，就不那麼空。</h2>
+              <p>
+                市集叫賣、雨夜街景、計程車窗外與清晨攤位。當你不想聽歌，讓遠遠的人聲和城市聲陪著就好。
+              </p>
+            </div>
+            <a class="primary-action ambient-play" id="ambientPlayAll" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14l11-7Z"></path>
+              </svg>
+              開市集聲
+            </a>
+          </div>
+          <div class="ambient-grid" id="ambientGrid"></div>
+        </section>
+
         <section class="search-section" aria-labelledby="searchTitle">
           <div>
-            <p class="eyebrow">Still curious</p>
-            <h2 id="searchTitle">想換口味再找</h2>
+            <p class="eyebrow">Open search</p>
+            <h2 id="searchTitle">真的想找，再從這裡開始。</h2>
+            <p class="section-deck">搜尋會直接前往 YouTube 或 YouTube Music，不會在本站保存關鍵字。</p>
           </div>
           <form class="search-panel" id="searchForm">
             <label for="searchInput">關鍵字</label>
@@ -224,8 +227,8 @@
         <section class="article-section" aria-labelledby="latestArticleTitle">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Music journal</p>
-              <h2 id="latestArticleTitle">最新音樂文章</h2>
+              <p class="eyebrow">Listening notes</p>
+              <h2 id="latestArticleTitle">把聽見的感覺留下一點</h2>
             </div>
             <a class="text-link" href="./articles.html">
               全部文章
