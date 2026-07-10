@@ -1666,6 +1666,11 @@ a {
     line-height: 1.1;
   }
 
+  .article-page h1 {
+    font-size: 2.12rem;
+    line-height: 1.12;
+  }
+
   .article-page {
     padding-top: 52px;
   }
