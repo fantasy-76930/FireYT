@@ -271,6 +271,7 @@ const toneColors = {
   violet: "#9f7aea",
   blue: "#5aa7ff",
 };
+const SONG_CARD_DISPLAY_LIMIT = 24;
 
 function getPack(key) {
   return songPacks.find((pack) => pack.key === key) ?? songPacks[0];
@@ -312,8 +313,8 @@ function encode(value) {
   return encodeURIComponent(value.trim().replace(/\s+/g, " "));
 }
 
-function makeAutoSongKey(song, index) {
-  return `auto${index + 1}${song.id.replace(/[^a-zA-Z0-9]/g, "")}`;
+function makeScopedAutoSongKey(scope, song, index) {
+  return `${scope}${index + 1}${song.id.replace(/[^a-zA-Z0-9]/g, "")}`;
 }
 
 function isFreshAutoPickData(data) {
@@ -326,20 +327,22 @@ function applyAutoPicks(data) {
   if (!data || !Array.isArray(data.songs) || data.songs.length < 3) return;
   if (!isFreshAutoPickData(data)) return;
 
-  const autoSongs = data.songs
-    .filter((song) => /^[\w-]{8,}$/.test(song.id ?? ""))
-    .slice(0, 8)
-    .map((song, index) => {
-      const key = makeAutoSongKey(song, index);
-      return {
-        key,
-        id: song.id,
-        visualId: song.visualId ?? song.id,
-        title: song.title || "今日趨勢歌曲",
-        artist: song.artist || "YouTube Trending",
-        tag: song.tag || `台灣音樂趨勢 #${index + 1}`,
-      };
-    });
+  const normalizeAutoSongs = (songList, scope) =>
+    songList
+      .filter((song) => /^[\w-]{8,}$/.test(song.id ?? ""))
+      .map((song, index) => {
+        const key = makeScopedAutoSongKey(scope, song, index);
+        return {
+          key,
+          id: song.id,
+          visualId: song.visualId ?? song.id,
+          title: song.title || "今日趨勢歌曲",
+          artist: song.artist || "YouTube Trending",
+          tag: song.tag || `台灣音樂趨勢 #${index + 1}`,
+        };
+      });
+
+  const autoSongs = normalizeAutoSongs(data.songs, "daily");
 
   if (autoSongs.length < 3) return;
 
@@ -348,17 +351,45 @@ function applyAutoPicks(data) {
     songs[song.key] = song;
   });
 
-  songPacks = fallbackSongPacks.map((pack) => {
-    if (pack.key !== "today") return { ...pack, songKeys: [...pack.songKeys] };
-    return {
-      ...pack,
-      subtitle: "每天自動抓台灣音樂趨勢，打開就是新鮮的",
-      source: data.meta?.source || "YouTube Data API v3 / Taiwan Music mostPopular",
-      coverId: autoSongs[1]?.id || autoSongs[0].id,
-      heroId: autoSongs[0].id,
-      songKeys: autoSongs.slice(0, 6).map((song) => song.key),
-    };
-  });
+  const countryPacks = Array.isArray(data.packs)
+    ? data.packs
+        .map((pack, index) => {
+          const packSongs = normalizeAutoSongs(pack.songs ?? [], `pack${index}`);
+          packSongs.forEach((song) => {
+            songs[song.key] = song;
+          });
+          if (packSongs.length < 3) return null;
+          return {
+            key: pack.key || `country${index + 1}`,
+            title: pack.title || "各國 Top 100",
+            subtitle: pack.subtitle || "台灣地區觀看量排序，各類取前 100 首",
+            mark: pack.mark || "TOP",
+            tone: pack.tone || "blue",
+            source: pack.source || "YouTube Data API v3 / Taiwan viewCount search",
+            coverId: packSongs[1]?.id || packSongs[0].id,
+            heroId: packSongs[0].id,
+            songKeys: packSongs.map((song) => song.key),
+          };
+        })
+        .filter(Boolean)
+    : [];
+
+  songPacks = [
+    ...fallbackSongPacks.map((pack) => {
+      if (pack.key !== "today") return { ...pack, songKeys: [...pack.songKeys] };
+      return {
+        ...pack,
+        title: "20 小時不重複",
+        subtitle: "用 20 小時估算每日播放量，盡量同一天不重複",
+        mark: `${autoSongs.length}`,
+        source: data.meta?.source || "YouTube Data API v3 / Taiwan daily pool",
+        coverId: autoSongs[1]?.id || autoSongs[0].id,
+        heroId: autoSongs[0].id,
+        songKeys: autoSongs.map((song) => song.key),
+      };
+    }),
+    ...countryPacks,
+  ];
 
   if (updateLabel && data.meta?.updatedLabel) {
     updateLabel.textContent = `更新 ${data.meta.updatedLabel} · Taiwan auto`;
@@ -426,10 +457,11 @@ function renderHero(pack) {
 
 function renderSongs(pack) {
   const packSongs = getSongs(pack);
+  const visibleSongs = packSongs.slice(0, SONG_CARD_DISPLAY_LIMIT);
   songEyebrow.textContent = pack.source;
   songTitle.textContent = "完整歌單";
   playAll.href = playlistUrl(packSongs);
-  songGrid.innerHTML = packSongs
+  songGrid.innerHTML = visibleSongs
     .map(
       (song, index) => `
         <article class="song-card" style="--delay: ${index * 55}ms">
