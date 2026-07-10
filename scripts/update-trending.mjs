@@ -20,12 +20,12 @@ const SEARCH_QUERIES = [
   "台灣 獨立音樂",
 ];
 const COUNTRY_MUSIC_PACKS = [
-  { key: "mandarin-top", title: "華語 Top 100", mark: "華語", tone: "green", query: "華語 音樂" },
-  { key: "kpop-top", title: "韓國 Top 100", mark: "KPOP", tone: "cyan", query: "韓國 KPOP 音樂" },
-  { key: "jpop-top", title: "日本 Top 100", mark: "JPOP", tone: "violet", query: "日本 JPOP 音樂" },
-  { key: "western-top", title: "歐美 Top 100", mark: "POP", tone: "blue", query: "歐美 流行音樂" },
-  { key: "thai-top", title: "泰國 Top 100", mark: "THAI", tone: "amber", query: "泰國 流行音樂" },
-  { key: "latin-top", title: "拉丁 Top 100", mark: "LATIN", tone: "red", query: "Latin pop music" },
+  { key: "mandarin-top", title: "華語 Top 100", mark: "華語", tone: "green", queries: ["華語 音樂", "台灣 華語 歌曲", "中文 流行音樂"] },
+  { key: "kpop-top", title: "韓國 Top 100", mark: "KPOP", tone: "cyan", queries: ["韓國 KPOP 音樂", "KPOP music", "韓國 流行音樂"] },
+  { key: "jpop-top", title: "日本 Top 100", mark: "JPOP", tone: "violet", queries: ["日本 JPOP 音樂", "Japanese pop music", "日本 流行音樂"] },
+  { key: "western-top", title: "歐美 Top 100", mark: "POP", tone: "blue", queries: ["western pop music", "english pop music", "billboard hot 100", "歐美 流行音樂"] },
+  { key: "thai-top", title: "泰國 Top 100", mark: "THAI", tone: "amber", queries: ["泰國 流行音樂", "Thai pop music", "T-pop music"] },
+  { key: "latin-top", title: "拉丁 Top 100", mark: "LATIN", tone: "red", queries: ["Latin pop music", "reggaeton music", "latin music hits"] },
 ];
 
 function cleanTitle(title) {
@@ -217,7 +217,21 @@ async function fetchRecentTaiwanMusic(limit) {
 }
 
 async function fetchCountryMusicPack(pack) {
-  const ids = await fetchSearchVideoIds({ query: pack.query, limit: COUNTRY_TARGET_COUNT });
+  const ids = [];
+  const seen = new Set();
+
+  for (const query of pack.queries) {
+    const queryIds = await fetchSearchVideoIds({ query, limit: COUNTRY_TARGET_COUNT });
+    for (const id of queryIds) {
+      if (id && !seen.has(id)) {
+        seen.add(id);
+        ids.push(id);
+      }
+      if (ids.length >= COUNTRY_TARGET_COUNT * 2) break;
+    }
+    if (ids.length >= COUNTRY_TARGET_COUNT * 2) break;
+  }
+
   const details = await fetchVideoDetails(ids);
   const songs = uniqueSongs(
     details.sort((a, b) => Number(b.statistics?.viewCount ?? 0) - Number(a.statistics?.viewCount ?? 0)),
@@ -230,7 +244,7 @@ async function fetchCountryMusicPack(pack) {
     subtitle: `台灣地區觀看量排序，取前 ${COUNTRY_TARGET_COUNT} 首`,
     mark: pack.mark,
     tone: pack.tone,
-    source: `YouTube Data API v3 / Taiwan viewCount search / ${pack.query}`,
+    source: `YouTube Data API v3 / Taiwan viewCount search / ${pack.title}`,
     targetSongCount: COUNTRY_TARGET_COUNT,
     actualSongCount: songs.length,
     songs,
@@ -258,12 +272,13 @@ requireApiKey();
 
 const popularSongs = await fetchTaiwanMusicPopular(POPULAR_TARGET_COUNT);
 const recentSongs = await fetchRecentTaiwanMusic(TARGET_SONG_COUNT);
-const songs = mergeUniqueSongLists([popularSongs, recentSongs], TARGET_SONG_COUNT);
 const packs = [];
 
 for (const pack of COUNTRY_MUSIC_PACKS) {
   packs.push(await fetchCountryMusicPack(pack));
 }
+
+const songs = mergeUniqueSongLists([popularSongs, recentSongs, ...packs.map((pack) => pack.songs)], TARGET_SONG_COUNT);
 
 if (songs.length < 50) {
   throw new Error(`Expected at least 50 combined YouTube music videos, found ${songs.length}.`);
