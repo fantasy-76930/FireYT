@@ -12,7 +12,10 @@ const ASSUMED_AVERAGE_SONG_MINUTES = 4;
 const TARGET_SONG_COUNT = Math.ceil((TARGET_LISTENING_HOURS * 60) / ASSUMED_AVERAGE_SONG_MINUTES);
 const POPULAR_TARGET_COUNT = 100;
 const COUNTRY_TARGET_COUNT = 100;
-const DIVERSITY_POLICY_VERSION = 2;
+const ROTATION_POOL_LIMIT = 2000;
+const MIN_ROTATION_POOL_SIZE = TARGET_SONG_COUNT * 2;
+const DIVERSITY_POLICY_VERSION = 3;
+const ROTATION_POLICY_VERSION = 1;
 const MAX_SINGLE_TRACK_SECONDS = 600;
 const REPETITIVE_TITLE_PATTERN =
   /\b(?:loop(?:ed|ing)?|repeat(?:ed)?|extended|\d+\s*(?:hours?|minutes?|mins?)|(?:one|two|three|four|five|six|eight|ten)\s*hours?)\b|(?:\d+\s*(?:小時|小时|分鐘|分钟)|循環|循环|單曲循環|单曲循环|無限循環|无限循环|重複播放|重复播放|洗腦循環|洗脑循环|延長版|延长版)/i;
@@ -144,6 +147,14 @@ async function fetchVideoDetails(ids) {
     if (Array.isArray(data.items)) details.push(...data.items);
   }
   return details;
+}
+
+async function fetchVerifiedArchiveSongs(songs) {
+  const ids = [...new Set(songs.map((song) => song?.id).filter(Boolean))];
+  if (!ids.length) return [];
+  const details = await fetchVideoDetails(ids);
+  const detailsById = new Map(details.map((item) => [item.id, item]));
+  return uniqueSongs(ids.map((id) => detailsById.get(id)).filter(Boolean), "輪替歌庫");
 }
 
 async function fetchSearchVideoIds({ query, limit, publishedAfter }) {
@@ -308,11 +319,12 @@ function ensureTaiwanTopPack(popularSongs, packs) {
   return [taiwanPack, ...packs.filter((pack) => pack.key !== taiwanPack.key)];
 }
 
-function buildDiverseSongPool({ popularSongs, recentSongs, packs, limit }) {
+function buildDiverseSongPool({ popularSongs, recentSongs, packs, archiveSongs = [], limit }) {
   const bucketEntries = [
     ["popular", popularSongs],
     ["recent", recentSongs],
     ...packs.filter((pack) => pack.key !== "taiwan-top").map((pack) => [pack.key, pack.songs]),
+    ["archive", archiveSongs],
   ];
   const buckets = new Map(bucketEntries.map(([key, songs]) => [key, [...(songs ?? [])]]));
   const schedule = [
@@ -324,6 +336,7 @@ function buildDiverseSongPool({ popularSongs, recentSongs, packs, limit }) {
     "recent",
     "western-top",
     "jpop-top",
+    "archive",
     "thai-top",
     "latin-top",
   ];
@@ -398,6 +411,15 @@ function buildDiverseSongPool({ popularSongs, recentSongs, packs, limit }) {
   return { songs: output.slice(0, limit), artistSpacing };
 }
 
+function circularBatch(items, offset, count) {
+  if (!items.length) return [];
+  const safeOffset = ((offset % items.length) + items.length) % items.length;
+  return Array.from(
+    { length: Math.min(count, items.length) },
+    (_, index) => items[(safeOffset + index) % items.length],
+  );
+}
+
 function rotateItems(items, offset) {
   if (items.length < 2) return [...items];
   const safeOffset = offset % items.length;
@@ -420,12 +442,18 @@ function buildFallbackPayload(existing, reason) {
     existing.meta?.diversityPolicyVersion === DIVERSITY_POLICY_VERSION &&
     Array.isArray(existing.songs) &&
     existing.songs.length >= TARGET_SONG_COUNT &&
-    existing.songs.every(isAllowedDailySong)
+    existing.songs.every(isAllowedDailySong) &&
+    Array.isArray(existing.rotationSongs) &&
+    existing.rotationSongs.length >= MIN_ROTATION_POOL_SIZE &&
+    existing.rotationSongs.every(isAllowedDailySong)
   ) {
     return existing;
   }
 
-  const verifiedSongs = Array.isArray(existing.songs) ? existing.songs : [];
+  const verifiedSongs = [
+    ...(Array.isArray(existing.rotationSongs) ? existing.rotationSongs : []),
+    ...(Array.isArray(existing.songs) ? existing.songs : []),
+  ];
   const existingPacks = Array.isArray(existing.packs) ? existing.packs : [];
   const storedTaiwanPack = existingPacks.find((pack) => pack.key === "taiwan-top");
   const popularSongs = storedTaiwanPack?.songs?.length
@@ -435,16 +463,18 @@ function buildFallbackPayload(existing, reason) {
   const discoverySongs = verifiedSongs.filter((song) => !popularIds.has(song.id));
   const daySeed = Number(updatedLabel.replace(/\D/g, "")) * 37;
   const packs = ensureTaiwanTopPack(popularSongs, existingPacks);
-  const diversePool = buildDiverseSongPool({
+  const rotationPool = buildDiverseSongPool({
     popularSongs,
     recentSongs: rotateItems(discoverySongs, daySeed),
     packs,
-    limit: TARGET_SONG_COUNT,
+    archiveSongs: verifiedSongs,
+    limit: ROTATION_POOL_LIMIT,
   });
-  const rotatedSongs = diversePool.songs;
+  const rotationSongs = rotationPool.songs;
+  const rotatedSongs = circularBatch(rotationSongs, daySeed, TARGET_SONG_COUNT);
 
-  if (rotatedSongs.length < 50) {
-    throw new Error(`Fallback pool is too small: ${rotatedSongs.length} songs.`);
+  if (rotationSongs.length < MIN_ROTATION_POOL_SIZE) {
+    throw new Error(`Fallback rotation pool is too small: ${rotationSongs.length} songs.`);
   }
 
   return {
@@ -459,10 +489,15 @@ function buildFallbackPayload(existing, reason) {
       diversityPolicy: "Country and language interleave, similar-title dedupe, artist spacing, repetitive-audio exclusion",
       diversityPolicyVersion: DIVERSITY_POLICY_VERSION,
       repetitiveAudioExclusions: REPETITIVE_AUDIO_BLOCKLIST.size,
-      artistSpacing: diversePool.artistSpacing,
+      artistSpacing: rotationPool.artistSpacing,
+      rotationPolicyVersion: ROTATION_POLICY_VERSION,
+      rotationPoolCount: rotationSongs.length,
+      rotationBatchSize: TARGET_SONG_COUNT,
+      consecutiveBatchesDoNotOverlap: rotationSongs.length >= MIN_ROTATION_POOL_SIZE,
       sourceTimestamp: "Daily diverse order refreshed from the previous verified YouTube API pool while search quota resets.",
     },
     songs: rotatedSongs,
+    rotationSongs,
     packs,
   };
 }
@@ -472,7 +507,7 @@ function isQuotaError(error) {
   return message.includes("429") || /quota exceeded/i.test(message);
 }
 
-async function buildLivePayload() {
+async function buildLivePayload(existing) {
   const popularSongs = await fetchTaiwanMusicPopular(POPULAR_TARGET_COUNT);
   const recentSongs = await fetchRecentTaiwanMusic(TARGET_SONG_COUNT);
   const countryPacks = [];
@@ -482,16 +517,24 @@ async function buildLivePayload() {
   }
 
   const packs = ensureTaiwanTopPack(popularSongs, countryPacks);
-  const diversePool = buildDiverseSongPool({
+  const archiveCandidates = [
+    ...(Array.isArray(existing?.rotationSongs) ? existing.rotationSongs : []),
+    ...(Array.isArray(existing?.songs) ? existing.songs : []),
+  ];
+  const archiveSongs = await fetchVerifiedArchiveSongs(archiveCandidates);
+  const rotationPool = buildDiverseSongPool({
     popularSongs,
     recentSongs,
     packs,
-    limit: TARGET_SONG_COUNT,
+    archiveSongs,
+    limit: ROTATION_POOL_LIMIT,
   });
-  const songs = diversePool.songs;
+  const rotationSongs = rotationPool.songs;
+  const daySeed = Number(todayTaipeiLabel().replace(/\D/g, "")) * 37;
+  const songs = circularBatch(rotationSongs, daySeed, TARGET_SONG_COUNT);
 
-  if (songs.length < 50) {
-    throw new Error(`Expected at least 50 combined YouTube music videos, found ${songs.length}.`);
+  if (rotationSongs.length < MIN_ROTATION_POOL_SIZE) {
+    throw new Error(`Expected at least ${MIN_ROTATION_POOL_SIZE} rotation songs, found ${rotationSongs.length}.`);
   }
 
   return {
@@ -512,16 +555,22 @@ async function buildLivePayload() {
       diversityPolicy: "Country and language interleave, similar-title dedupe, artist spacing, repetitive-audio exclusion",
       diversityPolicyVersion: DIVERSITY_POLICY_VERSION,
       repetitiveAudioExclusions: REPETITIVE_AUDIO_BLOCKLIST.size,
-      artistSpacing: diversePool.artistSpacing,
+      artistSpacing: rotationPool.artistSpacing,
+      rotationPolicyVersion: ROTATION_POLICY_VERSION,
+      rotationPoolCount: rotationSongs.length,
+      rotationBatchSize: TARGET_SONG_COUNT,
+      consecutiveBatchesDoNotOverlap: rotationSongs.length >= MIN_ROTATION_POOL_SIZE,
     },
     songs,
+    rotationSongs,
     packs,
   };
 }
 
 async function main() {
+  const existing = await readExistingPayload();
   if (FORCE_FALLBACK) {
-    const fallback = buildFallbackPayload(await readExistingPayload(), "Manual daily refresh while API quota resets.");
+    const fallback = buildFallbackPayload(existing, "Manual daily refresh while API quota resets.");
     await writePayload(fallback);
     console.log(`Fallback refresh completed for ${fallback.meta.updatedLabel} with ${fallback.songs.length} songs.`);
     return;
@@ -530,7 +579,7 @@ async function main() {
   requireApiKey();
 
   try {
-    const payload = await buildLivePayload();
+    const payload = await buildLivePayload(existing);
     await writePayload(payload);
     console.log(
       `Updated ${OUTPUT_PATH} with ${payload.songs.length} songs. ` +
@@ -538,7 +587,7 @@ async function main() {
     );
   } catch (error) {
     if (!isQuotaError(error)) throw error;
-    const fallback = buildFallbackPayload(await readExistingPayload(), "YouTube API search quota reached.");
+    const fallback = buildFallbackPayload(existing, "YouTube API search quota reached.");
     await writePayload(fallback);
     console.warn(`API quota reached. Published ${fallback.meta.updatedLabel} fallback rotation instead.`);
   }

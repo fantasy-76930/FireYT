@@ -262,6 +262,11 @@ const updateLabel = document.querySelector("#updateLabel");
 
 let deferredInstallPrompt = null;
 let selectedPackKey = "today";
+let activeDailySongKeys = [];
+let activeRotationSongs = [];
+let rotationCatalog = [];
+let rotationState = null;
+let autoPickMeta = {};
 
 const toneColors = {
   red: "#0b4f86",
@@ -272,6 +277,9 @@ const toneColors = {
   blue: "#5aa7ff",
 };
 const SONG_CARD_DISPLAY_LIMIT = 24;
+const ROTATION_BATCH_SIZE = 300;
+const ROTATION_STATE_KEY = "fantasy-tune-rotation-v1";
+const ROTATION_STATE_VERSION = 1;
 
 function getPack(key) {
   return songPacks.find((pack) => pack.key === key) ?? songPacks[0];
@@ -317,6 +325,129 @@ function makeScopedAutoSongKey(scope, song, index) {
   return `${scope}${index + 1}${song.id.replace(/[^a-zA-Z0-9]/g, "")}`;
 }
 
+function normalizeAutoSongs(songList, scope) {
+  return songList
+    .filter((song) => /^[\w-]{8,}$/.test(song.id ?? ""))
+    .map((song, index) => {
+      const key = makeScopedAutoSongKey(scope, song, index);
+      return {
+        key,
+        id: song.id,
+        visualId: song.visualId ?? song.id,
+        title: song.title || "今日趨勢歌曲",
+        artist: song.artist || "YouTube Trending",
+        tag: song.tag || `台灣音樂趨勢 #${index + 1}`,
+      };
+    });
+}
+
+function taipeiDateKey() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Taipei",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function taipeiDayNumber(dateKey) {
+  return Math.floor(Date.parse(`${dateKey}T00:00:00Z`) / 86400000);
+}
+
+function uniqueRotationCatalog(songList) {
+  const seen = new Set();
+  return songList.filter((song) => {
+    if (!/^[\w-]{8,}$/.test(song?.id ?? "") || seen.has(song.id)) return false;
+    seen.add(song.id);
+    return true;
+  });
+}
+
+function readRotationState() {
+  try {
+    const state = JSON.parse(localStorage.getItem(ROTATION_STATE_KEY) ?? "null");
+    return state?.version === ROTATION_STATE_VERSION ? state : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeRotationState(state) {
+  rotationState = state;
+  try {
+    localStorage.setItem(ROTATION_STATE_KEY, JSON.stringify(state));
+  } catch {
+    // In-memory rotation still works when browser storage is unavailable.
+  }
+}
+
+function chooseNextRotationBatch(catalog, state, previousIds = []) {
+  if (!catalog.length) return { songs: [], cursor: 0 };
+
+  const previous = new Set(previousIds);
+  const lastPlayed = state?.lastPlayed ?? {};
+  const today = taipeiDateKey();
+  const initialCursor = (taipeiDayNumber(today) * ROTATION_BATCH_SIZE) % catalog.length;
+  const cursor = Number.isInteger(state?.cursor) ? state.cursor % catalog.length : initialCursor;
+  const ranked = catalog
+    .map((song, index) => ({
+      song,
+      position: (index - cursor + catalog.length) % catalog.length,
+      lastSeen: Number.isFinite(lastPlayed[song.id]) ? lastPlayed[song.id] : -1,
+    }))
+    .sort((a, b) => a.lastSeen - b.lastSeen || a.position - b.position);
+  const selected = ranked.filter((item) => !previous.has(item.song.id)).slice(0, ROTATION_BATCH_SIZE);
+
+  if (selected.length < ROTATION_BATCH_SIZE) {
+    const selectedIds = new Set(selected.map((item) => item.song.id));
+    selected.push(
+      ...ranked
+        .filter((item) => !selectedIds.has(item.song.id))
+        .slice(0, ROTATION_BATCH_SIZE - selected.length),
+    );
+  }
+
+  return {
+    songs: selected.map((item) => item.song),
+    cursor: (cursor + ROTATION_BATCH_SIZE) % catalog.length,
+  };
+}
+
+function prepareRotationBatch(catalog) {
+  const today = taipeiDateKey();
+  const savedState = readRotationState();
+  const catalogById = new Map(catalog.map((song) => [song.id, song]));
+  const savedSongs = (savedState?.activeIds ?? []).map((id) => catalogById.get(id)).filter(Boolean);
+
+  if (savedState?.date === today && savedSongs.length === ROTATION_BATCH_SIZE) {
+    rotationState = savedState;
+    return savedSongs;
+  }
+
+  const next = chooseNextRotationBatch(catalog, savedState, savedState?.activeIds ?? []);
+  const catalogIds = new Set(catalog.map((song) => song.id));
+  const lastPlayed = Object.fromEntries(
+    Object.entries(savedState?.lastPlayed ?? {}).filter(([id]) => catalogIds.has(id)),
+  );
+  const nextState = {
+    version: ROTATION_STATE_VERSION,
+    date: today,
+    activeIds: next.songs.map((song) => song.id),
+    cursor: next.cursor,
+    batchNumber: (savedState?.batchNumber ?? 0) + 1,
+    playSequence: savedState?.playSequence ?? 0,
+    lastPlayed,
+  };
+  writeRotationState(nextState);
+  return next.songs;
+}
+
+function rotationSubtitle() {
+  return `第 ${rotationState?.batchNumber ?? 1} 批 · 與上一批 0 重疊 · 不追蹤曲風`;
+}
+
 function isFreshAutoPickData(data) {
   const updatedAt = Date.parse(data?.meta?.updatedAt ?? "");
   if (!Number.isFinite(updatedAt)) return false;
@@ -327,26 +458,19 @@ function applyAutoPicks(data) {
   if (!data || !Array.isArray(data.songs) || data.songs.length < 3) return;
   if (!isFreshAutoPickData(data)) return;
 
-  const normalizeAutoSongs = (songList, scope) =>
-    songList
-      .filter((song) => /^[\w-]{8,}$/.test(song.id ?? ""))
-      .map((song, index) => {
-        const key = makeScopedAutoSongKey(scope, song, index);
-        return {
-          key,
-          id: song.id,
-          visualId: song.visualId ?? song.id,
-          title: song.title || "今日趨勢歌曲",
-          artist: song.artist || "YouTube Trending",
-          tag: song.tag || `台灣音樂趨勢 #${index + 1}`,
-        };
-      });
-
-  const autoSongs = normalizeAutoSongs(data.songs, "daily");
+  autoPickMeta = data.meta ?? {};
+  rotationCatalog = uniqueRotationCatalog(
+    Array.isArray(data.rotationSongs) && data.rotationSongs.length >= ROTATION_BATCH_SIZE
+      ? data.rotationSongs
+      : data.songs,
+  );
+  activeRotationSongs = prepareRotationBatch(rotationCatalog);
+  const autoSongs = normalizeAutoSongs(activeRotationSongs, "daily");
 
   if (autoSongs.length < 3) return;
 
   songs = { ...fallbackSongs };
+  activeDailySongKeys = autoSongs.map((song) => song.key);
   autoSongs.forEach((song) => {
     songs[song.key] = song;
   });
@@ -383,7 +507,7 @@ function applyAutoPicks(data) {
       return {
         ...pack,
         title: "20 小時不膩歌單",
-        subtitle: "跨語系穿插、同歌手錯開 8 首，排除高循環音訊",
+        subtitle: rotationSubtitle(),
         mark: `${autoSongs.length}`,
         source: data.meta?.source || "YouTube Data API v3 / Taiwan daily pool",
         coverId: autoSongs[1]?.id || autoSongs[0].id,
@@ -395,8 +519,82 @@ function applyAutoPicks(data) {
   ];
 
   if (updateLabel && data.meta?.updatedLabel) {
-    updateLabel.textContent = `更新 ${data.meta.updatedLabel} · Taiwan auto`;
+    updateLabel.textContent = `更新 ${data.meta.updatedLabel} · 第 ${rotationState?.batchNumber ?? 1} 批`;
   }
+}
+
+function renderRotationBatch(nextSongs, nextState) {
+  writeRotationState(nextState);
+  activeRotationSongs = nextSongs;
+
+  activeDailySongKeys.forEach((key) => delete songs[key]);
+  const autoSongs = normalizeAutoSongs(activeRotationSongs, "daily");
+  autoSongs.forEach((song) => {
+    songs[song.key] = song;
+  });
+  activeDailySongKeys = autoSongs.map((song) => song.key);
+
+  const todayPack = getPack("today");
+  todayPack.subtitle = rotationSubtitle();
+  todayPack.mark = `${autoSongs.length}`;
+  todayPack.source = autoPickMeta.source || "YouTube Data API v3 / Taiwan daily pool";
+  todayPack.coverId = autoSongs[1]?.id || autoSongs[0].id;
+  todayPack.heroId = autoSongs[0].id;
+  todayPack.songKeys = autoSongs.map((song) => song.key);
+
+  if (updateLabel && autoPickMeta.updatedLabel) {
+    updateLabel.textContent = `更新 ${autoPickMeta.updatedLabel} · 第 ${nextState.batchNumber} 批`;
+  }
+  renderPacks();
+  renderTicker();
+  if (selectedPackKey === "today") {
+    renderHero(todayPack);
+    renderSongs(todayPack);
+  }
+}
+
+function ensureCurrentRotationDate() {
+  if (
+    rotationCatalog.length < ROTATION_BATCH_SIZE ||
+    activeRotationSongs.length < ROTATION_BATCH_SIZE ||
+    rotationState?.date === taipeiDateKey()
+  ) {
+    return;
+  }
+
+  const currentState = rotationState ?? readRotationState() ?? {};
+  const next = chooseNextRotationBatch(rotationCatalog, currentState, activeRotationSongs.map((song) => song.id));
+  const nextState = {
+    ...currentState,
+    version: ROTATION_STATE_VERSION,
+    date: taipeiDateKey(),
+    activeIds: next.songs.map((song) => song.id),
+    cursor: next.cursor,
+    batchNumber: (currentState.batchNumber ?? 0) + 1,
+  };
+  renderRotationBatch(next.songs, nextState);
+}
+
+function activateNextRotationBatch() {
+  if (rotationCatalog.length < ROTATION_BATCH_SIZE || activeRotationSongs.length < ROTATION_BATCH_SIZE) return;
+
+  const currentState = rotationState ?? readRotationState() ?? {};
+  const playSequence = (currentState.playSequence ?? 0) + 1;
+  const lastPlayed = { ...(currentState.lastPlayed ?? {}) };
+  activeRotationSongs.forEach((song) => {
+    lastPlayed[song.id] = playSequence;
+  });
+  const playedState = { ...currentState, playSequence, lastPlayed };
+  const next = chooseNextRotationBatch(rotationCatalog, playedState, activeRotationSongs.map((song) => song.id));
+  const nextState = {
+    ...playedState,
+    version: ROTATION_STATE_VERSION,
+    date: taipeiDateKey(),
+    activeIds: next.songs.map((song) => song.id),
+    cursor: next.cursor,
+    batchNumber: (currentState.batchNumber ?? 0) + 1,
+  };
+  renderRotationBatch(next.songs, nextState);
 }
 
 async function loadAutoPicks() {
@@ -660,6 +858,19 @@ installButton.addEventListener("click", async () => {
 });
 
 shareButton.addEventListener("click", copyShareLink);
+
+window.addEventListener("focus", ensureCurrentRotationDate);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) ensureCurrentRotationDate();
+});
+
+[heroPlay, playAll].forEach((button) => {
+  button.addEventListener("click", () => {
+    if (selectedPackKey !== "today") return;
+    ensureCurrentRotationDate();
+    window.setTimeout(activateNextRotationBatch, 0);
+  });
+});
 
 packGrid.addEventListener("click", (event) => {
   const button = event.target.closest(".pack-card");

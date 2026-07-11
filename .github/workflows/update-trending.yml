@@ -26,6 +26,9 @@ jobs:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: node scripts/update-trending.mjs
 
+      - name: Verify 300-song rotation
+        run: node scripts/verify-rotation.mjs
+
       - name: Commit daily update
         run: |
           if git diff --quiet -- data/auto-picks.json; then
