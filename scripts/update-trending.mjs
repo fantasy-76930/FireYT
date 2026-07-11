@@ -1,9 +1,10 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const OUTPUT_PATH = fileURLToPath(new URL("../data/auto-picks.json", import.meta.url));
 const API_KEY = process.env.YOUTUBE_API_KEY;
+const FORCE_FALLBACK = process.env.FORCE_FALLBACK === "1";
 const VIDEO_API_URL = "https://www.googleapis.com/youtube/v3/videos";
 const SEARCH_API_URL = "https://www.googleapis.com/youtube/v3/search";
 const TARGET_LISTENING_HOURS = 20;
@@ -13,10 +14,8 @@ const POPULAR_TARGET_COUNT = 100;
 const COUNTRY_TARGET_COUNT = 100;
 const SEARCH_QUERIES = [
   "台灣 華語 新歌",
-  "華語 音樂 新歌",
   "台灣 音樂 MV",
   "台灣 KPOP 新歌",
-  "台灣 流行音樂",
   "台灣 獨立音樂",
 ];
 const COUNTRY_MUSIC_PACKS = [
@@ -221,15 +220,13 @@ async function fetchCountryMusicPack(pack) {
   const seen = new Set();
 
   for (const query of pack.queries) {
-    const queryIds = await fetchSearchVideoIds({ query, limit: COUNTRY_TARGET_COUNT });
+    const queryIds = await fetchSearchVideoIds({ query, limit: 40 });
     for (const id of queryIds) {
       if (id && !seen.has(id)) {
         seen.add(id);
         ids.push(id);
       }
-      if (ids.length >= COUNTRY_TARGET_COUNT * 2) break;
     }
-    if (ids.length >= COUNTRY_TARGET_COUNT * 2) break;
   }
 
   const details = await fetchVideoDetails(ids);
@@ -268,45 +265,115 @@ function mergeUniqueSongLists(lists, limit) {
   return songs;
 }
 
-requireApiKey();
-
-const popularSongs = await fetchTaiwanMusicPopular(POPULAR_TARGET_COUNT);
-const recentSongs = await fetchRecentTaiwanMusic(TARGET_SONG_COUNT);
-const packs = [];
-
-for (const pack of COUNTRY_MUSIC_PACKS) {
-  packs.push(await fetchCountryMusicPack(pack));
+function rotateItems(items, offset) {
+  if (items.length < 2) return [...items];
+  const safeOffset = offset % items.length;
+  return [...items.slice(safeOffset), ...items.slice(0, safeOffset)];
 }
 
-const songs = mergeUniqueSongLists([popularSongs, recentSongs, ...packs.map((pack) => pack.songs)], TARGET_SONG_COUNT);
-
-if (songs.length < 50) {
-  throw new Error(`Expected at least 50 combined YouTube music videos, found ${songs.length}.`);
+async function readExistingPayload() {
+  return JSON.parse(await readFile(OUTPUT_PATH, "utf8"));
 }
 
-const payload = {
-  meta: {
-    updatedAt: new Date().toISOString(),
-    updatedLabel: todayTaipeiLabel(),
-    source: "YouTube Data API v3 / Taiwan top music + 20-hour no-repeat daily pool",
-    sourceUrl: "https://developers.google.com/youtube/v3/docs",
-    sourceTimestamp:
-      "YouTube Data API v3 videos.list chart=mostPopular regionCode=TW videoCategoryId=10 + search.list publishedAfter=30d order=viewCount",
-    targetListeningHours: TARGET_LISTENING_HOURS,
-    assumedAverageSongMinutes: ASSUMED_AVERAGE_SONG_MINUTES,
-    targetSongCount: TARGET_SONG_COUNT,
-    actualSongCount: songs.length,
-    noRepeatWithinDay: true,
-    countryTargetSongCount: COUNTRY_TARGET_COUNT,
-  },
-  songs,
-  packs,
-};
+async function writePayload(payload) {
+  await mkdir(dirname(OUTPUT_PATH), { recursive: true });
+  await writeFile(OUTPUT_PATH, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+}
 
-await mkdir(dirname(OUTPUT_PATH), { recursive: true });
-await writeFile(OUTPUT_PATH, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
-console.log(
-  `Updated ${OUTPUT_PATH} with ${songs.length} songs. ` +
-    `popular=${popularSongs.length}, recent=${recentSongs.length}, ` +
-    `countryPacks=${packs.length}, target=${TARGET_SONG_COUNT}.`,
-);
+function buildFallbackPayload(existing, reason) {
+  const updatedLabel = todayTaipeiLabel();
+  const verifiedSongs = Array.isArray(existing.songs) ? existing.songs : [];
+  const popularSongs = verifiedSongs.slice(0, POPULAR_TARGET_COUNT);
+  const discoverySongs = verifiedSongs.slice(POPULAR_TARGET_COUNT);
+  const daySeed = Number(updatedLabel.replace(/\D/g, "")) * 37;
+  const rotatedSongs = [...popularSongs, ...rotateItems(discoverySongs, daySeed)];
+
+  if (rotatedSongs.length < 50) {
+    throw new Error(`Fallback pool is too small: ${rotatedSongs.length} songs.`);
+  }
+
+  return {
+    ...existing,
+    meta: {
+      ...existing.meta,
+      updatedAt: new Date().toISOString(),
+      updatedLabel,
+      actualSongCount: rotatedSongs.length,
+      updateMode: "quota-fallback",
+      fallbackReason: reason,
+      sourceTimestamp: "Daily order refreshed from the previous verified YouTube API pool while search quota resets.",
+    },
+    songs: rotatedSongs,
+  };
+}
+
+function isQuotaError(error) {
+  const message = String(error?.message ?? error);
+  return message.includes("429") || /quota exceeded/i.test(message);
+}
+
+async function buildLivePayload() {
+  const popularSongs = await fetchTaiwanMusicPopular(POPULAR_TARGET_COUNT);
+  const recentSongs = await fetchRecentTaiwanMusic(TARGET_SONG_COUNT);
+  const packs = [];
+
+  for (const pack of COUNTRY_MUSIC_PACKS) {
+    packs.push(await fetchCountryMusicPack(pack));
+  }
+
+  const songs = mergeUniqueSongLists(
+    [popularSongs, recentSongs, ...packs.map((pack) => pack.songs)],
+    TARGET_SONG_COUNT,
+  );
+
+  if (songs.length < 50) {
+    throw new Error(`Expected at least 50 combined YouTube music videos, found ${songs.length}.`);
+  }
+
+  return {
+    meta: {
+      updatedAt: new Date().toISOString(),
+      updatedLabel: todayTaipeiLabel(),
+      source: "YouTube Data API v3 / Taiwan top music + 20-hour no-repeat daily pool",
+      sourceUrl: "https://developers.google.com/youtube/v3/docs",
+      sourceTimestamp:
+        "YouTube Data API v3 videos.list chart=mostPopular regionCode=TW videoCategoryId=10 + search.list publishedAfter=30d order=viewCount",
+      targetListeningHours: TARGET_LISTENING_HOURS,
+      assumedAverageSongMinutes: ASSUMED_AVERAGE_SONG_MINUTES,
+      targetSongCount: TARGET_SONG_COUNT,
+      actualSongCount: songs.length,
+      noRepeatWithinDay: true,
+      countryTargetSongCount: COUNTRY_TARGET_COUNT,
+      updateMode: "live-api",
+    },
+    songs,
+    packs,
+  };
+}
+
+async function main() {
+  if (FORCE_FALLBACK) {
+    const fallback = buildFallbackPayload(await readExistingPayload(), "Manual daily refresh while API quota resets.");
+    await writePayload(fallback);
+    console.log(`Fallback refresh completed for ${fallback.meta.updatedLabel} with ${fallback.songs.length} songs.`);
+    return;
+  }
+
+  requireApiKey();
+
+  try {
+    const payload = await buildLivePayload();
+    await writePayload(payload);
+    console.log(
+      `Updated ${OUTPUT_PATH} with ${payload.songs.length} songs. ` +
+        `countryPacks=${payload.packs.length}, target=${TARGET_SONG_COUNT}.`,
+    );
+  } catch (error) {
+    if (!isQuotaError(error)) throw error;
+    const fallback = buildFallbackPayload(await readExistingPayload(), "YouTube API search quota reached.");
+    await writePayload(fallback);
+    console.warn(`API quota reached. Published ${fallback.meta.updatedLabel} fallback rotation instead.`);
+  }
+}
+
+await main();

@@ -1,16 +1,18 @@
 {
   "meta": {
-    "updatedAt": "2026-07-10T11:01:02.595Z",
-    "updatedLabel": "2026.07.10",
+    "updatedAt": "2026-07-11T02:36:04.926Z",
+    "updatedLabel": "2026.07.11",
     "source": "YouTube Data API v3 / Taiwan top music + 20-hour no-repeat daily pool",
     "sourceUrl": "https://developers.google.com/youtube/v3/docs",
-    "sourceTimestamp": "YouTube Data API v3 videos.list chart=mostPopular regionCode=TW videoCategoryId=10 + search.list publishedAfter=30d order=viewCount",
+    "sourceTimestamp": "Daily order refreshed from the previous verified YouTube API pool while search quota resets.",
     "targetListeningHours": 20,
     "assumedAverageSongMinutes": 4,
     "targetSongCount": 300,
     "actualSongCount": 300,
     "noRepeatWithinDay": true,
-    "countryTargetSongCount": 100
+    "countryTargetSongCount": 100,
+    "updateMode": "quota-fallback",
+    "fallbackReason": "Manual daily refresh while API quota resets."
   },
   "songs": [
     {
@@ -612,6 +614,564 @@
       "title": "G.E.M.【倒數 TIK TOK】 [HD] 鄧紫棋",
       "artist": "GEMblog",
       "tag": "華語 Top 100 #14"
+    },
+    {
+      "id": "CuklIb9d3fI",
+      "title": "BTS (방탄소년단) 'Permission to Dance'",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #22"
+    },
+    {
+      "id": "ePpPVE-GGJw",
+      "title": "TWICE \"TT\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #23"
+    },
+    {
+      "id": "kOHB85vDuow",
+      "title": "TWICE \"FANCY\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #24"
+    },
+    {
+      "id": "JQGRg8XBnB4",
+      "title": "MOMOLAND (모모랜드) _ BBoom BBoom (뿜뿜)",
+      "artist": "1theK (원더케이)",
+      "tag": "韓國 Top 100 #25"
+    },
+    {
+      "id": "pSudEWBAYRE",
+      "title": "EXO 엑소 'Love Shot' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #26"
+    },
+    {
+      "id": "AAbokV76tkU",
+      "title": "BIGBANG - FANTASTIC BABY",
+      "artist": "BIGBANG",
+      "tag": "韓國 Top 100 #27"
+    },
+    {
+      "id": "8dJyRm2jJ-U",
+      "title": "PSY - 'That That (prod. & feat. SUGA of BTS)' MV",
+      "artist": "officialpsy",
+      "tag": "韓國 Top 100 #28"
+    },
+    {
+      "id": "YudHcBIxlYw",
+      "title": "JISOO - ‘꽃(FLOWER)’",
+      "artist": "BLACKPINK",
+      "tag": "韓國 Top 100 #29"
+    },
+    {
+      "id": "VKC_hzJ3jzg",
+      "title": "Señorita",
+      "artist": "Shawn Mendes - Topic",
+      "tag": "韓國 Top 100 #30"
+    },
+    {
+      "id": "0lapF4DQPKQ",
+      "title": "BTS (방탄소년단) 'Black Swan'",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #31"
+    },
+    {
+      "id": "c7rCyll5AeY",
+      "title": "TWICE \"CHEER UP\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #32"
+    },
+    {
+      "id": "-5q5mZbe3V8",
+      "title": "BTS (방탄소년단) 'Life Goes On'",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #33"
+    },
+    {
+      "id": "fE2h3lGlOsk",
+      "title": "ITZY \"WANNABE\" @ITZY",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #34"
+    },
+    {
+      "id": "pcKR0LPwoYs",
+      "title": "[도깨비 OST Part 1] 찬열, 펀치 (CHANYEOL, PUNCH) - Stay With Me MV",
+      "artist": "STONE MUSIC",
+      "tag": "韓國 Top 100 #35"
+    },
+    {
+      "id": "TQTlCHxyuu8",
+      "title": "Stray Kids \"神메뉴(God's Menu)\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #36"
+    },
+    {
+      "id": "CM4CkVFmTds",
+      "title": "TWICE \"I CAN'T STOP ME\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #37"
+    },
+    {
+      "id": "3ymwOvzhwHs",
+      "title": "TWICE \"Feel Special\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #38"
+    },
+    {
+      "id": "f5_wn8mexmM",
+      "title": "TWICE \"The Feels\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #39"
+    },
+    {
+      "id": "a7GITgqwDVg",
+      "title": "Charlie Puth - Left And Right (feat. Jung Kook of BTS)",
+      "artist": "Charlie Puth",
+      "tag": "韓國 Top 100 #40"
+    },
+    {
+      "id": "9_bTl2vvYQg",
+      "title": "Golden",
+      "artist": "HUNTR/X - Topic",
+      "tag": "韓國 Top 100 #41"
+    },
+    {
+      "id": "m8MfJg68oCs",
+      "title": "BTS(방탄소년단) _ Boy In Luv(상남자)",
+      "artist": "1theK (원더케이)",
+      "tag": "韓國 Top 100 #42"
+    },
+    {
+      "id": "KhTeiaCezwM",
+      "title": "마마무(MAMAMOO) - HIP",
+      "artist": "MAMAMOO",
+      "tag": "韓國 Top 100 #43"
+    },
+    {
+      "id": "vrdk3IGcau8",
+      "title": "GOT7 \"Just right(딱 좋아)\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #44"
+    },
+    {
+      "id": "7HDeem-JaSY",
+      "title": "(여자)아이들((G)I-DLE) - '퀸카 (Queencard)'",
+      "artist": "i-dle (아이들)",
+      "tag": "韓國 Top 100 #45"
+    },
+    {
+      "id": "mAKsZ26SabQ",
+      "title": "TWICE \"YES or YES\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #46"
+    },
+    {
+      "id": "uR8Mrt1IpXg",
+      "title": "Red Velvet 레드벨벳 'Psycho' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #47"
+    },
+    {
+      "id": "j7_lSP8Vc3o",
+      "title": "2NE1 - 내가 제일 잘 나가(I AM THE BEST)",
+      "artist": "2NE1",
+      "tag": "韓國 Top 100 #48"
+    },
+    {
+      "id": "1ZRb1we80kM",
+      "title": "GD X TAEYANG - GOOD BOY",
+      "artist": "BIGBANG",
+      "tag": "韓國 Top 100 #49"
+    },
+    {
+      "id": "X-uJtV8ScYk",
+      "title": "Stray Kids \"Back Door\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #50"
+    },
+    {
+      "id": "CgCVZdcKcqY",
+      "title": "BLACKPINK - ‘뛰어(JUMP)’",
+      "artist": "BLACKPINK",
+      "tag": "韓國 Top 100 #51"
+    },
+    {
+      "id": "sVTy_wmn5SU",
+      "title": "NewJeans (뉴진스) 'OMG' (Performance ver.1)",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #52"
+    },
+    {
+      "id": "DbXMjAYSa68",
+      "title": "[CHOREOGRAPHY] BTS (방탄소년단) 'Butter' Special Performance Video",
+      "artist": "BANGTANTV",
+      "tag": "韓國 Top 100 #53"
+    },
+    {
+      "id": "Fm5iP0S1z9w",
+      "title": "TWICE \"Dance The Night Away\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #54"
+    },
+    {
+      "id": "Jh4QFaPmdss",
+      "title": "(여자)아이들((G)I-DLE) - 'TOMBOY'",
+      "artist": "i-dle (아이들)",
+      "tag": "韓國 Top 100 #55"
+    },
+    {
+      "id": "fCO7f0SmrDc",
+      "title": "(여자)아이들((G)I-DLE) - 'Nxde'",
+      "artist": "i-dle (아이들)",
+      "tag": "韓國 Top 100 #56"
+    },
+    {
+      "id": "hbcGx4MGUMg",
+      "title": "LISA - ROCKSTAR",
+      "artist": "LLOUD Official",
+      "tag": "韓國 Top 100 #57"
+    },
+    {
+      "id": "6ZUIwj3FgUY",
+      "title": "IVE 아이브 'I AM' MV",
+      "artist": "STARSHIP",
+      "tag": "韓國 Top 100 #58"
+    },
+    {
+      "id": "6GC8JF2FOgA",
+      "title": "[달의 연인 - 보보경심 려 OST Part 2] 로꼬, 펀치 (Loco, Punch) - Say Yes MV",
+      "artist": "STONE MUSIC",
+      "tag": "韓國 Top 100 #59"
+    },
+    {
+      "id": "F0B7HDiY-10",
+      "title": "IVE 아이브 'After LIKE' MV",
+      "artist": "STARSHIP",
+      "tag": "韓國 Top 100 #60"
+    },
+    {
+      "id": "U7mPqycQ0tQ",
+      "title": "Girls' Generation 소녀시대 'Gee' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #61"
+    },
+    {
+      "id": "OvioeS1ZZ7o",
+      "title": "Stray Kids \"MANIAC\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #62"
+    },
+    {
+      "id": "3YqPKLZF_WU",
+      "title": "Coldplay X BTS - My Universe",
+      "artist": "Coldplay",
+      "tag": "韓國 Top 100 #63"
+    },
+    {
+      "id": "dBDkYofMUs4",
+      "title": "Stray Kids \"락 (樂) (LALALALA)\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #64"
+    },
+    {
+      "id": "Kw3935PH01E",
+      "title": "Shakira - Zoo (From \"Zootopia 2\")",
+      "artist": "DisneyMusicVEVO",
+      "tag": "韓國 Top 100 #65"
+    },
+    {
+      "id": "QW28YKqdxe0",
+      "title": "NiziU 『Make you happy』",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #66"
+    },
+    {
+      "id": "XA2YEHn-A8Q",
+      "title": "TWICE \"Alcohol-Free\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #67"
+    },
+    {
+      "id": "Vk5-c_v4gMU",
+      "title": "ILLIT (아일릿) ‘Magnetic’",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #68"
+    },
+    {
+      "id": "4TWR90KJl84",
+      "title": "aespa 에스파 'Next Level' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #69"
+    },
+    {
+      "id": "6pA_Tou-DPI",
+      "title": "Girls' Generation 소녀시대 'The Boys' MV (KOR Ver.)",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #70"
+    },
+    {
+      "id": "UwuAPyOImoI",
+      "title": "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS)",
+      "artist": "BIGBANG",
+      "tag": "韓國 Top 100 #71"
+    },
+    {
+      "id": "OwJPPaEyqhI",
+      "title": "PSY - ‘New Face’",
+      "artist": "officialpsy",
+      "tag": "韓國 Top 100 #72"
+    },
+    {
+      "id": "JsOOis4bBFg",
+      "title": "Stray Kids \"특(S-Class)\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #73"
+    },
+    {
+      "id": "HBqH4uJS0PU",
+      "title": "Magnetic",
+      "artist": "ILLIT - Topic",
+      "tag": "韓國 Top 100 #74"
+    },
+    {
+      "id": "co-TFLbaZAE",
+      "title": "“Gabriela” Performance Video",
+      "artist": "KATSEYE",
+      "tag": "韓國 Top 100 #75"
+    },
+    {
+      "id": "zEkg4GBQumc",
+      "title": "[ ] SEVENTEEN(세븐틴) - 울고 싶지 않아 (Don't Wanna Cry)",
+      "artist": "SEVENTEEN",
+      "tag": "韓國 Top 100 #76"
+    },
+    {
+      "id": "D8VEhcPeSlc",
+      "title": "aespa 에스파 'Drama' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #77"
+    },
+    {
+      "id": "tyrVtwE8Gv0",
+      "title": "NCT U 엔시티 유 'Make A Wish (Birthday Song)' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #78"
+    },
+    {
+      "id": "1CTced9CMMk",
+      "title": "BIGBANG - LOSER",
+      "artist": "BIGBANG",
+      "tag": "韓國 Top 100 #79"
+    },
+    {
+      "id": "jWQx2f-CErU",
+      "title": "aespa 에스파 'Whiplash' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #80"
+    },
+    {
+      "id": "-GQg25oP0S4",
+      "title": "SEVENTEEN (세븐틴) '손오공'",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #81"
+    },
+    {
+      "id": "QslJYDX3o8s",
+      "title": "Red Velvet 레드벨벳 '러시안 룰렛 (Russian Roulette)' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #82"
+    },
+    {
+      "id": "ZeerrnuLi5E",
+      "title": "aespa 에스파 'Black Mamba' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #83"
+    },
+    {
+      "id": "ArmDp-zijuc",
+      "title": "NewJeans (뉴진스) 'Super Shy'",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #84"
+    },
+    {
+      "id": "RKhsHGfrFmY",
+      "title": "G-DRAGON - 삐딱하게(CROOKED)",
+      "artist": "BIGBANG",
+      "tag": "韓國 Top 100 #85"
+    },
+    {
+      "id": "WPdWvnAAurg",
+      "title": "aespa 에스파 'Savage' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #86"
+    },
+    {
+      "id": "4OrCA1OInoo",
+      "title": "TAEYEON 태연 'I (feat. Verbal Jint)' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #87"
+    },
+    {
+      "id": "pyf8cbqyfPs",
+      "title": "LE SSERAFIM (르세라핌) 'ANTIFRAGILE' OFFICIAL",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #88"
+    },
+    {
+      "id": "l9CZykYZkOQ",
+      "title": "KATSEYE (캣츠아이) \"Touch\"",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #89"
+    },
+    {
+      "id": "MjCZfZfucEc",
+      "title": "ITZY “LOCO” @ITZY",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #90"
+    },
+    {
+      "id": "JSFG-IE8n_c",
+      "title": "JENNIE - like JENNIE",
+      "artist": "JennieRubyJaneVEVO",
+      "tag": "韓國 Top 100 #91"
+    },
+    {
+      "id": "--FmExEAsM8",
+      "title": "IVE 아이브 'ELEVEN' MV",
+      "artist": "STARSHIP",
+      "tag": "韓國 Top 100 #92"
+    },
+    {
+      "id": "f6YDKF0LVWw",
+      "title": "NAYEON \"POP!\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #93"
+    },
+    {
+      "id": "eQNHDV7lKgE",
+      "title": "JENNIE - ‘You & Me’ DANCE PERFORMANCE VIDEO",
+      "artist": "BLACKPINK",
+      "tag": "韓國 Top 100 #94"
+    },
+    {
+      "id": "r6TwzSGYycM",
+      "title": "SUPER JUNIOR 슈퍼주니어 'Mr. Simple' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #95"
+    },
+    {
+      "id": "6j928wBZ_Bo",
+      "title": "Jessi (제시) - 'ZOOM' MV",
+      "artist": "Jessi",
+      "tag": "韓國 Top 100 #96"
+    },
+    {
+      "id": "bB3-CUMERIU",
+      "title": "JENNIE - Mantra",
+      "artist": "JennieRubyJaneVEVO",
+      "tag": "韓國 Top 100 #97"
+    },
+    {
+      "id": "phuiiNCxRMg",
+      "title": "aespa 에스파 'Supernova' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #98"
+    },
+    {
+      "id": "jYSlpC6Ud2A",
+      "title": "Stray Kids \"CASE 143\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #99"
+    },
+    {
+      "id": "zFT3f9biz68",
+      "title": "BTS (방탄소년단) 'Film out'",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #100"
+    },
+    {
+      "id": "ixkoVwKQaJg",
+      "title": "DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B",
+      "artist": "DJSnakeVEVO",
+      "tag": "日本 Top 100 #1"
+    },
+    {
+      "id": "SX_ViT4Ra7k",
+      "title": "米津玄師 Kenshi Yonezu - Lemon",
+      "artist": "Kenshi Yonezu  米津玄師",
+      "tag": "日本 Top 100 #2"
+    },
+    {
+      "id": "-tKVN2mAKRI",
+      "title": "DAOKO × 米津玄師『打上花火』MUSIC VIDEO",
+      "artist": "daoko_jp",
+      "tag": "日本 Top 100 #4"
+    },
+    {
+      "id": "ZRtdQ81jPUQ",
+      "title": "YOASOBI「アイドル」",
+      "artist": "YOASOBI",
+      "tag": "日本 Top 100 #5"
+    },
+    {
+      "id": "TQ8WlA2GXbk",
+      "title": "Official髭男dism - Pretender［ ］",
+      "artist": "Official髭男dism",
+      "tag": "日本 Top 100 #6"
+    },
+    {
+      "id": "dy90tA3TT1c",
+      "title": "YOASOBI「怪物」 (YOASOBI - Monster)",
+      "artist": "YOASOBI",
+      "tag": "日本 Top 100 #7"
+    },
+    {
+      "id": "0xSiBpUdW4E",
+      "title": "あいみょん - マリーゴールド【 】",
+      "artist": "あいみょん",
+      "tag": "日本 Top 100 #8"
+    },
+    {
+      "id": "Dx_fKPBPYUI",
+      "title": "米津玄師 - LOSER , Kenshi Yonezu",
+      "artist": "Kenshi Yonezu  米津玄師",
+      "tag": "日本 Top 100 #9"
+    },
+    {
+      "id": "4DxL6IKmXx4",
+      "title": "LiSA 『炎』 -MUSiC CLiP",
+      "artist": "LiSA Official YouTube",
+      "tag": "日本 Top 100 #10"
+    },
+    {
+      "id": "wfCcs0vLysk",
+      "title": "Mrs. GREEN APPLE - インフェルノ（Inferno）",
+      "artist": "Mrs. GREEN APPLE",
+      "tag": "日本 Top 100 #11"
+    },
+    {
+      "id": "dlFA0Zq1k2A",
+      "title": "KANA-BOON - Silhouette",
+      "artist": "KANABOONVEVO",
+      "tag": "日本 Top 100 #12"
+    },
+    {
+      "id": "PDSkFeMVNFs",
+      "title": "RADWIMPS - 前前前世 (movie ver.)",
+      "artist": "RADWIMPS",
+      "tag": "日本 Top 100 #13"
+    },
+    {
+      "id": "kagoEGKHZvU",
+      "title": "【imase】NIGHT DANCER（MV）",
+      "artist": "imase",
+      "tag": "日本 Top 100 #14"
+    },
+    {
+      "id": "by4SYYWlhEs",
+      "title": "夜に駆ける",
+      "artist": "YOASOBI - Topic",
+      "tag": "日本 Top 100 #16"
     },
     {
       "id": "7wvNwOPprBE",
@@ -1254,564 +1814,6 @@
       "title": "iKON - ‘사랑을 했다(LOVE SCENARIO)’",
       "artist": "iKON",
       "tag": "韓國 Top 100 #21"
-    },
-    {
-      "id": "CuklIb9d3fI",
-      "title": "BTS (방탄소년단) 'Permission to Dance'",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #22"
-    },
-    {
-      "id": "ePpPVE-GGJw",
-      "title": "TWICE \"TT\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #23"
-    },
-    {
-      "id": "kOHB85vDuow",
-      "title": "TWICE \"FANCY\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #24"
-    },
-    {
-      "id": "JQGRg8XBnB4",
-      "title": "MOMOLAND (모모랜드) _ BBoom BBoom (뿜뿜)",
-      "artist": "1theK (원더케이)",
-      "tag": "韓國 Top 100 #25"
-    },
-    {
-      "id": "pSudEWBAYRE",
-      "title": "EXO 엑소 'Love Shot' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #26"
-    },
-    {
-      "id": "AAbokV76tkU",
-      "title": "BIGBANG - FANTASTIC BABY",
-      "artist": "BIGBANG",
-      "tag": "韓國 Top 100 #27"
-    },
-    {
-      "id": "8dJyRm2jJ-U",
-      "title": "PSY - 'That That (prod. & feat. SUGA of BTS)' MV",
-      "artist": "officialpsy",
-      "tag": "韓國 Top 100 #28"
-    },
-    {
-      "id": "YudHcBIxlYw",
-      "title": "JISOO - ‘꽃(FLOWER)’",
-      "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #29"
-    },
-    {
-      "id": "VKC_hzJ3jzg",
-      "title": "Señorita",
-      "artist": "Shawn Mendes - Topic",
-      "tag": "韓國 Top 100 #30"
-    },
-    {
-      "id": "0lapF4DQPKQ",
-      "title": "BTS (방탄소년단) 'Black Swan'",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #31"
-    },
-    {
-      "id": "c7rCyll5AeY",
-      "title": "TWICE \"CHEER UP\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #32"
-    },
-    {
-      "id": "-5q5mZbe3V8",
-      "title": "BTS (방탄소년단) 'Life Goes On'",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #33"
-    },
-    {
-      "id": "fE2h3lGlOsk",
-      "title": "ITZY \"WANNABE\" @ITZY",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #34"
-    },
-    {
-      "id": "pcKR0LPwoYs",
-      "title": "[도깨비 OST Part 1] 찬열, 펀치 (CHANYEOL, PUNCH) - Stay With Me MV",
-      "artist": "STONE MUSIC",
-      "tag": "韓國 Top 100 #35"
-    },
-    {
-      "id": "TQTlCHxyuu8",
-      "title": "Stray Kids \"神메뉴(God's Menu)\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #36"
-    },
-    {
-      "id": "CM4CkVFmTds",
-      "title": "TWICE \"I CAN'T STOP ME\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #37"
-    },
-    {
-      "id": "3ymwOvzhwHs",
-      "title": "TWICE \"Feel Special\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #38"
-    },
-    {
-      "id": "f5_wn8mexmM",
-      "title": "TWICE \"The Feels\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #39"
-    },
-    {
-      "id": "a7GITgqwDVg",
-      "title": "Charlie Puth - Left And Right (feat. Jung Kook of BTS)",
-      "artist": "Charlie Puth",
-      "tag": "韓國 Top 100 #40"
-    },
-    {
-      "id": "9_bTl2vvYQg",
-      "title": "Golden",
-      "artist": "HUNTR/X - Topic",
-      "tag": "韓國 Top 100 #41"
-    },
-    {
-      "id": "m8MfJg68oCs",
-      "title": "BTS(방탄소년단) _ Boy In Luv(상남자)",
-      "artist": "1theK (원더케이)",
-      "tag": "韓國 Top 100 #42"
-    },
-    {
-      "id": "KhTeiaCezwM",
-      "title": "마마무(MAMAMOO) - HIP",
-      "artist": "MAMAMOO",
-      "tag": "韓國 Top 100 #43"
-    },
-    {
-      "id": "vrdk3IGcau8",
-      "title": "GOT7 \"Just right(딱 좋아)\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #44"
-    },
-    {
-      "id": "7HDeem-JaSY",
-      "title": "(여자)아이들((G)I-DLE) - '퀸카 (Queencard)'",
-      "artist": "i-dle (아이들)",
-      "tag": "韓國 Top 100 #45"
-    },
-    {
-      "id": "mAKsZ26SabQ",
-      "title": "TWICE \"YES or YES\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #46"
-    },
-    {
-      "id": "uR8Mrt1IpXg",
-      "title": "Red Velvet 레드벨벳 'Psycho' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #47"
-    },
-    {
-      "id": "j7_lSP8Vc3o",
-      "title": "2NE1 - 내가 제일 잘 나가(I AM THE BEST)",
-      "artist": "2NE1",
-      "tag": "韓國 Top 100 #48"
-    },
-    {
-      "id": "1ZRb1we80kM",
-      "title": "GD X TAEYANG - GOOD BOY",
-      "artist": "BIGBANG",
-      "tag": "韓國 Top 100 #49"
-    },
-    {
-      "id": "X-uJtV8ScYk",
-      "title": "Stray Kids \"Back Door\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #50"
-    },
-    {
-      "id": "CgCVZdcKcqY",
-      "title": "BLACKPINK - ‘뛰어(JUMP)’",
-      "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #51"
-    },
-    {
-      "id": "sVTy_wmn5SU",
-      "title": "NewJeans (뉴진스) 'OMG' (Performance ver.1)",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #52"
-    },
-    {
-      "id": "DbXMjAYSa68",
-      "title": "[CHOREOGRAPHY] BTS (방탄소년단) 'Butter' Special Performance Video",
-      "artist": "BANGTANTV",
-      "tag": "韓國 Top 100 #53"
-    },
-    {
-      "id": "Fm5iP0S1z9w",
-      "title": "TWICE \"Dance The Night Away\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #54"
-    },
-    {
-      "id": "Jh4QFaPmdss",
-      "title": "(여자)아이들((G)I-DLE) - 'TOMBOY'",
-      "artist": "i-dle (아이들)",
-      "tag": "韓國 Top 100 #55"
-    },
-    {
-      "id": "fCO7f0SmrDc",
-      "title": "(여자)아이들((G)I-DLE) - 'Nxde'",
-      "artist": "i-dle (아이들)",
-      "tag": "韓國 Top 100 #56"
-    },
-    {
-      "id": "hbcGx4MGUMg",
-      "title": "LISA - ROCKSTAR",
-      "artist": "LLOUD Official",
-      "tag": "韓國 Top 100 #57"
-    },
-    {
-      "id": "6ZUIwj3FgUY",
-      "title": "IVE 아이브 'I AM' MV",
-      "artist": "STARSHIP",
-      "tag": "韓國 Top 100 #58"
-    },
-    {
-      "id": "6GC8JF2FOgA",
-      "title": "[달의 연인 - 보보경심 려 OST Part 2] 로꼬, 펀치 (Loco, Punch) - Say Yes MV",
-      "artist": "STONE MUSIC",
-      "tag": "韓國 Top 100 #59"
-    },
-    {
-      "id": "F0B7HDiY-10",
-      "title": "IVE 아이브 'After LIKE' MV",
-      "artist": "STARSHIP",
-      "tag": "韓國 Top 100 #60"
-    },
-    {
-      "id": "U7mPqycQ0tQ",
-      "title": "Girls' Generation 소녀시대 'Gee' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #61"
-    },
-    {
-      "id": "OvioeS1ZZ7o",
-      "title": "Stray Kids \"MANIAC\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #62"
-    },
-    {
-      "id": "3YqPKLZF_WU",
-      "title": "Coldplay X BTS - My Universe",
-      "artist": "Coldplay",
-      "tag": "韓國 Top 100 #63"
-    },
-    {
-      "id": "dBDkYofMUs4",
-      "title": "Stray Kids \"락 (樂) (LALALALA)\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #64"
-    },
-    {
-      "id": "Kw3935PH01E",
-      "title": "Shakira - Zoo (From \"Zootopia 2\")",
-      "artist": "DisneyMusicVEVO",
-      "tag": "韓國 Top 100 #65"
-    },
-    {
-      "id": "QW28YKqdxe0",
-      "title": "NiziU 『Make you happy』",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #66"
-    },
-    {
-      "id": "XA2YEHn-A8Q",
-      "title": "TWICE \"Alcohol-Free\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #67"
-    },
-    {
-      "id": "Vk5-c_v4gMU",
-      "title": "ILLIT (아일릿) ‘Magnetic’",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #68"
-    },
-    {
-      "id": "4TWR90KJl84",
-      "title": "aespa 에스파 'Next Level' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #69"
-    },
-    {
-      "id": "6pA_Tou-DPI",
-      "title": "Girls' Generation 소녀시대 'The Boys' MV (KOR Ver.)",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #70"
-    },
-    {
-      "id": "UwuAPyOImoI",
-      "title": "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS)",
-      "artist": "BIGBANG",
-      "tag": "韓國 Top 100 #71"
-    },
-    {
-      "id": "OwJPPaEyqhI",
-      "title": "PSY - ‘New Face’",
-      "artist": "officialpsy",
-      "tag": "韓國 Top 100 #72"
-    },
-    {
-      "id": "JsOOis4bBFg",
-      "title": "Stray Kids \"특(S-Class)\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #73"
-    },
-    {
-      "id": "HBqH4uJS0PU",
-      "title": "Magnetic",
-      "artist": "ILLIT - Topic",
-      "tag": "韓國 Top 100 #74"
-    },
-    {
-      "id": "co-TFLbaZAE",
-      "title": "“Gabriela” Performance Video",
-      "artist": "KATSEYE",
-      "tag": "韓國 Top 100 #75"
-    },
-    {
-      "id": "zEkg4GBQumc",
-      "title": "[ ] SEVENTEEN(세븐틴) - 울고 싶지 않아 (Don't Wanna Cry)",
-      "artist": "SEVENTEEN",
-      "tag": "韓國 Top 100 #76"
-    },
-    {
-      "id": "D8VEhcPeSlc",
-      "title": "aespa 에스파 'Drama' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #77"
-    },
-    {
-      "id": "tyrVtwE8Gv0",
-      "title": "NCT U 엔시티 유 'Make A Wish (Birthday Song)' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #78"
-    },
-    {
-      "id": "1CTced9CMMk",
-      "title": "BIGBANG - LOSER",
-      "artist": "BIGBANG",
-      "tag": "韓國 Top 100 #79"
-    },
-    {
-      "id": "jWQx2f-CErU",
-      "title": "aespa 에스파 'Whiplash' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #80"
-    },
-    {
-      "id": "-GQg25oP0S4",
-      "title": "SEVENTEEN (세븐틴) '손오공'",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #81"
-    },
-    {
-      "id": "QslJYDX3o8s",
-      "title": "Red Velvet 레드벨벳 '러시안 룰렛 (Russian Roulette)' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #82"
-    },
-    {
-      "id": "ZeerrnuLi5E",
-      "title": "aespa 에스파 'Black Mamba' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #83"
-    },
-    {
-      "id": "ArmDp-zijuc",
-      "title": "NewJeans (뉴진스) 'Super Shy'",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #84"
-    },
-    {
-      "id": "RKhsHGfrFmY",
-      "title": "G-DRAGON - 삐딱하게(CROOKED)",
-      "artist": "BIGBANG",
-      "tag": "韓國 Top 100 #85"
-    },
-    {
-      "id": "WPdWvnAAurg",
-      "title": "aespa 에스파 'Savage' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #86"
-    },
-    {
-      "id": "4OrCA1OInoo",
-      "title": "TAEYEON 태연 'I (feat. Verbal Jint)' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #87"
-    },
-    {
-      "id": "pyf8cbqyfPs",
-      "title": "LE SSERAFIM (르세라핌) 'ANTIFRAGILE' OFFICIAL",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #88"
-    },
-    {
-      "id": "l9CZykYZkOQ",
-      "title": "KATSEYE (캣츠아이) \"Touch\"",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #89"
-    },
-    {
-      "id": "MjCZfZfucEc",
-      "title": "ITZY “LOCO” @ITZY",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #90"
-    },
-    {
-      "id": "JSFG-IE8n_c",
-      "title": "JENNIE - like JENNIE",
-      "artist": "JennieRubyJaneVEVO",
-      "tag": "韓國 Top 100 #91"
-    },
-    {
-      "id": "--FmExEAsM8",
-      "title": "IVE 아이브 'ELEVEN' MV",
-      "artist": "STARSHIP",
-      "tag": "韓國 Top 100 #92"
-    },
-    {
-      "id": "f6YDKF0LVWw",
-      "title": "NAYEON \"POP!\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #93"
-    },
-    {
-      "id": "eQNHDV7lKgE",
-      "title": "JENNIE - ‘You & Me’ DANCE PERFORMANCE VIDEO",
-      "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #94"
-    },
-    {
-      "id": "r6TwzSGYycM",
-      "title": "SUPER JUNIOR 슈퍼주니어 'Mr. Simple' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #95"
-    },
-    {
-      "id": "6j928wBZ_Bo",
-      "title": "Jessi (제시) - 'ZOOM' MV",
-      "artist": "Jessi",
-      "tag": "韓國 Top 100 #96"
-    },
-    {
-      "id": "bB3-CUMERIU",
-      "title": "JENNIE - Mantra",
-      "artist": "JennieRubyJaneVEVO",
-      "tag": "韓國 Top 100 #97"
-    },
-    {
-      "id": "phuiiNCxRMg",
-      "title": "aespa 에스파 'Supernova' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #98"
-    },
-    {
-      "id": "jYSlpC6Ud2A",
-      "title": "Stray Kids \"CASE 143\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #99"
-    },
-    {
-      "id": "zFT3f9biz68",
-      "title": "BTS (방탄소년단) 'Film out'",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #100"
-    },
-    {
-      "id": "ixkoVwKQaJg",
-      "title": "DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B",
-      "artist": "DJSnakeVEVO",
-      "tag": "日本 Top 100 #1"
-    },
-    {
-      "id": "SX_ViT4Ra7k",
-      "title": "米津玄師 Kenshi Yonezu - Lemon",
-      "artist": "Kenshi Yonezu  米津玄師",
-      "tag": "日本 Top 100 #2"
-    },
-    {
-      "id": "-tKVN2mAKRI",
-      "title": "DAOKO × 米津玄師『打上花火』MUSIC VIDEO",
-      "artist": "daoko_jp",
-      "tag": "日本 Top 100 #4"
-    },
-    {
-      "id": "ZRtdQ81jPUQ",
-      "title": "YOASOBI「アイドル」",
-      "artist": "YOASOBI",
-      "tag": "日本 Top 100 #5"
-    },
-    {
-      "id": "TQ8WlA2GXbk",
-      "title": "Official髭男dism - Pretender［ ］",
-      "artist": "Official髭男dism",
-      "tag": "日本 Top 100 #6"
-    },
-    {
-      "id": "dy90tA3TT1c",
-      "title": "YOASOBI「怪物」 (YOASOBI - Monster)",
-      "artist": "YOASOBI",
-      "tag": "日本 Top 100 #7"
-    },
-    {
-      "id": "0xSiBpUdW4E",
-      "title": "あいみょん - マリーゴールド【 】",
-      "artist": "あいみょん",
-      "tag": "日本 Top 100 #8"
-    },
-    {
-      "id": "Dx_fKPBPYUI",
-      "title": "米津玄師 - LOSER , Kenshi Yonezu",
-      "artist": "Kenshi Yonezu  米津玄師",
-      "tag": "日本 Top 100 #9"
-    },
-    {
-      "id": "4DxL6IKmXx4",
-      "title": "LiSA 『炎』 -MUSiC CLiP",
-      "artist": "LiSA Official YouTube",
-      "tag": "日本 Top 100 #10"
-    },
-    {
-      "id": "wfCcs0vLysk",
-      "title": "Mrs. GREEN APPLE - インフェルノ（Inferno）",
-      "artist": "Mrs. GREEN APPLE",
-      "tag": "日本 Top 100 #11"
-    },
-    {
-      "id": "dlFA0Zq1k2A",
-      "title": "KANA-BOON - Silhouette",
-      "artist": "KANABOONVEVO",
-      "tag": "日本 Top 100 #12"
-    },
-    {
-      "id": "PDSkFeMVNFs",
-      "title": "RADWIMPS - 前前前世 (movie ver.)",
-      "artist": "RADWIMPS",
-      "tag": "日本 Top 100 #13"
-    },
-    {
-      "id": "kagoEGKHZvU",
-      "title": "【imase】NIGHT DANCER（MV）",
-      "artist": "imase",
-      "tag": "日本 Top 100 #14"
-    },
-    {
-      "id": "by4SYYWlhEs",
-      "title": "夜に駆ける",
-      "artist": "YOASOBI - Topic",
-      "tag": "日本 Top 100 #16"
     }
   ],
   "packs": [
