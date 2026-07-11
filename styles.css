@@ -1383,6 +1383,10 @@ a {
   transform: scale(1.03);
 }
 
+.article-ocean-cover {
+  object-position: center 30%;
+}
+
 .article-feature-copy,
 .article-card-body {
   display: grid;
@@ -1478,6 +1482,83 @@ a {
   border-radius: 8px;
 }
 
+.article-hero-image.article-portrait-hero {
+  display: block;
+  width: min(100%, 680px);
+  height: auto;
+  max-height: none;
+  margin-inline: auto;
+  object-fit: contain;
+  background: #eaf7fb;
+}
+
+.article-soundtrack {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  max-width: 780px;
+  min-height: 86px;
+  margin: 0 18px 34px;
+  padding: 16px 18px;
+  border: 1px solid rgba(11, 79, 134, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--ink);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.article-soundtrack:hover {
+  border-color: rgba(255, 111, 50, 0.6);
+  background: #fff;
+}
+
+.article-soundtrack:focus-visible {
+  outline: 3px solid rgba(37, 208, 192, 0.35);
+  outline-offset: 3px;
+}
+
+.article-soundtrack-play {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--deep-ocean);
+  color: #fff;
+}
+
+.article-soundtrack-play svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.article-soundtrack-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.article-soundtrack-copy small {
+  color: var(--coral);
+  font-size: 0.7rem;
+  font-weight: 820;
+}
+
+.article-soundtrack-copy strong {
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.article-soundtrack-copy > span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
 .article-content {
   max-width: 780px;
   padding: 52px 18px;
@@ -1499,6 +1580,26 @@ a {
 
 .article-content p + p {
   margin-top: 22px;
+}
+
+.article-inline-figure {
+  margin: 50px 0;
+}
+
+.article-inline-figure img {
+  display: block;
+  width: min(100%, 680px);
+  height: auto;
+  margin-inline: auto;
+  border-radius: 8px;
+}
+
+.article-inline-figure figcaption {
+  max-width: 680px;
+  margin: 12px auto 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.7;
 }
 
 .privacy-page {
@@ -2033,6 +2134,15 @@ a {
 
   .article-hero-image {
     min-height: 250px;
+  }
+
+  .article-hero-image.article-portrait-hero {
+    min-height: 0;
+  }
+
+  .article-soundtrack {
+    margin-inline: 0;
+    padding: 14px;
   }
 
   .article-content {
