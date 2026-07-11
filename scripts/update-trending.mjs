@@ -12,6 +12,20 @@ const ASSUMED_AVERAGE_SONG_MINUTES = 4;
 const TARGET_SONG_COUNT = Math.ceil((TARGET_LISTENING_HOURS * 60) / ASSUMED_AVERAGE_SONG_MINUTES);
 const POPULAR_TARGET_COUNT = 100;
 const COUNTRY_TARGET_COUNT = 100;
+const DIVERSITY_POLICY_VERSION = 2;
+const MAX_SINGLE_TRACK_SECONDS = 600;
+const REPETITIVE_TITLE_PATTERN =
+  /\b(?:loop(?:ed|ing)?|repeat(?:ed)?|extended|\d+\s*(?:hours?|minutes?|mins?)|(?:one|two|three|four|five|six|eight|ten)\s*hours?)\b|(?:\d+\s*(?:小時|小时|分鐘|分钟)|循環|循环|單曲循環|单曲循环|無限循環|无限循环|重複播放|重复播放|洗腦循環|洗脑循环|延長版|延长版)/i;
+// Manually reviewed main-feed videos with long near-identical audio passages.
+const REPETITIVE_AUDIO_BLOCKLIST = new Set([
+  "ekr2nIex040",
+  "bu7nU9Mhpyo",
+  "JGwWNGJdvx8",
+  "kJQP7kiw5Fk",
+  "OPf0YbXqDm0",
+  "DiItGE3eAyQ",
+  "UbhiNvrPNa8",
+]);
 const SEARCH_QUERIES = [
   "台灣 華語 新歌",
   "台灣 音樂 MV",
@@ -85,8 +99,9 @@ function isUsableMusicVideo(item) {
   const duration = parseIsoDuration(item.contentDetails?.duration);
 
   if (!cleaned || cleaned.length > 90) return false;
-  if (duration < 90 || duration > 1200) return false;
+  if (duration < 90 || duration > MAX_SINGLE_TRACK_SECONDS) return false;
   if (item.snippet?.liveBroadcastContent === "live") return false;
+  if (REPETITIVE_TITLE_PATTERN.test(text)) return false;
   return !/(合集|合輯|歌單|排行榜|必聽|冥想|靜心|睡眠|放鬆|白噪音|八段錦|zen trip-hop|playlist|mix|hour|hours)/i.test(text);
 }
 
@@ -98,6 +113,7 @@ function toSong(item, index, tagPrefix) {
     title: cleanTitle(snippet.title ?? "") || snippet.title || "YouTube music pick",
     artist: snippet.channelTitle || "YouTube Music",
     tag: `${tagPrefix} #${index + 1}`,
+    durationSeconds: parseIsoDuration(item.contentDetails?.duration),
   };
 }
 
@@ -269,6 +285,13 @@ function titleIdentity(song) {
   );
 }
 
+function isAllowedDailySong(song) {
+  const text = `${song?.title ?? ""} ${song?.tag ?? ""}`;
+  return Boolean(
+    song?.id && !REPETITIVE_AUDIO_BLOCKLIST.has(song.id) && !REPETITIVE_TITLE_PATTERN.test(text),
+  );
+}
+
 function ensureTaiwanTopPack(popularSongs, packs) {
   const taiwanPack = {
     key: "taiwan-top",
@@ -314,7 +337,13 @@ function buildDiverseSongPool({ popularSongs, recentSongs, packs, limit }) {
     const candidateIndex = bucket.findIndex((song) => {
       const artist = artistIdentity(song);
       const title = titleIdentity(song);
-      if (!song?.id || seenIds.has(song.id) || (title && seenTitles.has(title))) return false;
+      if (
+        !isAllowedDailySong(song) ||
+        seenIds.has(song.id) ||
+        (title && seenTitles.has(title))
+      ) {
+        return false;
+      }
       return !enforceArtistSpacing || !artist || !recentArtists.includes(artist);
     });
 
@@ -353,7 +382,14 @@ function buildDiverseSongPool({ popularSongs, recentSongs, packs, limit }) {
     for (const bucket of buckets.values()) {
       while (bucket.length && output.length < limit) {
         const song = bucket.shift();
-        if (!song?.id || seenIds.has(song.id)) continue;
+        const title = titleIdentity(song);
+        if (
+          !isAllowedDailySong(song) ||
+          seenIds.has(song.id) ||
+          (title && seenTitles.has(title))
+        ) {
+          continue;
+        }
         appendSong(song);
       }
     }
@@ -381,9 +417,10 @@ function buildFallbackPayload(existing, reason) {
   const updatedLabel = todayTaipeiLabel();
   if (
     existing.meta?.updatedLabel === updatedLabel &&
-    existing.meta?.diversityPolicy &&
+    existing.meta?.diversityPolicyVersion === DIVERSITY_POLICY_VERSION &&
     Array.isArray(existing.songs) &&
-    existing.songs.length >= TARGET_SONG_COUNT
+    existing.songs.length >= TARGET_SONG_COUNT &&
+    existing.songs.every(isAllowedDailySong)
   ) {
     return existing;
   }
@@ -419,7 +456,9 @@ function buildFallbackPayload(existing, reason) {
       actualSongCount: rotatedSongs.length,
       updateMode: "quota-fallback",
       fallbackReason: reason,
-      diversityPolicy: "Country and language interleave, similar-title dedupe, artist spacing",
+      diversityPolicy: "Country and language interleave, similar-title dedupe, artist spacing, repetitive-audio exclusion",
+      diversityPolicyVersion: DIVERSITY_POLICY_VERSION,
+      repetitiveAudioExclusions: REPETITIVE_AUDIO_BLOCKLIST.size,
       artistSpacing: diversePool.artistSpacing,
       sourceTimestamp: "Daily diverse order refreshed from the previous verified YouTube API pool while search quota resets.",
     },
@@ -470,7 +509,9 @@ async function buildLivePayload() {
       noRepeatWithinDay: true,
       countryTargetSongCount: COUNTRY_TARGET_COUNT,
       updateMode: "live-api",
-      diversityPolicy: "Country and language interleave, similar-title dedupe, artist spacing",
+      diversityPolicy: "Country and language interleave, similar-title dedupe, artist spacing, repetitive-audio exclusion",
+      diversityPolicyVersion: DIVERSITY_POLICY_VERSION,
+      repetitiveAudioExclusions: REPETITIVE_AUDIO_BLOCKLIST.size,
       artistSpacing: diversePool.artistSpacing,
     },
     songs,

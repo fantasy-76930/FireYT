@@ -383,7 +383,7 @@ function applyAutoPicks(data) {
       return {
         ...pack,
         title: "20 小時不膩歌單",
-        subtitle: "跨語系穿插、同歌手至少錯開 8 首，當天不重複",
+        subtitle: "跨語系穿插、同歌手錯開 8 首，排除高循環音訊",
         mark: `${autoSongs.length}`,
         source: data.meta?.source || "YouTube Data API v3 / Taiwan daily pool",
         coverId: autoSongs[1]?.id || autoSongs[0].id,

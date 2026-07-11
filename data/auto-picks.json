@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-07-11T03:00:55.603Z",
+    "updatedAt": "2026-07-11T03:26:00.489Z",
     "updatedLabel": "2026.07.11",
     "source": "YouTube Data API v3 / Taiwan top music + 20-hour no-repeat daily pool",
     "sourceUrl": "https://developers.google.com/youtube/v3/docs",
@@ -13,8 +13,10 @@
     "countryTargetSongCount": 100,
     "updateMode": "quota-fallback",
     "fallbackReason": "Manual daily refresh while API quota resets.",
-    "diversityPolicy": "Country and language interleave, similar-title dedupe, artist spacing",
-    "artistSpacing": 8
+    "diversityPolicy": "Country and language interleave, similar-title dedupe, artist spacing, repetitive-audio exclusion",
+    "artistSpacing": 8,
+    "diversityPolicyVersion": 2,
+    "repetitiveAudioExclusions": 7
   },
   "songs": [
     {
@@ -24,10 +26,10 @@
       "tag": "台灣前排熱門 #1"
     },
     {
-      "id": "flBsWg14Rgc",
-      "title": "Like Sunny Days, Like Rainy Days 像晴天像雨天 (電視劇《難哄The First Frost》心動曲) - 汪蘇瀧Silence.W",
-      "artist": "Dreamer Music",
-      "tag": "華語 Top 100 #69"
+      "id": "VKC_hzJ3jzg",
+      "title": "Señorita",
+      "artist": "Shawn Mendes - Topic",
+      "tag": "韓國 Top 100 #30"
     },
     {
       "id": "9bZkp7q19f0",
@@ -48,16 +50,16 @@
       "tag": "華語 Top 100 #1"
     },
     {
-      "id": "SuAzEZMmy80",
-      "title": "承桓 - 我會等『我會等枯樹生出芽 開出新的花』【Lyrics Video】",
-      "artist": "Boba Beats",
-      "tag": "華語 Top 100 #70"
+      "id": "m78lJuzftcc",
+      "title": "盧廣仲 Crowd Lu 【刻在我心底的名字 Your Name Engraved Herein】 （刻在你心底的名字電影主題曲）",
+      "artist": "添翼音樂 TEAM EAR MUSIC",
+      "tag": "華語 Top 100 #36"
     },
     {
-      "id": "JGwWNGJdvx8",
-      "title": "Ed Sheeran - Shape of You",
-      "artist": "Ed Sheeran",
-      "tag": "歐美 Top 100 #1"
+      "id": "pRpeEdMmmQ0",
+      "title": "Shakira - Waka Waka (This Time for Africa)",
+      "artist": "shakiraVEVO",
+      "tag": "歐美 Top 100 #2"
     },
     {
       "id": "ixkoVwKQaJg",
@@ -66,10 +68,10 @@
       "tag": "日本 Top 100 #1"
     },
     {
-      "id": "kJQP7kiw5Fk",
-      "title": "Luis Fonsi - Despacito ft. Daddy Yankee",
-      "artist": "LuisFonsiVEVO",
-      "tag": "泰國 Top 100 #1"
+      "id": "hT_nvWreIhg",
+      "title": "OneRepublic - Counting Stars",
+      "artist": "OneRepublicVEVO",
+      "tag": "泰國 Top 100 #5"
     },
     {
       "id": "wnJ6LuUFpMo",
@@ -90,10 +92,10 @@
       "tag": "華語 Top 100 #71"
     },
     {
-      "id": "ekr2nIex040",
-      "title": "ROSÉ & Bruno Mars - APT.",
-      "artist": "ROSÉ",
-      "tag": "韓國 Top 100 #2"
+      "id": "IHNzOHi8sJs",
+      "title": "BLACKPINK - ‘뚜두뚜두 (DDU-DU DDU-DU)’",
+      "artist": "BLACKPINK",
+      "tag": "韓國 Top 100 #3"
     },
     {
       "id": "Bkqk196gGOc",
@@ -102,76 +104,16 @@
       "tag": "台灣前排熱門 #4"
     },
     {
-      "id": "bu7nU9Mhpyo",
-      "title": "周杰倫 Jay Chou (特別演出: 派偉俊)【告白氣球 Love Confession】",
-      "artist": "周杰倫 Jay Chou",
-      "tag": "華語 Top 100 #2"
-    },
-    {
-      "id": "d44u2W-votY",
-      "title": "千千闋歌",
-      "artist": "Priscilla Chan - Topic",
-      "tag": "華語 Top 100 #72"
-    },
-    {
-      "id": "pRpeEdMmmQ0",
-      "title": "Shakira - Waka Waka (This Time for Africa)",
-      "artist": "shakiraVEVO",
-      "tag": "歐美 Top 100 #2"
-    },
-    {
-      "id": "SX_ViT4Ra7k",
-      "title": "米津玄師 Kenshi Yonezu - Lemon",
-      "artist": "Kenshi Yonezu  米津玄師",
-      "tag": "日本 Top 100 #2"
-    },
-    {
-      "id": "OPf0YbXqDm0",
-      "title": "Mark Ronson - Uptown Funk ft. Bruno Mars",
-      "artist": "MarkRonsonVEVO",
-      "tag": "泰國 Top 100 #3"
-    },
-    {
-      "id": "DiItGE3eAyQ",
-      "title": "Daddy Yankee & Snow - Con Calma",
-      "artist": "Daddy Yankee",
-      "tag": "拉丁 Top 100 #4"
-    },
-    {
-      "id": "lpPccyGOPOU",
-      "title": "DIOR大穎 - 她已不再是那個女孩",
-      "artist": "DIOR大穎",
-      "tag": "台灣前排熱門 #6"
-    },
-    {
-      "id": "UbhiNvrPNa8",
-      "title": "王艳薇 - 离开我的依赖『我来不及道声不安，有点混乱有点缓慢。』【4k无损",
-      "artist": "Aurora music",
-      "tag": "華語 Top 100 #73"
-    },
-    {
-      "id": "IHNzOHi8sJs",
-      "title": "BLACKPINK - ‘뚜두뚜두 (DDU-DU DDU-DU)’",
-      "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #3"
-    },
-    {
-      "id": "MnPQxn20BRM",
-      "title": "Morning",
-      "artist": "i-dle - Topic",
-      "tag": "台灣前排熱門 #5"
-    },
-    {
       "id": "wSBXfzgqHtE",
       "title": "Eric周興哲《你，好不好？ How Have You Been?》 《遺憾拼圖》片尾曲",
       "artist": "周興哲 Eric Chou",
       "tag": "華語 Top 100 #3"
     },
     {
-      "id": "IQGrtrEdPiU",
-      "title": "F4《Can't Help Falling In Love》迪士尼 星際寶貝 中文主題曲",
-      "artist": "金曲年代GOLDEN ERA",
-      "tag": "華語 Top 100 #74"
+      "id": "au2n7VVGv_c",
+      "title": "Post Malone - Psycho ft. Ty Dolla $ign",
+      "artist": "PostMaloneVEVO",
+      "tag": "歐美 Top 100 #42"
     },
     {
       "id": "CevxZvSJLk8",
@@ -180,70 +122,10 @@
       "tag": "歐美 Top 100 #3"
     },
     {
-      "id": "i0p1bmr0EmE",
-      "title": "TWICE \"What is Love?\"",
-      "artist": "JYP Entertainment",
-      "tag": "日本 Top 100 #3"
-    },
-    {
-      "id": "hT_nvWreIhg",
-      "title": "OneRepublic - Counting Stars",
-      "artist": "OneRepublicVEVO",
-      "tag": "泰國 Top 100 #5"
-    },
-    {
-      "id": "6Mgqbai3fKo",
-      "title": "Shakira - Chantaje ft. Maluma",
-      "artist": "shakiraVEVO",
-      "tag": "拉丁 Top 100 #3"
-    },
-    {
-      "id": "LW5ROCc5SEw",
-      "title": "一直下",
-      "artist": "陳宇祥 - Topic",
-      "tag": "台灣前排熱門 #7"
-    },
-    {
-      "id": "LbiWaeLdqeA",
-      "title": "蔡依林 Jolin Tsai X 韋禮安 WeiBird《如果可以 Red Scarf》Official Live Music Video",
-      "artist": "JOLIN 蔡依林",
-      "tag": "華語 Top 100 #75"
-    },
-    {
-      "id": "2S24-y0Ij3Y",
-      "title": "BLACKPINK - 'Kill This Love'",
-      "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #4"
-    },
-    {
-      "id": "-q_S27LbNKU",
-      "title": "ATEEZ(에이티즈) - 'BAD'",
-      "artist": "KQ ENTERTAINMENT",
-      "tag": "台灣前排熱門 #8"
-    },
-    {
-      "id": "Ew4VvF0DPMc",
-      "title": "Eric周興哲《以後別做朋友 The Distance of Love》",
-      "artist": "周興哲 Eric Chou",
-      "tag": "華語 Top 100 #4"
-    },
-    {
-      "id": "ihhSHgTOsFE",
-      "title": "3P x 薛家燕 x 暴牙菇 - ‘YES蛇’【2025蛇年最YES新年歌】",
-      "artist": "3P",
-      "tag": "華語 Top 100 #76"
-    },
-    {
-      "id": "fRh_vgS2dFE",
-      "title": "Justin Bieber - Sorry (PURPOSE : The Movement)",
-      "artist": "JustinBieberVEVO",
-      "tag": "歐美 Top 100 #4"
-    },
-    {
-      "id": "-tKVN2mAKRI",
-      "title": "DAOKO × 米津玄師『打上花火』MUSIC VIDEO",
-      "artist": "daoko_jp",
-      "tag": "日本 Top 100 #4"
+      "id": "SX_ViT4Ra7k",
+      "title": "米津玄師 Kenshi Yonezu - Lemon",
+      "artist": "Kenshi Yonezu  米津玄師",
+      "tag": "日本 Top 100 #2"
     },
     {
       "id": "09R8_2nJtjg",
@@ -252,22 +134,82 @@
       "tag": "泰國 Top 100 #6"
     },
     {
+      "id": "6Mgqbai3fKo",
+      "title": "Shakira - Chantaje ft. Maluma",
+      "artist": "shakiraVEVO",
+      "tag": "拉丁 Top 100 #3"
+    },
+    {
+      "id": "lpPccyGOPOU",
+      "title": "DIOR大穎 - 她已不再是那個女孩",
+      "artist": "DIOR大穎",
+      "tag": "台灣前排熱門 #6"
+    },
+    {
+      "id": "F64yFFnZfkI",
+      "title": "ヨルシカ - 言って。",
+      "artist": "ヨルシカ / n-buna Official",
+      "tag": "日本 Top 100 #36"
+    },
+    {
+      "id": "2S24-y0Ij3Y",
+      "title": "BLACKPINK - 'Kill This Love'",
+      "artist": "BLACKPINK",
+      "tag": "韓國 Top 100 #4"
+    },
+    {
+      "id": "MnPQxn20BRM",
+      "title": "Morning",
+      "artist": "i-dle - Topic",
+      "tag": "台灣前排熱門 #5"
+    },
+    {
+      "id": "Ew4VvF0DPMc",
+      "title": "Eric周興哲《以後別做朋友 The Distance of Love》",
+      "artist": "周興哲 Eric Chou",
+      "tag": "華語 Top 100 #4"
+    },
+    {
+      "id": "czvDyFfVoVU",
+      "title": "scrubb - รอยยิ้ม",
+      "artist": "TERO MUSIC",
+      "tag": "泰國 Top 100 #45"
+    },
+    {
+      "id": "fRh_vgS2dFE",
+      "title": "Justin Bieber - Sorry (PURPOSE : The Movement)",
+      "artist": "JustinBieberVEVO",
+      "tag": "歐美 Top 100 #4"
+    },
+    {
+      "id": "i0p1bmr0EmE",
+      "title": "TWICE \"What is Love?\"",
+      "artist": "JYP Entertainment",
+      "tag": "日本 Top 100 #3"
+    },
+    {
+      "id": "0KSOMA3QBU0",
+      "title": "Katy Perry - Dark Horse ft. Juicy J",
+      "artist": "KatyPerryVEVO",
+      "tag": "泰國 Top 100 #8"
+    },
+    {
       "id": "t4H_Zoh7G5A",
       "title": "Jennifer Lopez, Pitbull - On The Floor",
       "artist": "JenniferLopezVEVO",
       "tag": "拉丁 Top 100 #5"
     },
     {
-      "id": "U4h0MiIcVWY",
-      "title": "「你過得不差，我也挺好，這才是最殘忍的。」聽完這首歌，你敢不敢去搜他的名字？《其實我沒有比較勇敢》林知夏 Livia Lin",
-      "artist": "林知夏 Livia Lin",
-      "tag": "台灣前排熱門 #9"
+      "id": "LW5ROCc5SEw",
+      "title": "一直下",
+      "artist": "陳宇祥 - Topic",
+      "tag": "台灣前排熱門 #7"
     },
     {
-      "id": "8eg__nN-CtQ",
-      "title": "菲菲公主 - 第57次取消发送『我好想你 在每個夜裡』",
-      "artist": "Music in the Air",
-      "tag": "華語 Top 100 #77"
+      "id": "lRWqYR3e7xE",
+      "title": "Don Omar - Taboo",
+      "artist": "DonOmarVEVO",
+      "tag": "拉丁 Top 100 #37"
     },
     {
       "id": "gdZLi9oWNZg",
@@ -276,10 +218,10 @@
       "tag": "韓國 Top 100 #5"
     },
     {
-      "id": "-sqRUBeiEYo",
-      "title": "如果的事（R&B版）",
-      "artist": "大头针R&B - Topic",
-      "tag": "台灣前排熱門 #10"
+      "id": "-q_S27LbNKU",
+      "title": "ATEEZ(에이티즈) - 'BAD'",
+      "artist": "KQ ENTERTAINMENT",
+      "tag": "台灣前排熱門 #8"
     },
     {
       "id": "w0dMz8RBG7g",
@@ -288,10 +230,70 @@
       "tag": "華語 Top 100 #5"
     },
     {
-      "id": "IkZFVOcahnQ",
-      "title": "張遠 - 看著我的眼睛說『來 你看著我的眼睛說 你從沒愛過我，再看著我的眼睛說 你一點都不難過。』【高音質",
-      "artist": "4K Music Make",
-      "tag": "華語 Top 100 #78"
+      "id": "d44u2W-votY",
+      "title": "千千闋歌",
+      "artist": "Priscilla Chan - Topic",
+      "tag": "華語 Top 100 #72"
+    },
+    {
+      "id": "aJOTlE1K90k",
+      "title": "Maroon 5 - Girls Like You ft. Cardi B",
+      "artist": "Maroon5VEVO",
+      "tag": "歐美 Top 100 #5"
+    },
+    {
+      "id": "-tKVN2mAKRI",
+      "title": "DAOKO × 米津玄師『打上花火』MUSIC VIDEO",
+      "artist": "daoko_jp",
+      "tag": "日本 Top 100 #4"
+    },
+    {
+      "id": "2Vv-BfVoq4g",
+      "title": "Ed Sheeran - Perfect",
+      "artist": "Ed Sheeran",
+      "tag": "泰國 Top 100 #9"
+    },
+    {
+      "id": "VqEbCxg2bNI",
+      "title": "Natti Natasha ❌ Ozuna - Criminal",
+      "artist": "NATTI NATASHA ",
+      "tag": "拉丁 Top 100 #6"
+    },
+    {
+      "id": "U4h0MiIcVWY",
+      "title": "「你過得不差，我也挺好，這才是最殘忍的。」聽完這首歌，你敢不敢去搜他的名字？《其實我沒有比較勇敢》林知夏 Livia Lin",
+      "artist": "林知夏 Livia Lin",
+      "tag": "台灣前排熱門 #9"
+    },
+    {
+      "id": "0lapF4DQPKQ",
+      "title": "BTS (방탄소년단) 'Black Swan'",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #31"
+    },
+    {
+      "id": "32si5cfrCNc",
+      "title": "BLACKPINK - 'How You Like That' DANCE PERFORMANCE VIDEO",
+      "artist": "BLACKPINK",
+      "tag": "韓國 Top 100 #6"
+    },
+    {
+      "id": "-sqRUBeiEYo",
+      "title": "如果的事（R&B版）",
+      "artist": "大头针R&B - Topic",
+      "tag": "台灣前排熱門 #10"
+    },
+    {
+      "id": "Y2ge3KrdeWs",
+      "title": "Eric周興哲《怎麼了 What's Wrong》 - 華劇【你有念大學嗎？】片尾曲",
+      "artist": "周興哲 Eric Chou",
+      "tag": "華語 Top 100 #6"
+    },
+    {
+      "id": "ZSWeurc1yMw",
+      "title": "任賢齊 Richie Jen【心太軟 Too softhearted】 (4K)",
+      "artist": "滾石唱片 ROCK RECORDS",
+      "tag": "華語 Top 100 #37"
     },
     {
       "id": "e-ORhEE9VVg",
@@ -306,70 +308,10 @@
       "tag": "日本 Top 100 #5"
     },
     {
-      "id": "0KSOMA3QBU0",
-      "title": "Katy Perry - Dark Horse ft. Juicy J",
-      "artist": "KatyPerryVEVO",
-      "tag": "泰國 Top 100 #8"
-    },
-    {
-      "id": "VqEbCxg2bNI",
-      "title": "Natti Natasha ❌ Ozuna - Criminal",
-      "artist": "NATTI NATASHA ",
-      "tag": "拉丁 Top 100 #6"
-    },
-    {
-      "id": "8ki1Y5wpjiA",
-      "title": "Andy - 阿杜『我是真的不会表达我的爱 却很在乎每个人对我的期待』【Dreamy Bubble/動態歌詞MV】",
-      "artist": "Dreamy Bubble",
-      "tag": "台灣前排熱門 #11"
-    },
-    {
-      "id": "ixhXTAptf-g",
-      "title": "他一定很愛你",
-      "artist": "阿杜 - Topic",
-      "tag": "華語 Top 100 #79"
-    },
-    {
-      "id": "32si5cfrCNc",
-      "title": "BLACKPINK - 'How You Like That' DANCE PERFORMANCE VIDEO",
-      "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #6"
-    },
-    {
-      "id": "HsBWmc8y0h0",
-      "title": "客客氣氣 COURTESY",
-      "artist": "The Crane - Topic",
-      "tag": "台灣前排熱門 #12"
-    },
-    {
-      "id": "Y2ge3KrdeWs",
-      "title": "Eric周興哲《怎麼了 What's Wrong》 - 華劇【你有念大學嗎？】片尾曲",
-      "artist": "周興哲 Eric Chou",
-      "tag": "華語 Top 100 #6"
-    },
-    {
-      "id": "O_U9xlmZG2w",
-      "title": "曲婉婷 - 最好的安排 (抖音热播)『如果说一切都是最好的安排 那就让爱教我学会忍耐，我愿意承受所有绝望与苦难。』【動態歌詞】♪",
-      "artist": "Lyrics Music",
-      "tag": "華語 Top 100 #80"
-    },
-    {
-      "id": "aJOTlE1K90k",
-      "title": "Maroon 5 - Girls Like You ft. Cardi B",
-      "artist": "Maroon5VEVO",
-      "tag": "歐美 Top 100 #5"
-    },
-    {
-      "id": "TQ8WlA2GXbk",
-      "title": "Official髭男dism - Pretender［ ］",
-      "artist": "Official髭男dism",
-      "tag": "日本 Top 100 #6"
-    },
-    {
-      "id": "2Vv-BfVoq4g",
-      "title": "Ed Sheeran - Perfect",
-      "artist": "Ed Sheeran",
-      "tag": "泰國 Top 100 #9"
+      "id": "kffacxfA7G4",
+      "title": "Justin Bieber - Baby ft. Ludacris",
+      "artist": "JustinBieberVEVO",
+      "tag": "泰國 Top 100 #13"
     },
     {
       "id": "GMFewiplIbw",
@@ -378,16 +320,16 @@
       "tag": "拉丁 Top 100 #8"
     },
     {
-      "id": "UOKLtaE2U90",
-      "title": "Bansanka",
-      "artist": "TAEYEON - Topic",
-      "tag": "台灣前排熱門 #13"
+      "id": "8ki1Y5wpjiA",
+      "title": "Andy - 阿杜『我是真的不会表达我的爱 却很在乎每个人对我的期待』【Dreamy Bubble/動態歌詞MV】",
+      "artist": "Dreamy Bubble",
+      "tag": "台灣前排熱門 #11"
     },
     {
-      "id": "9UWkkdYgXv4",
-      "title": "诺言",
-      "artist": "洋澜一 - Topic",
-      "tag": "華語 Top 100 #81"
+      "id": "IQGrtrEdPiU",
+      "title": "F4《Can't Help Falling In Love》迪士尼 星際寶貝 中文主題曲",
+      "artist": "金曲年代GOLDEN ERA",
+      "tag": "華語 Top 100 #74"
     },
     {
       "id": "XsX3ATc3FbA",
@@ -396,10 +338,10 @@
       "tag": "韓國 Top 100 #7"
     },
     {
-      "id": "Q7IFjVUUb_E",
-      "title": "Stray Kids \"RUN IT\"",
-      "artist": "JYP Entertainment",
-      "tag": "台灣前排熱門 #14"
+      "id": "HsBWmc8y0h0",
+      "title": "客客氣氣 COURTESY",
+      "artist": "The Crane - Topic",
+      "tag": "台灣前排熱門 #12"
     },
     {
       "id": "8MG--WuNW1Y",
@@ -408,22 +350,22 @@
       "tag": "華語 Top 100 #7"
     },
     {
-      "id": "Q6DqHKFYIjs",
-      "title": "♬跟我做運動♬",
-      "artist": "嘉芙姐姐 - 兒歌童謠 - 故事動畫 - Miss Ka Foo Kids Channel",
-      "tag": "華語 Top 100 #82"
+      "id": "M11SvDtPBhA",
+      "title": "Miley Cyrus - Party In The U.S.A.",
+      "artist": "HollywoodRecordsVEVO",
+      "tag": "歐美 Top 100 #43"
     },
     {
-      "id": "kffacxfA7G4",
-      "title": "Justin Bieber - Baby ft. Ludacris",
-      "artist": "JustinBieberVEVO",
-      "tag": "歐美 Top 100 #7"
+      "id": "3AtDnEC4zak",
+      "title": "Charlie Puth - We Don't Talk Anymore (feat. Selena Gomez)",
+      "artist": "Charlie Puth",
+      "tag": "歐美 Top 100 #8"
     },
     {
-      "id": "dy90tA3TT1c",
-      "title": "YOASOBI「怪物」 (YOASOBI - Monster)",
-      "artist": "YOASOBI",
-      "tag": "日本 Top 100 #7"
+      "id": "TQ8WlA2GXbk",
+      "title": "Official髭男dism - Pretender［ ］",
+      "artist": "Official髭男dism",
+      "tag": "日本 Top 100 #6"
     },
     {
       "id": "nfWlot6h_JM",
@@ -438,16 +380,16 @@
       "tag": "拉丁 Top 100 #9"
     },
     {
-      "id": "3rB3n_XR23o",
-      "title": "老闆 - 我不該動情 「我發了瘋的愛你 又拼了命的忘記 早知會痛 我就不該動情」【動態歌詞】♪",
-      "artist": "JellyFish Music",
-      "tag": "台灣前排熱門 #15"
+      "id": "UOKLtaE2U90",
+      "title": "Bansanka",
+      "artist": "TAEYEON - Topic",
+      "tag": "台灣前排熱門 #13"
     },
     {
-      "id": "OXvDT6aoewQ",
-      "title": "Zyboy忠宇 - 媽媽的話『 這一次我告別故鄉踏上我的流浪 無知和久違的理想像期待在前方』【Lyrics Video】",
-      "artist": "Boba Beats",
-      "tag": "華語 Top 100 #83"
+      "id": "wQ_POfToaVY",
+      "title": "TWICE「Candy Pop」Music Video",
+      "artist": "TWICE JAPAN OFFICIAL YouTube Channel",
+      "tag": "日本 Top 100 #37"
     },
     {
       "id": "ASO_zypdnsQ",
@@ -456,10 +398,10 @@
       "tag": "韓國 Top 100 #8"
     },
     {
-      "id": "gjbG_zhsH5o",
-      "title": "小宇 宋念宇 Xiao Yu《我還有個夢 Still Dreaming》",
-      "artist": "小宇 宋念宇 Xiao Yu",
-      "tag": "台灣前排熱門 #16"
+      "id": "Q7IFjVUUb_E",
+      "title": "Stray Kids \"RUN IT\"",
+      "artist": "JYP Entertainment",
+      "tag": "台灣前排熱門 #14"
     },
     {
       "id": "qIF8xvSA0Gw",
@@ -468,28 +410,28 @@
       "tag": "華語 Top 100 #8"
     },
     {
-      "id": "UwsOovh-_Yg",
-      "title": "蔡依林 Jolin Tsai X 茄子蛋 EggPlantEgg《浪流連 Waves Wandering》Official Live Video",
-      "artist": "JOLIN 蔡依林",
-      "tag": "華語 Top 100 #84"
-    },
-    {
-      "id": "3AtDnEC4zak",
-      "title": "Charlie Puth - We Don't Talk Anymore (feat. Selena Gomez)",
-      "artist": "Charlie Puth",
-      "tag": "歐美 Top 100 #8"
-    },
-    {
-      "id": "0xSiBpUdW4E",
-      "title": "あいみょん - マリーゴールド【 】",
-      "artist": "あいみょん",
-      "tag": "日本 Top 100 #8"
+      "id": "dHUq9xJcaZs",
+      "title": "HYBS - Tip Toe",
+      "artist": "HYBS",
+      "tag": "泰國 Top 100 #46"
     },
     {
       "id": "PT2_F-1esPk",
       "title": "The Chainsmokers - Closer ft. Halsey",
       "artist": "ChainsmokersVEVO",
-      "tag": "泰國 Top 100 #15"
+      "tag": "歐美 Top 100 #9"
+    },
+    {
+      "id": "dy90tA3TT1c",
+      "title": "YOASOBI「怪物」 (YOASOBI - Monster)",
+      "artist": "YOASOBI",
+      "tag": "日本 Top 100 #7"
+    },
+    {
+      "id": "k2qgadSvNyU",
+      "title": "Dua Lipa - New Rules",
+      "artist": "Dua Lipa",
+      "tag": "泰國 Top 100 #16"
     },
     {
       "id": "_I_D_8Z4sJE",
@@ -498,16 +440,16 @@
       "tag": "拉丁 Top 100 #10"
     },
     {
-      "id": "NVbhA9glLi4",
-      "title": "【纯享版】罗云熙跨界搭档黄霄雲演绎古风OST《桃花诺》！破碎感氛围直接拉满 黄霄雲结尾高音堪称封神 #天赐的声音7 EP4 20260703",
-      "artist": "天赐的声音 The Treasured Voice Official Channel",
-      "tag": "台灣前排熱門 #17"
+      "id": "3rB3n_XR23o",
+      "title": "老闆 - 我不該動情 「我發了瘋的愛你 又拼了命的忘記 早知會痛 我就不該動情」【動態歌詞】♪",
+      "artist": "JellyFish Music",
+      "tag": "台灣前排熱門 #15"
     },
     {
-      "id": "Wk1ViE4VCkI",
-      "title": "搀扶",
-      "artist": "Ma Jiantao - Topic",
-      "tag": "華語 Top 100 #85"
+      "id": "_kxz7WX4mLU",
+      "title": "Cali Y El Dandee - Por Fin Te Encontré ft. Juan Magán, Sebastián Yatra",
+      "artist": "CaliyElDandeeVEVO",
+      "tag": "拉丁 Top 100 #38"
     },
     {
       "id": "MBdVXkSdhwU",
@@ -516,10 +458,10 @@
       "tag": "韓國 Top 100 #9"
     },
     {
-      "id": "rNpeCVWahkY",
-      "title": "【MV首播】沈建豪 vs 陳淑萍 - 同甘共苦 HD【三立八點檔『 百味人生』片尾曲】",
-      "artist": "豪記唱片 HCM Music",
-      "tag": "台灣前排熱門 #18"
+      "id": "gjbG_zhsH5o",
+      "title": "小宇 宋念宇 Xiao Yu《我還有個夢 Still Dreaming》",
+      "artist": "小宇 宋念宇 Xiao Yu",
+      "tag": "台灣前排熱門 #16"
     },
     {
       "id": "_VxLOj3TB5k",
@@ -528,82 +470,22 @@
       "tag": "華語 Top 100 #9"
     },
     {
-      "id": "RuOb1EyqRXA",
-      "title": "A-Lin - 海洋之心 - 迪士尼電影《海洋奇緣》( “How Far I’ll Go” From “Moana”)",
-      "artist": "DisneyMusicAsiaVEVO",
-      "tag": "華語 Top 100 #86"
-    },
-    {
-      "id": "k2qgadSvNyU",
-      "title": "Dua Lipa - New Rules",
-      "artist": "Dua Lipa",
-      "tag": "歐美 Top 100 #10"
-    },
-    {
-      "id": "Dx_fKPBPYUI",
-      "title": "米津玄師 - LOSER , Kenshi Yonezu",
-      "artist": "Kenshi Yonezu  米津玄師",
-      "tag": "日本 Top 100 #9"
+      "id": "LbiWaeLdqeA",
+      "title": "蔡依林 Jolin Tsai X 韋禮安 WeiBird《如果可以 Red Scarf》Official Live Music Video",
+      "artist": "JOLIN 蔡依林",
+      "tag": "華語 Top 100 #75"
     },
     {
       "id": "fLexgOxsZu0",
       "title": "Bruno Mars - The Lazy Song",
       "artist": "Bruno Mars",
-      "tag": "泰國 Top 100 #17"
+      "tag": "歐美 Top 100 #11"
     },
     {
-      "id": "TapXs54Ah3E",
-      "title": "J. Balvin - Ay Vamos",
-      "artist": "jbalvinVEVO",
-      "tag": "拉丁 Top 100 #11"
-    },
-    {
-      "id": "Z-9JVyKjs-k",
-      "title": "如果生命只剩最後7天，你最想回哪裡？林知夏 Livia Lin -【若賰七工】",
-      "artist": "林知夏 Livia Lin",
-      "tag": "台灣前排熱門 #19"
-    },
-    {
-      "id": "NVCatRLxl5Y",
-      "title": "Priscilla Abby 蔡恩雨《祝你幸福》官方",
-      "artist": "Priscilla Abby 蔡恩雨",
-      "tag": "華語 Top 100 #87"
-    },
-    {
-      "id": "pBuZEGYXA6E",
-      "title": "BTS (방탄소년단) 'IDOL'",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #10"
-    },
-    {
-      "id": "07Sfixrv39k",
-      "title": "痴心绝对（R&B版）",
-      "artist": "大头针R&B - Topic",
-      "tag": "台灣前排熱門 #20"
-    },
-    {
-      "id": "x3bDhtuC5yk",
-      "title": "茄子蛋EggPlantEgg - 浪子回頭 Back Here Again",
-      "artist": "茄子蛋EggPlantEgg",
-      "tag": "華語 Top 100 #10"
-    },
-    {
-      "id": "eTaRGTTEO6Q",
-      "title": "包容 - 鄭源【中文音樂】【動態歌詞】Lyrics【無損音質】",
-      "artist": "楓琳琬樂Music Channel",
-      "tag": "華語 Top 100 #88"
-    },
-    {
-      "id": "5GL9JoH4Sws",
-      "title": "Fifth Harmony - Work from Home ft. Ty Dolla $ign",
-      "artist": "FifthHarmonyVEVO",
-      "tag": "歐美 Top 100 #12"
-    },
-    {
-      "id": "4DxL6IKmXx4",
-      "title": "LiSA 『炎』 -MUSiC CLiP",
-      "artist": "LiSA Official YouTube",
-      "tag": "日本 Top 100 #10"
+      "id": "0xSiBpUdW4E",
+      "title": "あいみょん - マリーゴールド【 】",
+      "artist": "あいみょん",
+      "tag": "日本 Top 100 #8"
     },
     {
       "id": "pXRviuL6vMY",
@@ -612,58 +494,58 @@
       "tag": "泰國 Top 100 #18"
     },
     {
-      "id": "sGIm0-dQd8M",
-      "title": "Daddy Yankee - Dura",
-      "artist": "Daddy Yankee",
-      "tag": "拉丁 Top 100 #12"
+      "id": "TapXs54Ah3E",
+      "title": "J. Balvin - Ay Vamos",
+      "artist": "jbalvinVEVO",
+      "tag": "拉丁 Top 100 #11"
     },
     {
-      "id": "CGQl2xW-7tk",
-      "title": "像水一樣",
-      "artist": "Dato' Sri Siti Nurhaliza - Topic",
-      "tag": "台灣前排熱門 #21"
+      "id": "NVbhA9glLi4",
+      "title": "【纯享版】罗云熙跨界搭档黄霄雲演绎古风OST《桃花诺》！破碎感氛围直接拉满 黄霄雲结尾高音堪称封神 #天赐的声音7 EP4 20260703",
+      "artist": "天赐的声音 The Treasured Voice Official Channel",
+      "tag": "台灣前排熱門 #17"
     },
     {
-      "id": "EJmkQYLmH7A",
-      "title": "伯虎说 (DJ阳少版)",
-      "artist": "伯爵Johnny - Topic",
-      "tag": "華語 Top 100 #89"
+      "id": "3ymwOvzhwHs",
+      "title": "TWICE \"Feel Special\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #38"
     },
     {
-      "id": "7C2z4GqqS5E",
-      "title": "BTS (방탄소년단) 'FAKE LOVE'",
+      "id": "pBuZEGYXA6E",
+      "title": "BTS (방탄소년단) 'IDOL'",
       "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #11"
+      "tag": "韓國 Top 100 #10"
     },
     {
-      "id": "Z2Pym3k9CvI",
-      "title": "给未来的自己",
-      "artist": "KYUHYUN - Topic",
-      "tag": "台灣前排熱門 #22"
+      "id": "rNpeCVWahkY",
+      "title": "【MV首播】沈建豪 vs 陳淑萍 - 同甘共苦 HD【三立八點檔『 百味人生』片尾曲】",
+      "artist": "豪記唱片 HCM Music",
+      "tag": "台灣前排熱門 #18"
     },
     {
-      "id": "qu_FSptjRic",
-      "title": "BEYOND【海闊天空】Music Video (粵) (HD)",
-      "artist": "滾石唱片 ROCK RECORDS",
-      "tag": "華語 Top 100 #11"
+      "id": "x3bDhtuC5yk",
+      "title": "茄子蛋EggPlantEgg - 浪子回頭 Back Here Again",
+      "artist": "茄子蛋EggPlantEgg",
+      "tag": "華語 Top 100 #10"
     },
     {
-      "id": "BuqLpR-ppWQ",
-      "title": "【隨著長大 懂得越多】Sasha Sloan - 長大 Older【中文字幕】",
-      "artist": "LU拉拉 (MisttyLu)",
-      "tag": "華語 Top 100 #90"
+      "id": "dozAVKrIBBM",
+      "title": "Red Scarf (\"Till We Meet Again\" Movie Theme Song)",
+      "artist": "韦礼安 - Topic",
+      "tag": "華語 Top 100 #38"
     },
     {
-      "id": "ApXoWvfEYVU",
-      "title": "Post Malone, Swae Lee - Sunflower (Spider-Man: Into the Spider-Verse)",
-      "artist": "PostMaloneVEVO",
-      "tag": "歐美 Top 100 #13"
+      "id": "5GL9JoH4Sws",
+      "title": "Fifth Harmony - Work from Home ft. Ty Dolla $ign",
+      "artist": "FifthHarmonyVEVO",
+      "tag": "歐美 Top 100 #12"
     },
     {
-      "id": "wfCcs0vLysk",
-      "title": "Mrs. GREEN APPLE - インフェルノ（Inferno）",
-      "artist": "Mrs. GREEN APPLE",
-      "tag": "日本 Top 100 #11"
+      "id": "Dx_fKPBPYUI",
+      "title": "米津玄師 - LOSER , Kenshi Yonezu",
+      "artist": "Kenshi Yonezu  米津玄師",
+      "tag": "日本 Top 100 #9"
     },
     {
       "id": "U2waT9TxPU0",
@@ -672,58 +554,58 @@
       "tag": "泰國 Top 100 #20"
     },
     {
-      "id": "HCjNJDNzw8Y",
-      "title": "Camila Cabello - Havana ft. Young Thug",
-      "artist": "CamilaCabelloVEVO",
-      "tag": "拉丁 Top 100 #13"
+      "id": "sGIm0-dQd8M",
+      "title": "Daddy Yankee - Dura",
+      "artist": "Daddy Yankee",
+      "tag": "拉丁 Top 100 #12"
     },
     {
-      "id": "BFAuO-mrhcA",
-      "title": "玖壹壹(Nine one one) 春風 - 有你有我 (Feat.王識賢) You and me 官方MV首播",
-      "artist": "玖壹壹",
-      "tag": "台灣前排熱門 #23"
+      "id": "Z-9JVyKjs-k",
+      "title": "如果生命只剩最後7天，你最想回哪裡？林知夏 Livia Lin -【若賰七工】",
+      "artist": "林知夏 Livia Lin",
+      "tag": "台灣前排熱門 #19"
     },
     {
-      "id": "dI5zpKaNR84",
-      "title": "范逸臣 Van Fan《I BELIEVE》（電影【我的野蠻女友】中文主題曲 車太鉉、全智賢 主演）官方MV",
-      "artist": "豐華唱片ForwardMusic",
-      "tag": "華語 Top 100 #91"
+      "id": "ihhSHgTOsFE",
+      "title": "3P x 薛家燕 x 暴牙菇 - ‘YES蛇’【2025蛇年最YES新年歌】",
+      "artist": "3P",
+      "tag": "華語 Top 100 #76"
     },
     {
-      "id": "ioNng23DkIM",
-      "title": "BLACKPINK - 'How You Like That'",
-      "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #12"
+      "id": "7C2z4GqqS5E",
+      "title": "BTS (방탄소년단) 'FAKE LOVE'",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #11"
     },
     {
-      "id": "QTVlYd8Jdro",
-      "title": "怎么说我不爱你(R&B版)",
+      "id": "07Sfixrv39k",
+      "title": "痴心绝对（R&B版）",
       "artist": "大头针R&B - Topic",
-      "tag": "台灣前排熱門 #24"
+      "tag": "台灣前排熱門 #20"
     },
     {
-      "id": "LWV-f6dMN3Q",
-      "title": "林俊傑 JJ Lin - 修煉愛情 Practice Love",
-      "artist": "JJ Lin林俊傑",
-      "tag": "華語 Top 100 #12"
+      "id": "qu_FSptjRic",
+      "title": "BEYOND【海闊天空】Music Video (粵) (HD)",
+      "artist": "滾石唱片 ROCK RECORDS",
+      "tag": "華語 Top 100 #11"
     },
     {
-      "id": "BvFAvLZrF3I",
-      "title": "吉星出租 - 暮色迴響「神啊可不可以讓我感受一下 看在我們對彼此都放心不下」【動態歌詞/PinyinLyrics】♪",
-      "artist": "ORT Music",
-      "tag": "華語 Top 100 #92"
+      "id": "jzD_yyEcp0M",
+      "title": "Marshmello & Anne-Marie - FRIENDS *OFFICIAL FRIENDZONE ANTHEM*",
+      "artist": "Marshmello",
+      "tag": "歐美 Top 100 #44"
     },
     {
-      "id": "34Na4j8AVgA",
-      "title": "The Weeknd - Starboy ft. Daft Punk ft. Daft Punk",
-      "artist": "TheWeekndVEVO",
-      "tag": "歐美 Top 100 #16"
+      "id": "ApXoWvfEYVU",
+      "title": "Post Malone, Swae Lee - Sunflower (Spider-Man: Into the Spider-Verse)",
+      "artist": "PostMaloneVEVO",
+      "tag": "歐美 Top 100 #13"
     },
     {
-      "id": "dlFA0Zq1k2A",
-      "title": "KANA-BOON - Silhouette",
-      "artist": "KANABOONVEVO",
-      "tag": "日本 Top 100 #12"
+      "id": "4DxL6IKmXx4",
+      "title": "LiSA 『炎』 -MUSiC CLiP",
+      "artist": "LiSA Official YouTube",
+      "tag": "日本 Top 100 #10"
     },
     {
       "id": "wsHNUOgJJZU",
@@ -732,58 +614,58 @@
       "tag": "泰國 Top 100 #21"
     },
     {
-      "id": "Pkh8UtuejGw",
-      "title": "Shawn Mendes, Camila Cabello - Señorita",
-      "artist": "ShawnMendesVEVO",
-      "tag": "拉丁 Top 100 #14"
+      "id": "HCjNJDNzw8Y",
+      "title": "Camila Cabello - Havana ft. Young Thug",
+      "artist": "CamilaCabelloVEVO",
+      "tag": "拉丁 Top 100 #13"
     },
     {
-      "id": "179K9wQB6wo",
-      "title": "原來那卷赴死書，寫給餘生不得用⋯聽碎無數人：世人只知他七步成詩，卻不知他至死想死在沙場《白馬不渡我》- 林知夏 Livia Lin",
-      "artist": "林知夏 Livia Lin",
-      "tag": "台灣前排熱門 #25"
+      "id": "CGQl2xW-7tk",
+      "title": "像水一樣",
+      "artist": "Dato' Sri Siti Nurhaliza - Topic",
+      "tag": "台灣前排熱門 #21"
     },
     {
-      "id": "zafycD5jiN8",
-      "title": "童年 Childhood（羅大佑詞曲／黃俞憲編曲）- National Taiwan University Chorus",
-      "artist": "NTU Chorus 台大合唱團",
-      "tag": "華語 Top 100 #93"
+      "id": "uKxyLmbOc0Q",
+      "title": "Renai Circulation「恋愛サーキュレーション」歌ってみた【＊なみりん】",
+      "artist": "*namirin",
+      "tag": "日本 Top 100 #38"
     },
     {
-      "id": "dNCWe_6HAM8",
-      "title": "LISA - 'MONEY' EXCLUSIVE PERFORMANCE VIDEO",
+      "id": "ioNng23DkIM",
+      "title": "BLACKPINK - 'How You Like That'",
       "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #13"
+      "tag": "韓國 Top 100 #12"
     },
     {
-      "id": "ZDuSyQg0Saw",
-      "title": "Night by Night",
-      "artist": "阿蘭 AC - Topic",
-      "tag": "台灣前排熱門 #26"
+      "id": "Z2Pym3k9CvI",
+      "title": "给未来的自己",
+      "artist": "KYUHYUN - Topic",
+      "tag": "台灣前排熱門 #22"
     },
     {
-      "id": "kfXdP7nZIiE",
-      "title": "周杰倫 Jay Chou【等你下課 Waiting For You (with 楊瑞代 Gary)】歌詞版Lyrics MV",
-      "artist": "周杰倫 Jay Chou",
-      "tag": "華語 Top 100 #13"
+      "id": "LWV-f6dMN3Q",
+      "title": "林俊傑 JJ Lin - 修煉愛情 Practice Love",
+      "artist": "JJ Lin林俊傑",
+      "tag": "華語 Top 100 #12"
     },
     {
-      "id": "HYDZQtTosoA",
-      "title": "⟪Ai Đưa Em Về⟫ 中文翻译 Low Cortisol Song",
-      "artist": "JouYi",
-      "tag": "華語 Top 100 #94"
+      "id": "l55ItEeTpYA",
+      "title": "คุณและคุณเท่านั้น - แกงส้ม ธนทัต【 】",
+      "artist": "GMM GRAMMY OFFICIAL",
+      "tag": "泰國 Top 100 #47"
     },
     {
-      "id": "450p7goxZqg",
-      "title": "John Legend - All of Me",
-      "artist": "johnlegendVEVO",
-      "tag": "歐美 Top 100 #17"
+      "id": "34Na4j8AVgA",
+      "title": "The Weeknd - Starboy ft. Daft Punk ft. Daft Punk",
+      "artist": "TheWeekndVEVO",
+      "tag": "歐美 Top 100 #16"
     },
     {
-      "id": "PDSkFeMVNFs",
-      "title": "RADWIMPS - 前前前世 (movie ver.)",
-      "artist": "RADWIMPS",
-      "tag": "日本 Top 100 #13"
+      "id": "wfCcs0vLysk",
+      "title": "Mrs. GREEN APPLE - インフェルノ（Inferno）",
+      "artist": "Mrs. GREEN APPLE",
+      "tag": "日本 Top 100 #11"
     },
     {
       "id": "wNO6kMJB63I",
@@ -792,58 +674,58 @@
       "tag": "泰國 Top 100 #22"
     },
     {
-      "id": "iOe6dI2JhgU",
-      "title": "Ricky Martin - Vente Pa' Ca ft. Maluma",
-      "artist": "RickyMartinVEVO",
-      "tag": "拉丁 Top 100 #15"
+      "id": "Pkh8UtuejGw",
+      "title": "Shawn Mendes, Camila Cabello - Señorita",
+      "artist": "ShawnMendesVEVO",
+      "tag": "拉丁 Top 100 #14"
     },
     {
-      "id": "EIiC8gIAMgE",
-      "title": "写故事的人",
-      "artist": "汪苏泷 - Topic",
-      "tag": "台灣前排熱門 #27"
+      "id": "BFAuO-mrhcA",
+      "title": "玖壹壹(Nine one one) 春風 - 有你有我 (Feat.王識賢) You and me 官方MV首播",
+      "artist": "玖壹壹",
+      "tag": "台灣前排熱門 #23"
     },
     {
-      "id": "ejhcSi4W568",
-      "title": "跳舞的波蘭牛Dancing Polish Cow歌曲中文翻譯(Traditional Chinese lyrics",
-      "artist": "Ivan Victor的翻譯小站",
-      "tag": "華語 Top 100 #95"
+      "id": "pK060iUFWXg",
+      "title": "Maluma - Hawái",
+      "artist": "MalumaVEVO",
+      "tag": "拉丁 Top 100 #39"
     },
     {
-      "id": "WMweEpGlu_U",
-      "title": "BTS (방탄소년단) 'Butter'",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #14"
+      "id": "dNCWe_6HAM8",
+      "title": "LISA - 'MONEY' EXCLUSIVE PERFORMANCE VIDEO",
+      "artist": "BLACKPINK",
+      "tag": "韓國 Top 100 #13"
     },
     {
-      "id": "KcF1cQmvbj4",
-      "title": "icyball 冰球樂團 - 不在乎",
-      "artist": "icyball 冰球樂團",
-      "tag": "台灣前排熱門 #28"
+      "id": "QTVlYd8Jdro",
+      "title": "怎么说我不爱你(R&B版)",
+      "artist": "大头针R&B - Topic",
+      "tag": "台灣前排熱門 #24"
     },
     {
-      "id": "ma7r2HGqwXs",
-      "title": "G.E.M.【倒數 TIK TOK】 [HD] 鄧紫棋",
-      "artist": "GEMblog",
-      "tag": "華語 Top 100 #14"
+      "id": "kfXdP7nZIiE",
+      "title": "周杰倫 Jay Chou【等你下課 Waiting For You (with 楊瑞代 Gary)】歌詞版Lyrics MV",
+      "artist": "周杰倫 Jay Chou",
+      "tag": "華語 Top 100 #13"
     },
     {
-      "id": "NMl8gvdjzx8",
-      "title": "陳亞蘭 Chen Ya Lan 曹雅雯 Olivia Tsao【遊臺灣】台視 陳亞蘭歌仔戲「嘉慶君遊臺灣」片尾曲",
-      "artist": "滾石唱片 ROCK RECORDS",
-      "tag": "華語 Top 100 #96"
+      "id": "8eg__nN-CtQ",
+      "title": "菲菲公主 - 第57次取消发送『我好想你 在每個夜裡』",
+      "artist": "Music in the Air",
+      "tag": "華語 Top 100 #77"
     },
     {
-      "id": "fKopy74weus",
-      "title": "Imagine Dragons - Thunder",
-      "artist": "ImagineDragonsVEVO",
-      "tag": "歐美 Top 100 #18"
+      "id": "450p7goxZqg",
+      "title": "John Legend - All of Me",
+      "artist": "johnlegendVEVO",
+      "tag": "歐美 Top 100 #17"
     },
     {
-      "id": "kagoEGKHZvU",
-      "title": "【imase】NIGHT DANCER（MV）",
-      "artist": "imase",
-      "tag": "日本 Top 100 #14"
+      "id": "dlFA0Zq1k2A",
+      "title": "KANA-BOON - Silhouette",
+      "artist": "KANABOONVEVO",
+      "tag": "日本 Top 100 #12"
     },
     {
       "id": "AZ_t9iAJRDw",
@@ -852,58 +734,58 @@
       "tag": "泰國 Top 100 #23"
     },
     {
-      "id": "AMTAQ-AJS4Y",
-      "title": "Chino y Nacho - Andas En Mi Cabeza ft. Daddy Yankee",
-      "artist": "ChinoNachoVEVO",
-      "tag": "拉丁 Top 100 #16"
+      "id": "iOe6dI2JhgU",
+      "title": "Ricky Martin - Vente Pa' Ca ft. Maluma",
+      "artist": "RickyMartinVEVO",
+      "tag": "拉丁 Top 100 #15"
     },
     {
-      "id": "Gi09h_t1NDs",
-      "title": "你不会懂",
-      "artist": "王子-R&B新歌 - Topic",
-      "tag": "台灣前排熱門 #29"
+      "id": "179K9wQB6wo",
+      "title": "原來那卷赴死書，寫給餘生不得用⋯聽碎無數人：世人只知他七步成詩，卻不知他至死想死在沙場《白馬不渡我》- 林知夏 Livia Lin",
+      "artist": "林知夏 Livia Lin",
+      "tag": "台灣前排熱門 #25"
     },
     {
-      "id": "LIHLkgFiG3o",
-      "title": "3P - ‘时光大耳窿’ 【2026最振奋人心新年歌】",
-      "artist": "3P",
-      "tag": "華語 Top 100 #97"
+      "id": "9_bTl2vvYQg",
+      "title": "Golden",
+      "artist": "HUNTR/X - Topic",
+      "tag": "韓國 Top 100 #41"
     },
     {
-      "id": "gQlMMD8auMs",
-      "title": "BLACKPINK - ‘Pink Venom’",
-      "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #15"
+      "id": "WMweEpGlu_U",
+      "title": "BTS (방탄소년단) 'Butter'",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #14"
     },
     {
-      "id": "5ki3c8Szt7Y",
-      "title": "黃奇斌 Ng KiPin - 揣無自己彼單純的心 Nowhere to Find That Pure Heart of Mine｜",
-      "artist": "黃奇斌 Ng KiPin",
-      "tag": "台灣前排熱門 #30"
+      "id": "ZDuSyQg0Saw",
+      "title": "Night by Night",
+      "artist": "阿蘭 AC - Topic",
+      "tag": "台灣前排熱門 #26"
     },
     {
-      "id": "7wvNwOPprBE",
-      "title": "Della丁噹【手掌心】MV官方版-中視古裝大戲[蘭陵王]片尾曲",
-      "artist": "相信音樂BinMusic",
-      "tag": "華語 Top 100 #15"
+      "id": "ma7r2HGqwXs",
+      "title": "G.E.M.【倒數 TIK TOK】 [HD] 鄧紫棋",
+      "artist": "GEMblog",
+      "tag": "華語 Top 100 #14"
     },
     {
-      "id": "LlaR8gTp_X0",
-      "title": "卷笔刀阿卷 - 童话 (R&B)『我愿变成童话里，你爱的那个天使。』【4K",
-      "artist": "Angel Music",
-      "tag": "華語 Top 100 #98"
+      "id": "IlV58h-7nKY",
+      "title": "把回憶拼好給你 - 王貳浪『但願我相信的愛情，結局緊握在我手心』【動態歌詞】",
+      "artist": "Dreamer Music",
+      "tag": "華語 Top 100 #39"
     },
     {
-      "id": "tt2k8PGm-TI",
-      "title": "ZAYN - Dusk Till Dawn ft. Sia",
-      "artist": "ZaynVEVO",
-      "tag": "歐美 Top 100 #19"
+      "id": "fKopy74weus",
+      "title": "Imagine Dragons - Thunder",
+      "artist": "ImagineDragonsVEVO",
+      "tag": "歐美 Top 100 #18"
     },
     {
-      "id": "QW28YKqdxe0",
-      "title": "NiziU 『Make you happy』",
-      "artist": "JYP Entertainment",
-      "tag": "日本 Top 100 #15"
+      "id": "PDSkFeMVNFs",
+      "title": "RADWIMPS - 前前前世 (movie ver.)",
+      "artist": "RADWIMPS",
+      "tag": "日本 Top 100 #13"
     },
     {
       "id": "R10mrTJpqPw",
@@ -912,46 +794,58 @@
       "tag": "泰國 Top 100 #24"
     },
     {
-      "id": "7jpqqBX-Myw",
-      "title": "CNCO - Reggaetón Lento (Bailemos)",
-      "artist": "CNCOVEVO",
-      "tag": "拉丁 Top 100 #17"
+      "id": "AMTAQ-AJS4Y",
+      "title": "Chino y Nacho - Andas En Mi Cabeza ft. Daddy Yankee",
+      "artist": "ChinoNachoVEVO",
+      "tag": "拉丁 Top 100 #16"
     },
     {
-      "id": "yVkUtCugHeA",
-      "title": "若梦",
-      "artist": "Zhou Shen - Topic",
-      "tag": "華語 Top 100 #100"
+      "id": "EIiC8gIAMgE",
+      "title": "写故事的人",
+      "artist": "汪苏泷 - Topic",
+      "tag": "台灣前排熱門 #27"
     },
     {
-      "id": "vRXZj0DzXIA",
-      "title": "BLACKPINK - 'Ice Cream (with Selena Gomez)'",
+      "id": "IkZFVOcahnQ",
+      "title": "張遠 - 看著我的眼睛說『來 你看著我的眼睛說 你從沒愛過我，再看著我的眼睛說 你一點都不難過。』【高音質",
+      "artist": "4K Music Make",
+      "tag": "華語 Top 100 #78"
+    },
+    {
+      "id": "gQlMMD8auMs",
+      "title": "BLACKPINK - ‘Pink Venom’",
       "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #16"
+      "tag": "韓國 Top 100 #15"
     },
     {
-      "id": "hjXrL7CuAvc",
-      "title": "《等一個人咖啡》電影主題曲＿哈林庾澄慶【缺口】官方MV",
-      "artist": "Harlem Yu",
-      "tag": "華語 Top 100 #16"
+      "id": "KcF1cQmvbj4",
+      "title": "icyball 冰球樂團 - 不在乎",
+      "artist": "icyball 冰球樂團",
+      "tag": "台灣前排熱門 #28"
     },
     {
-      "id": "8CII0DXvrhI",
-      "title": "丁噹 Della feat. 蕭景鴻 (阿弟) Edy Hsiao [ 可以是朋友 Love for Friends ]",
+      "id": "7wvNwOPprBE",
+      "title": "Della丁噹【手掌心】MV官方版-中視古裝大戲[蘭陵王]片尾曲",
       "artist": "相信音樂BinMusic",
-      "tag": "華語 Top 100 #99"
+      "tag": "華語 Top 100 #15"
     },
     {
-      "id": "YykjpeuMNEk",
-      "title": "Coldplay - Hymn For The Weekend",
-      "artist": "Coldplay",
-      "tag": "歐美 Top 100 #20"
+      "id": "TUVcZfQe-Kw",
+      "title": "Dua Lipa - Levitating Featuring DaBaby",
+      "artist": "Dua Lipa",
+      "tag": "歐美 Top 100 #45"
     },
     {
-      "id": "by4SYYWlhEs",
-      "title": "夜に駆ける",
-      "artist": "YOASOBI - Topic",
-      "tag": "日本 Top 100 #16"
+      "id": "tt2k8PGm-TI",
+      "title": "ZAYN - Dusk Till Dawn ft. Sia",
+      "artist": "ZaynVEVO",
+      "tag": "歐美 Top 100 #19"
+    },
+    {
+      "id": "kagoEGKHZvU",
+      "title": "【imase】NIGHT DANCER（MV）",
+      "artist": "imase",
+      "tag": "日本 Top 100 #14"
     },
     {
       "id": "Ei1XTuWjoa8",
@@ -960,46 +854,58 @@
       "tag": "泰國 Top 100 #25"
     },
     {
-      "id": "KWGrPNqz4uc",
-      "title": "Ozuna - Se Preparó",
-      "artist": "Ozuna",
-      "tag": "拉丁 Top 100 #18"
+      "id": "7jpqqBX-Myw",
+      "title": "CNCO - Reggaetón Lento (Bailemos)",
+      "artist": "CNCOVEVO",
+      "tag": "拉丁 Top 100 #17"
     },
     {
-      "id": "2ips2mM7Zqw",
-      "title": "BIGBANG - 뱅뱅뱅 (BANG BANG BANG)",
-      "artist": "BIGBANG",
-      "tag": "韓國 Top 100 #19"
+      "id": "Gi09h_t1NDs",
+      "title": "你不会懂",
+      "artist": "王子-R&B新歌 - Topic",
+      "tag": "台灣前排熱門 #29"
     },
     {
-      "id": "vecSVX1QYbQ",
-      "title": "iKON - ‘사랑을 했다(LOVE SCENARIO)’",
-      "artist": "iKON",
-      "tag": "韓國 Top 100 #21"
+      "id": "TcLLpZBWsck",
+      "title": "Fujii Kaze - Kirari",
+      "artist": "Fujii Kaze",
+      "tag": "日本 Top 100 #39"
     },
     {
-      "id": "FWtbGkpdoP4",
-      "title": "G.E.M.【來自天堂的魔鬼 AWAY】 [HD] 鄧紫棋",
-      "artist": "GEMblog",
-      "tag": "華語 Top 100 #17"
-    },
-    {
-      "id": "dyRsYk0LyA8",
-      "title": "BLACKPINK - 'Lovesick Girls'",
+      "id": "vRXZj0DzXIA",
+      "title": "BLACKPINK - 'Ice Cream (with Selena Gomez)'",
       "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #18"
+      "tag": "韓國 Top 100 #16"
     },
     {
-      "id": "LjhCEhWiKXk",
-      "title": "Bruno Mars - Just The Way You Are",
-      "artist": "Bruno Mars",
-      "tag": "歐美 Top 100 #21"
+      "id": "5ki3c8Szt7Y",
+      "title": "黃奇斌 Ng KiPin - 揣無自己彼單純的心 Nowhere to Find That Pure Heart of Mine｜",
+      "artist": "黃奇斌 Ng KiPin",
+      "tag": "台灣前排熱門 #30"
     },
     {
-      "id": "3zh9Wb1KuW8",
-      "title": "Shinunoga E-Wa",
-      "artist": "Fujii Kaze - Topic",
-      "tag": "日本 Top 100 #17"
+      "id": "hjXrL7CuAvc",
+      "title": "《等一個人咖啡》電影主題曲＿哈林庾澄慶【缺口】官方MV",
+      "artist": "Harlem Yu",
+      "tag": "華語 Top 100 #16"
+    },
+    {
+      "id": "dJMtC5lEd-E",
+      "title": "Violette Wautier - Smoke",
+      "artist": "Violette Wautier",
+      "tag": "泰國 Top 100 #48"
+    },
+    {
+      "id": "YykjpeuMNEk",
+      "title": "Coldplay - Hymn For The Weekend",
+      "artist": "Coldplay",
+      "tag": "歐美 Top 100 #20"
+    },
+    {
+      "id": "QW28YKqdxe0",
+      "title": "NiziU 『Make you happy』",
+      "artist": "JYP Entertainment",
+      "tag": "日本 Top 100 #15"
     },
     {
       "id": "gDRL47NzG5o",
@@ -1008,46 +914,46 @@
       "tag": "泰國 Top 100 #26"
     },
     {
-      "id": "DUT5rEU6pqM",
-      "title": "Shakira - Hips Don't Lie (featuring Wyclef Jean) ft. Wyclef Jean",
-      "artist": "shakiraVEVO",
-      "tag": "拉丁 Top 100 #19"
+      "id": "KWGrPNqz4uc",
+      "title": "Ozuna - Se Preparó",
+      "artist": "Ozuna",
+      "tag": "拉丁 Top 100 #18"
     },
     {
-      "id": "aGsrg1NO1cM",
-      "title": "Jay Chou 周杰倫【My Daughter, Your Highness女兒殿下】",
-      "artist": "周杰倫 Jay Chou",
-      "tag": "近30天高觀看新歌 #1"
+      "id": "OxxggwHFj7M",
+      "title": "Travesuras - Nicky Jam",
+      "artist": "NickyJamTV",
+      "tag": "拉丁 Top 100 #40"
     },
     {
-      "id": "CuklIb9d3fI",
-      "title": "BTS (방탄소년단) 'Permission to Dance'",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #22"
+      "id": "dyRsYk0LyA8",
+      "title": "BLACKPINK - 'Lovesick Girls'",
+      "artist": "BLACKPINK",
+      "tag": "韓國 Top 100 #18"
     },
     {
-      "id": "3Y0Ut5ozaKs",
-      "title": "茄子蛋EggPlantEgg - 浪流連 Waves Wandering",
-      "artist": "茄子蛋EggPlantEgg",
-      "tag": "華語 Top 100 #18"
+      "id": "FWtbGkpdoP4",
+      "title": "G.E.M.【來自天堂的魔鬼 AWAY】 [HD] 鄧紫棋",
+      "artist": "GEMblog",
+      "tag": "華語 Top 100 #17"
     },
     {
-      "id": "kCA93dLzKP4",
-      "title": "A-Lin《一個人 Alone》",
-      "artist": "A-Lin官方專屬頻道",
-      "tag": "近30天高觀看新歌 #2"
+      "id": "ixhXTAptf-g",
+      "title": "他一定很愛你",
+      "artist": "阿杜 - Topic",
+      "tag": "華語 Top 100 #79"
     },
     {
-      "id": "XXYlFuWEuKI",
-      "title": "The Weeknd - Save Your Tears",
-      "artist": "TheWeekndVEVO",
-      "tag": "歐美 Top 100 #22"
+      "id": "LjhCEhWiKXk",
+      "title": "Bruno Mars - Just The Way You Are",
+      "artist": "Bruno Mars",
+      "tag": "歐美 Top 100 #21"
     },
     {
-      "id": "a2GujJZfXpg",
-      "title": "スパークル [original ver.] -Your name. Music Video edition- 予告編 from new album「人間開花」初回盤DVD",
-      "artist": "RADWIMPS",
-      "tag": "日本 Top 100 #18"
+      "id": "by4SYYWlhEs",
+      "title": "夜に駆ける",
+      "artist": "YOASOBI - Topic",
+      "tag": "日本 Top 100 #16"
     },
     {
       "id": "ICI3eKRzr6M",
@@ -1056,46 +962,46 @@
       "tag": "泰國 Top 100 #27"
     },
     {
-      "id": "-UV0QGLmYys",
-      "title": "Carlos Vives, Shakira - La Bicicleta",
-      "artist": "CarlosVivesVEVO",
-      "tag": "拉丁 Top 100 #20"
+      "id": "DUT5rEU6pqM",
+      "title": "Shakira - Hips Don't Lie (featuring Wyclef Jean) ft. Wyclef Jean",
+      "artist": "shakiraVEVO",
+      "tag": "拉丁 Top 100 #19"
     },
     {
-      "id": "POe9SOEKotk",
-      "title": "BLACKPINK - ‘Shut Down’",
-      "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #20"
-    },
-    {
-      "id": "ePpPVE-GGJw",
-      "title": "TWICE \"TT\"",
+      "id": "f5_wn8mexmM",
+      "title": "TWICE \"The Feels\"",
       "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #23"
+      "tag": "韓國 Top 100 #39"
     },
     {
-      "id": "HQDDlgGy2hg",
-      "title": "高爾宣 OSN -【Without You】沒了妳｜",
-      "artist": "SKRpresents 陶山音樂",
-      "tag": "華語 Top 100 #19"
+      "id": "2ips2mM7Zqw",
+      "title": "BIGBANG - 뱅뱅뱅 (BANG BANG BANG)",
+      "artist": "BIGBANG",
+      "tag": "韓國 Top 100 #19"
     },
     {
-      "id": "4mT8lNY5CG4",
-      "title": "韋禮安 WeiBird - \"很久很久 A Little Longer\" Official Live MV",
-      "artist": "韋禮安 WeiBird",
-      "tag": "近30天高觀看新歌 #3"
+      "id": "3Y0Ut5ozaKs",
+      "title": "茄子蛋EggPlantEgg - 浪流連 Waves Wandering",
+      "artist": "茄子蛋EggPlantEgg",
+      "tag": "華語 Top 100 #18"
     },
     {
-      "id": "nYh-n7EOtMA",
-      "title": "Sia - Cheap Thrills ft. Sean Paul",
-      "artist": "SiaVEVO",
-      "tag": "歐美 Top 100 #24"
+      "id": "HegSBovl24I",
+      "title": "利比《跳楼机》 ｜LBI - Jumping Machine",
+      "artist": "Sony Music China索尼音樂中國",
+      "tag": "華語 Top 100 #40"
     },
     {
-      "id": "pgXpM4l_MwI",
-      "title": "【Ado】 唱",
-      "artist": "Ado",
-      "tag": "日本 Top 100 #19"
+      "id": "XXYlFuWEuKI",
+      "title": "The Weeknd - Save Your Tears",
+      "artist": "TheWeekndVEVO",
+      "tag": "歐美 Top 100 #22"
+    },
+    {
+      "id": "3zh9Wb1KuW8",
+      "title": "Shinunoga E-Wa",
+      "artist": "Fujii Kaze - Topic",
+      "tag": "日本 Top 100 #17"
     },
     {
       "id": "5OtqLbG6T04",
@@ -1104,46 +1010,46 @@
       "tag": "泰國 Top 100 #28"
     },
     {
-      "id": "3X9wEwulYhk",
-      "title": "Wisin - Escápate Conmigo ft. Ozuna",
-      "artist": "wisinofficalVEVO",
-      "tag": "拉丁 Top 100 #21"
+      "id": "-UV0QGLmYys",
+      "title": "Carlos Vives, Shakira - La Bicicleta",
+      "artist": "CarlosVivesVEVO",
+      "tag": "拉丁 Top 100 #20"
     },
     {
-      "id": "tt_JXfBIiBM",
-      "title": "張震嶽 ayal komod【搬家 Sadly Moving On】 (4K)",
-      "artist": "滾石唱片 ROCK RECORDS",
-      "tag": "近30天高觀看新歌 #4"
+      "id": "O_U9xlmZG2w",
+      "title": "曲婉婷 - 最好的安排 (抖音热播)『如果说一切都是最好的安排 那就让爱教我学会忍耐，我愿意承受所有绝望与苦难。』【動態歌詞】♪",
+      "artist": "Lyrics Music",
+      "tag": "華語 Top 100 #80"
     },
     {
-      "id": "JQGRg8XBnB4",
-      "title": "MOMOLAND (모모랜드) _ BBoom BBoom (뿜뿜)",
-      "artist": "1theK (원더케이)",
-      "tag": "韓國 Top 100 #25"
+      "id": "POe9SOEKotk",
+      "title": "BLACKPINK - ‘Shut Down’",
+      "artist": "BLACKPINK",
+      "tag": "韓國 Top 100 #20"
     },
     {
-      "id": "3q6D0wMX_H0",
-      "title": "Rosie楊凱琳&余楓《怎麼還不愛 Why Not Love》",
-      "artist": "Rosie 楊凱琳",
-      "tag": "華語 Top 100 #20"
+      "id": "HQDDlgGy2hg",
+      "title": "高爾宣 OSN -【Without You】沒了妳｜",
+      "artist": "SKRpresents 陶山音樂",
+      "tag": "華語 Top 100 #19"
     },
     {
-      "id": "u1R5nqy5BNM",
-      "title": "徐暐翔Vash Hsu feat. 閻奕格 Janice Yan - '不要救我 Burn Me Down'",
-      "artist": "徐暐翔Vash Hsu",
-      "tag": "近30天高觀看新歌 #7"
+      "id": "IPfJnp1guPc",
+      "title": "Khalid - Young Dumb & Broke",
+      "artist": "KhalidVEVO",
+      "tag": "歐美 Top 100 #46"
     },
     {
-      "id": "CTFtOOh47oo",
-      "title": "French Montana - Unforgettable ft. Swae Lee",
-      "artist": "FrenchMontanaVEVO",
-      "tag": "歐美 Top 100 #25"
+      "id": "nYh-n7EOtMA",
+      "title": "Sia - Cheap Thrills ft. Sean Paul",
+      "artist": "SiaVEVO",
+      "tag": "歐美 Top 100 #24"
     },
     {
-      "id": "0YF8vecQWYs",
-      "title": "美波「カワキヲアメク」MV",
-      "artist": "美波",
-      "tag": "日本 Top 100 #20"
+      "id": "a2GujJZfXpg",
+      "title": "スパークル [original ver.] -Your name. Music Video edition- 予告編 from new album「人間開花」初回盤DVD",
+      "artist": "RADWIMPS",
+      "tag": "日本 Top 100 #18"
     },
     {
       "id": "rPzC1o8E4t0",
@@ -1152,46 +1058,46 @@
       "tag": "泰國 Top 100 #29"
     },
     {
-      "id": "GmHrjFIWl6U",
-      "title": "Maluma - Corazón ft. Nego do Borel",
-      "artist": "MalumaVEVO",
-      "tag": "拉丁 Top 100 #22"
+      "id": "3X9wEwulYhk",
+      "title": "Wisin - Escápate Conmigo ft. Ozuna",
+      "artist": "wisinofficalVEVO",
+      "tag": "拉丁 Top 100 #21"
     },
     {
-      "id": "GgAVqR4_9Fo",
-      "title": "蔡義德 Feat.蔡多多《開心花》官方MV (三立七點半戲說台灣片頭曲)",
-      "artist": "華特音樂",
-      "tag": "近30天高觀看新歌 #8"
+      "id": "oZpYEEcvu5I",
+      "title": "tuki.『晩餐歌』",
+      "artist": "tuki.(17)",
+      "tag": "日本 Top 100 #40"
     },
     {
-      "id": "kOHB85vDuow",
-      "title": "TWICE \"FANCY\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #24"
+      "id": "vecSVX1QYbQ",
+      "title": "iKON - ‘사랑을 했다(LOVE SCENARIO)’",
+      "artist": "iKON",
+      "tag": "韓國 Top 100 #21"
     },
     {
-      "id": "F5FlN-NBGo8",
-      "title": "[avex官方] A-Lin 給我一個理由忘記",
-      "artist": "愛貝克思 avex taiwan",
-      "tag": "華語 Top 100 #21"
+      "id": "3q6D0wMX_H0",
+      "title": "Rosie楊凱琳&余楓《怎麼還不愛 Why Not Love》",
+      "artist": "Rosie 楊凱琳",
+      "tag": "華語 Top 100 #20"
     },
     {
-      "id": "Gvrp-ScjEVs",
-      "title": "🎶\"Because I love you too much...\" 🥀《只是太愛你》❤️ 2026 Best Sad Love Song (Eng Sub)",
-      "artist": "VAVA音樂频道",
-      "tag": "近30天高觀看新歌 #9"
+      "id": "T6F6hOKPCo4",
+      "title": "ขวัญเอยขวัญมา - PALMY「 」",
+      "artist": "Genierock",
+      "tag": "泰國 Top 100 #49"
     },
     {
-      "id": "weeI1G46q0o",
-      "title": "DJ Khaled - I'm The One ft. Justin Bieber, Quavo, Chance the Rapper, Lil Wayne",
-      "artist": "DJKhaledVEVO",
-      "tag": "歐美 Top 100 #26"
+      "id": "CTFtOOh47oo",
+      "title": "French Montana - Unforgettable ft. Swae Lee",
+      "artist": "FrenchMontanaVEVO",
+      "tag": "歐美 Top 100 #25"
     },
     {
-      "id": "8OZDgBmehbA",
-      "title": "SEKAI NO OWARI「Habit」",
-      "artist": "SEKAI NO OWARI",
-      "tag": "日本 Top 100 #21"
+      "id": "pgXpM4l_MwI",
+      "title": "【Ado】 唱",
+      "artist": "Ado",
+      "tag": "日本 Top 100 #19"
     },
     {
       "id": "AJEoJYgktb4",
@@ -1200,46 +1106,46 @@
       "tag": "泰國 Top 100 #30"
     },
     {
-      "id": "VMp55KH_3wo",
-      "title": "Gente de Zona - La Gozadera ft. Marc Anthony",
-      "artist": "GenteDeZonaVEVO",
-      "tag": "拉丁 Top 100 #23"
+      "id": "GmHrjFIWl6U",
+      "title": "Maluma - Corazón ft. Nego do Borel",
+      "artist": "MalumaVEVO",
+      "tag": "拉丁 Top 100 #22"
     },
     {
-      "id": "gajpRk6QxPo",
-      "title": "庾澄慶 Harlem Yu【愛人啊！My Love！】Official Lyric Video",
-      "artist": "福茂唱片",
-      "tag": "近30天高觀看新歌 #11"
+      "id": "eAqeed4INns",
+      "title": "J Balvin BONITA feat. Jowell & Randy",
+      "artist": "EDWIN DIAZTO",
+      "tag": "拉丁 Top 100 #41"
     },
     {
-      "id": "pSudEWBAYRE",
-      "title": "EXO 엑소 'Love Shot' MV",
-      "artist": "SMTOWN",
-      "tag": "韓國 Top 100 #26"
+      "id": "CuklIb9d3fI",
+      "title": "BTS (방탄소년단) 'Permission to Dance'",
+      "artist": "HYBE LABELS",
+      "tag": "韓國 Top 100 #22"
     },
     {
-      "id": "BRcudpJzy1I",
-      "title": "A-Lin《有一種悲傷 A Kind of Sorrow》 - 電影『比悲傷更悲傷的故事 More Than Blue 』主題曲",
-      "artist": "A-Lin官方專屬頻道",
-      "tag": "華語 Top 100 #22"
+      "id": "F5FlN-NBGo8",
+      "title": "[avex官方] A-Lin 給我一個理由忘記",
+      "artist": "愛貝克思 avex taiwan",
+      "tag": "華語 Top 100 #21"
     },
     {
-      "id": "WujnGtRvQ4c",
-      "title": "Z1真一 - MUKADE feat.百足",
-      "artist": "Z1真一",
-      "tag": "近30天高觀看新歌 #12"
+      "id": "9UWkkdYgXv4",
+      "title": "诺言",
+      "artist": "洋澜一 - Topic",
+      "tag": "華語 Top 100 #81"
     },
     {
-      "id": "nfs8NYg7yQM",
-      "title": "Charlie Puth - Attention",
-      "artist": "Charlie Puth",
-      "tag": "歐美 Top 100 #27"
+      "id": "weeI1G46q0o",
+      "title": "DJ Khaled - I'm The One ft. Justin Bieber, Quavo, Chance the Rapper, Lil Wayne",
+      "artist": "DJKhaledVEVO",
+      "tag": "歐美 Top 100 #26"
     },
     {
-      "id": "YnSW8ian29w",
-      "title": "【Ado】踊",
-      "artist": "Ado",
-      "tag": "日本 Top 100 #22"
+      "id": "0YF8vecQWYs",
+      "title": "美波「カワキヲアメク」MV",
+      "artist": "美波",
+      "tag": "日本 Top 100 #20"
     },
     {
       "id": "wqJsZYibWcI",
@@ -1248,46 +1154,46 @@
       "tag": "泰國 Top 100 #31"
     },
     {
-      "id": "xTlNMmZKwpA",
-      "title": "Cardi B, Bad Bunny & J Balvin - I Like It",
-      "artist": "Cardi B",
-      "tag": "拉丁 Top 100 #24"
+      "id": "VMp55KH_3wo",
+      "title": "Gente de Zona - La Gozadera ft. Marc Anthony",
+      "artist": "GenteDeZonaVEVO",
+      "tag": "拉丁 Top 100 #23"
     },
     {
-      "id": "N1PyhlvO6GY",
-      "title": "汪蘇瀧/G.E.M. 鄧紫棋《讓你知道》『那沒說的 想說的 讓你知道 那洶湧的 熱烈的 讓你知道 那靠近的 徘徊的 讓你知道』動態歌詞MV",
-      "artist": "Music Heartstrings -音樂心弦",
-      "tag": "近30天高觀看新歌 #13"
+      "id": "m8MfJg68oCs",
+      "title": "BTS(방탄소년단) _ Boy In Luv(상남자)",
+      "artist": "1theK (원더케이)",
+      "tag": "韓國 Top 100 #42"
     },
     {
-      "id": "AAbokV76tkU",
-      "title": "BIGBANG - FANTASTIC BABY",
-      "artist": "BIGBANG",
-      "tag": "韓國 Top 100 #27"
+      "id": "ePpPVE-GGJw",
+      "title": "TWICE \"TT\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #23"
     },
     {
-      "id": "4iRupuNet3Q",
-      "title": "八三夭 831【想見你想見你想見你 Miss You 3000】電視劇「想見你상견니」片尾曲",
-      "artist": "滾石唱片 ROCK RECORDS",
-      "tag": "華語 Top 100 #23"
+      "id": "BRcudpJzy1I",
+      "title": "A-Lin《有一種悲傷 A Kind of Sorrow》 - 電影『比悲傷更悲傷的故事 More Than Blue 』主題曲",
+      "artist": "A-Lin官方專屬頻道",
+      "tag": "華語 Top 100 #22"
     },
     {
-      "id": "B5DSJsDTcmE",
-      "title": "[首播] 戴梅君 - 先來走 MV",
-      "artist": "欣代聲視育樂事業有限公司",
-      "tag": "近30天高觀看新歌 #14"
+      "id": "pGNnHRLVR6c",
+      "title": "林宥嘉 YogaLin《怪情歌 A Strange Love Song》",
+      "artist": "林宥嘉 Yoga Lin",
+      "tag": "華語 Top 100 #41"
     },
     {
-      "id": "4fndeDfaWCg",
-      "title": "Backstreet Boys - I Want It That Way",
-      "artist": "BackstreetBoysVEVO",
-      "tag": "歐美 Top 100 #28"
+      "id": "nfs8NYg7yQM",
+      "title": "Charlie Puth - Attention",
+      "artist": "Charlie Puth",
+      "tag": "歐美 Top 100 #27"
     },
     {
-      "id": "QjrkrVmC-8M",
-      "title": "Mrs. GREEN APPLE「ライラック」",
-      "artist": "Mrs. GREEN APPLE",
-      "tag": "日本 Top 100 #24"
+      "id": "8OZDgBmehbA",
+      "title": "SEKAI NO OWARI「Habit」",
+      "artist": "SEKAI NO OWARI",
+      "tag": "日本 Top 100 #21"
     },
     {
       "id": "MG8np3qtgJY",
@@ -1296,46 +1202,46 @@
       "tag": "泰國 Top 100 #32"
     },
     {
-      "id": "7zp1TbLFPp8",
-      "title": "Don Omar - Danza Kuduro ft. Lucenzo",
-      "artist": "DonOmarVEVO",
-      "tag": "拉丁 Top 100 #25"
+      "id": "xTlNMmZKwpA",
+      "title": "Cardi B, Bad Bunny & J Balvin - I Like It",
+      "artist": "Cardi B",
+      "tag": "拉丁 Top 100 #24"
     },
     {
-      "id": "v_yIszPH7d8",
-      "title": "尬電天尊～電費好貴啊！！！｜《尬電》- Zoe. G - 我是ZOE｜尬電尬電｜官方動態歌詞【Official Lyric Video】｜Zoe.G 中文原創單曲",
-      "artist": "Zoe. G",
-      "tag": "近30天高觀看新歌 #15"
+      "id": "Q6DqHKFYIjs",
+      "title": "♬跟我做運動♬",
+      "artist": "嘉芙姐姐 - 兒歌童謠 - 故事動畫 - Miss Ka Foo Kids Channel",
+      "tag": "華語 Top 100 #82"
     },
     {
-      "id": "8dJyRm2jJ-U",
-      "title": "PSY - 'That That (prod. & feat. SUGA of BTS)' MV",
-      "artist": "officialpsy",
-      "tag": "韓國 Top 100 #28"
+      "id": "JQGRg8XBnB4",
+      "title": "MOMOLAND (모모랜드) _ BBoom BBoom (뿜뿜)",
+      "artist": "1theK (원더케이)",
+      "tag": "韓國 Top 100 #25"
     },
     {
-      "id": "3tJUflhYIpo",
-      "title": "買辣椒也用券 - 起風了 (新版)【動態歌詞Lyrics】",
-      "artist": "親親2o音樂LîvË【中文音樂】",
-      "tag": "華語 Top 100 #25"
+      "id": "4iRupuNet3Q",
+      "title": "八三夭 831【想見你想見你想見你 Miss You 3000】電視劇「想見你상견니」片尾曲",
+      "artist": "滾石唱片 ROCK RECORDS",
+      "tag": "華語 Top 100 #23"
     },
     {
-      "id": "Gh5fWJcPzX4",
-      "title": "魏嘉瑩 Arrow Wei〈快出來玩 Play, Let’s Play!〉 - 台灣虎航主題曲",
-      "artist": "相信音樂BinMusic",
-      "tag": "近30天高觀看新歌 #16"
+      "id": "Oa_RSwwpPaA",
+      "title": "Benson Boone - Beautiful Things",
+      "artist": "Benson Boone",
+      "tag": "歐美 Top 100 #47"
     },
     {
-      "id": "kPa7bsKwL-c",
-      "title": "Lady Gaga, Bruno Mars - Die With A Smile",
-      "artist": "LadyGagaVEVO",
-      "tag": "歐美 Top 100 #29"
+      "id": "4fndeDfaWCg",
+      "title": "Backstreet Boys - I Want It That Way",
+      "artist": "BackstreetBoysVEVO",
+      "tag": "歐美 Top 100 #28"
     },
     {
-      "id": "Y4nEEZwckuU",
-      "title": "YOASOBI「群青」",
-      "artist": "YOASOBI",
-      "tag": "日本 Top 100 #25"
+      "id": "YnSW8ian29w",
+      "title": "【Ado】踊",
+      "artist": "Ado",
+      "tag": "日本 Top 100 #22"
     },
     {
       "id": "ahkGRFhyxx4",
@@ -1344,46 +1250,46 @@
       "tag": "泰國 Top 100 #33"
     },
     {
-      "id": "OSUxrSe5GbI",
-      "title": "BAD BUNNY x DRAKE - MÍA",
-      "artist": "Bad Bunny",
-      "tag": "拉丁 Top 100 #26"
+      "id": "7zp1TbLFPp8",
+      "title": "Don Omar - Danza Kuduro ft. Lucenzo",
+      "artist": "DonOmarVEVO",
+      "tag": "拉丁 Top 100 #25"
     },
     {
-      "id": "56gwWHtQDtQ",
-      "title": "小哇 Xiao Wa《我只是想好好愛你》I Just Want to Love You Right｜原創歌曲｜動態歌詞 Lyrics",
-      "artist": "小哇 Xiao Wa",
-      "tag": "近30天高觀看新歌 #17"
+      "id": "1_lap6dzSUc",
+      "title": "神山羊 - YELLOW【Music Video】/ Yoh Kamiyama - YELLOW",
+      "artist": "神山羊 / Yoh Kamiyama",
+      "tag": "日本 Top 100 #41"
     },
     {
-      "id": "YudHcBIxlYw",
-      "title": "JISOO - ‘꽃(FLOWER)’",
-      "artist": "BLACKPINK",
-      "tag": "韓國 Top 100 #29"
+      "id": "kOHB85vDuow",
+      "title": "TWICE \"FANCY\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #24"
     },
     {
-      "id": "t0igPuDjYUE",
-      "title": "劉若英 René Liu【後來 Later】",
-      "artist": "滾石唱片 ROCK RECORDS",
-      "tag": "華語 Top 100 #24"
+      "id": "3tJUflhYIpo",
+      "title": "買辣椒也用券 - 起風了 (新版)【動態歌詞Lyrics】",
+      "artist": "親親2o音樂LîvË【中文音樂】",
+      "tag": "華語 Top 100 #25"
     },
     {
-      "id": "9AeErG03SZw",
-      "title": "鞠婧禕《FIND THE WAY》官方動態歌詞版MV｜騰訊音樂發行頻道",
-      "artist": "腾讯音乐发行",
-      "tag": "近30天高觀看新歌 #18"
+      "id": "xjh-mb9IuzU",
+      "title": "Jeff Satur – Dum Dum (ดึมดึม)【 】",
+      "artist": "Jeff Satur",
+      "tag": "泰國 Top 100 #50"
     },
     {
-      "id": "_CL6n0FJZpk",
-      "title": "Dr. Dre - Still D.R.E. ft. Snoop Dogg",
-      "artist": "DrDreVEVO",
-      "tag": "歐美 Top 100 #30"
+      "id": "kPa7bsKwL-c",
+      "title": "Lady Gaga, Bruno Mars - Die With A Smile",
+      "artist": "LadyGagaVEVO",
+      "tag": "歐美 Top 100 #29"
     },
     {
-      "id": "NMA_isZYsYQ",
-      "title": "KICK BACK",
-      "artist": "Kenshi Yonezu - Topic",
-      "tag": "日本 Top 100 #26"
+      "id": "QjrkrVmC-8M",
+      "title": "Mrs. GREEN APPLE「ライラック」",
+      "artist": "Mrs. GREEN APPLE",
+      "tag": "日本 Top 100 #24"
     },
     {
       "id": "L051YSpEEYU",
@@ -1392,46 +1298,46 @@
       "tag": "泰國 Top 100 #34"
     },
     {
-      "id": "kkx-7fsiWgg",
-      "title": "22. Hasta el Amanecer - Nicky Jam",
-      "artist": "NickyJamTV",
-      "tag": "拉丁 Top 100 #27"
+      "id": "OSUxrSe5GbI",
+      "title": "BAD BUNNY x DRAKE - MÍA",
+      "artist": "Bad Bunny",
+      "tag": "拉丁 Top 100 #26"
     },
     {
-      "id": "5-f7X1TnL3Y",
-      "title": "[首播] 戴梅君、傅振輝 - 除非你放開阮的手 MV",
-      "artist": "欣代聲視育樂事業有限公司",
-      "tag": "近30天高觀看新歌 #19"
+      "id": "zpzdgmqIHOQ",
+      "title": "Madonna - La Isla Bonita",
+      "artist": "Madonna",
+      "tag": "拉丁 Top 100 #42"
     },
     {
-      "id": "VKC_hzJ3jzg",
-      "title": "Señorita",
-      "artist": "Shawn Mendes - Topic",
-      "tag": "韓國 Top 100 #30"
+      "id": "pSudEWBAYRE",
+      "title": "EXO 엑소 'Love Shot' MV",
+      "artist": "SMTOWN",
+      "tag": "韓國 Top 100 #26"
     },
     {
-      "id": "PJJhHihvDpo",
-      "title": "茄子蛋EggPlantEgg - 閣愛妳一擺 Love You One More Time",
-      "artist": "茄子蛋EggPlantEgg",
-      "tag": "華語 Top 100 #26"
+      "id": "t0igPuDjYUE",
+      "title": "劉若英 René Liu【後來 Later】",
+      "artist": "滾石唱片 ROCK RECORDS",
+      "tag": "華語 Top 100 #24"
     },
     {
-      "id": "nX3zOWgOZjE",
-      "title": "何これ？ (Nani Kore?)｜AUTONOMY【 】｜Taipei Travel Sketchbook",
-      "artist": "AUTONOMY 任運逍遙",
-      "tag": "近30天高觀看新歌 #20"
+      "id": "OXvDT6aoewQ",
+      "title": "Zyboy忠宇 - 媽媽的話『 這一次我告別故鄉踏上我的流浪 無知和久違的理想像期待在前方』【Lyrics Video】",
+      "artist": "Boba Beats",
+      "tag": "華語 Top 100 #83"
     },
     {
-      "id": "QJO3ROT-A4E",
-      "title": "One Direction - What Makes You Beautiful",
-      "artist": "OneDirectionVEVO",
-      "tag": "歐美 Top 100 #31"
+      "id": "_CL6n0FJZpk",
+      "title": "Dr. Dre - Still D.R.E. ft. Snoop Dogg",
+      "artist": "DrDreVEVO",
+      "tag": "歐美 Top 100 #30"
     },
     {
-      "id": "kzZ6KXDM1RI",
-      "title": "優里『ドライフラワー』 -ディレクターズカットver.",
-      "artist": "優里 Official YouTube Channel",
-      "tag": "日本 Top 100 #27"
+      "id": "Y4nEEZwckuU",
+      "title": "YOASOBI「群青」",
+      "artist": "YOASOBI",
+      "tag": "日本 Top 100 #25"
     },
     {
       "id": "Xh89WD3CBEU",
@@ -1440,46 +1346,46 @@
       "tag": "泰國 Top 100 #35"
     },
     {
-      "id": "9sg-A-eS6Ig",
-      "title": "Enrique Iglesias - SUBEME LA RADIO ft. Descemer Bueno, Zion & Lennox",
-      "artist": "EnriqueIglesiasVEVO",
-      "tag": "拉丁 Top 100 #28"
+      "id": "kkx-7fsiWgg",
+      "title": "22. Hasta el Amanecer - Nicky Jam",
+      "artist": "NickyJamTV",
+      "tag": "拉丁 Top 100 #27"
     },
     {
-      "id": "9GWkLs3hn1s",
-      "title": "1938 南都夜曲",
-      "artist": "Willin Kan (瘋子)",
-      "tag": "近30天高觀看新歌 #21"
+      "id": "KhTeiaCezwM",
+      "title": "마마무(MAMAMOO) - HIP",
+      "artist": "MAMAMOO",
+      "tag": "韓國 Top 100 #43"
     },
     {
-      "id": "0lapF4DQPKQ",
-      "title": "BTS (방탄소년단) 'Black Swan'",
-      "artist": "HYBE LABELS",
-      "tag": "韓國 Top 100 #31"
+      "id": "AAbokV76tkU",
+      "title": "BIGBANG - FANTASTIC BABY",
+      "artist": "BIGBANG",
+      "tag": "韓國 Top 100 #27"
     },
     {
-      "id": "gPpZJlE0Ca8",
-      "title": "伍佰 Wu Bai&China Blue【挪威的森林 Norwegian forest】",
-      "artist": "滾石唱片 ROCK RECORDS",
-      "tag": "華語 Top 100 #27"
+      "id": "PJJhHihvDpo",
+      "title": "茄子蛋EggPlantEgg - 閣愛妳一擺 Love You One More Time",
+      "artist": "茄子蛋EggPlantEgg",
+      "tag": "華語 Top 100 #26"
     },
     {
-      "id": "KPkbWwaLuVE",
-      "title": "2026必听的伤感台语新歌#dj #最新音乐 #抖音流行歌曲 #抖音神曲 #新歌更新 #热歌推荐 #热歌热门分享 #百听不厌的旋律 #超重低音 #车载dj音乐",
-      "artist": "yuanyuanDJ",
-      "tag": "近30天高觀看新歌 #22"
+      "id": "MeGrr-lWpxU",
+      "title": "TANK [ 你的情歌 Your Love Song ] (電影【你的情歌】主題曲)",
+      "artist": "華研國際",
+      "tag": "華語 Top 100 #43"
     },
     {
-      "id": "bKDdT_nyP54",
-      "title": "Akon - Smack That ft. Eminem",
-      "artist": "AkonVEVO",
-      "tag": "歐美 Top 100 #32"
+      "id": "QJO3ROT-A4E",
+      "title": "One Direction - What Makes You Beautiful",
+      "artist": "OneDirectionVEVO",
+      "tag": "歐美 Top 100 #31"
     },
     {
-      "id": "37W7Y2RRyiM",
-      "title": "Pretender",
-      "artist": "OFFICIAL HIGE DANDISM - Topic",
-      "tag": "日本 Top 100 #28"
+      "id": "NMA_isZYsYQ",
+      "title": "KICK BACK",
+      "artist": "Kenshi Yonezu - Topic",
+      "tag": "日本 Top 100 #26"
     },
     {
       "id": "c91bNchSC5Q",
@@ -1488,46 +1394,46 @@
       "tag": "泰國 Top 100 #36"
     },
     {
-      "id": "hXI8RQYC36Q",
-      "title": "21. El Perdón - Nicky Jam y Enrique Iglesias",
-      "artist": "NickyJamTV",
-      "tag": "拉丁 Top 100 #29"
+      "id": "9sg-A-eS6Ig",
+      "title": "Enrique Iglesias - SUBEME LA RADIO ft. Descemer Bueno, Zion & Lennox",
+      "artist": "EnriqueIglesiasVEVO",
+      "tag": "拉丁 Top 100 #28"
     },
     {
-      "id": "b8oBxM3Q7ic",
-      "title": "台灣病 重製版｜唱出年輕人的心聲｜動態歌詞MV",
-      "artist": "愛共鳴 AI Resonance | Music Channel",
-      "tag": "近30天高觀看新歌 #23"
+      "id": "UwsOovh-_Yg",
+      "title": "蔡依林 Jolin Tsai X 茄子蛋 EggPlantEgg《浪流連 Waves Wandering》Official Live Video",
+      "artist": "JOLIN 蔡依林",
+      "tag": "華語 Top 100 #84"
     },
     {
-      "id": "c7rCyll5AeY",
-      "title": "TWICE \"CHEER UP\"",
-      "artist": "JYP Entertainment",
-      "tag": "韓國 Top 100 #32"
+      "id": "8dJyRm2jJ-U",
+      "title": "PSY - 'That That (prod. & feat. SUGA of BTS)' MV",
+      "artist": "officialpsy",
+      "tag": "韓國 Top 100 #28"
     },
     {
-      "id": "TOC78RUj8pg",
-      "title": "Jumping Machine (跳楼机)",
-      "artist": "LBI - Topic",
-      "tag": "華語 Top 100 #28"
+      "id": "gPpZJlE0Ca8",
+      "title": "伍佰 Wu Bai&China Blue【挪威的森林 Norwegian forest】",
+      "artist": "滾石唱片 ROCK RECORDS",
+      "tag": "華語 Top 100 #27"
     },
     {
-      "id": "dmjamY6hsfE",
-      "title": "泰拉 Tyla / 這是愛嗎 IS IT LOVE",
-      "artist": "台灣索尼音樂 Sony Music Taiwan",
-      "tag": "近30天高觀看新歌 #24"
+      "id": "4NRXx6U8ABQ",
+      "title": "The Weeknd - Blinding Lights",
+      "artist": "TheWeekndVEVO",
+      "tag": "歐美 Top 100 #48"
     },
     {
-      "id": "vx2u5uUu3DE",
-      "title": "Bon Jovi - It's My Life",
-      "artist": "BonJoviVEVO",
-      "tag": "歐美 Top 100 #33"
+      "id": "bKDdT_nyP54",
+      "title": "Akon - Smack That ft. Eminem",
+      "artist": "AkonVEVO",
+      "tag": "歐美 Top 100 #32"
     },
     {
-      "id": "WIKqgE4BwAY",
-      "title": "BABYMETAL - ギミチョコ！！- Gimme chocolate!!",
-      "artist": "BABYMETAL",
-      "tag": "日本 Top 100 #29"
+      "id": "kzZ6KXDM1RI",
+      "title": "優里『ドライフラワー』 -ディレクターズカットver.",
+      "artist": "優里 Official YouTube Channel",
+      "tag": "日本 Top 100 #27"
     },
     {
       "id": "L5SSKx7H-gA",
@@ -1536,16 +1442,64 @@
       "tag": "泰國 Top 100 #37"
     },
     {
+      "id": "hXI8RQYC36Q",
+      "title": "21. El Perdón - Nicky Jam y Enrique Iglesias",
+      "artist": "NickyJamTV",
+      "tag": "拉丁 Top 100 #29"
+    },
+    {
+      "id": "8iuLXODzL04",
+      "title": "YOASOBI「たぶん」",
+      "artist": "YOASOBI",
+      "tag": "日本 Top 100 #42"
+    },
+    {
+      "id": "YudHcBIxlYw",
+      "title": "JISOO - ‘꽃(FLOWER)’",
+      "artist": "BLACKPINK",
+      "tag": "韓國 Top 100 #29"
+    },
+    {
+      "id": "TOC78RUj8pg",
+      "title": "Jumping Machine (跳楼机)",
+      "artist": "LBI - Topic",
+      "tag": "華語 Top 100 #28"
+    },
+    {
+      "id": "c7rCyll5AeY",
+      "title": "TWICE \"CHEER UP\"",
+      "artist": "JYP Entertainment",
+      "tag": "韓國 Top 100 #32"
+    },
+    {
+      "id": "vx2u5uUu3DE",
+      "title": "Bon Jovi - It's My Life",
+      "artist": "BonJoviVEVO",
+      "tag": "歐美 Top 100 #33"
+    },
+    {
+      "id": "37W7Y2RRyiM",
+      "title": "Pretender",
+      "artist": "OFFICIAL HIGE DANDISM - Topic",
+      "tag": "日本 Top 100 #28"
+    },
+    {
+      "id": "K1uuK4QdvGY",
+      "title": "ROSÉ & 火星人布魯諾 Bruno Mars - APT. (華納官方中字版)",
+      "artist": "華納音樂西洋日韓頻道",
+      "tag": "泰國 Top 100 #38"
+    },
+    {
       "id": "6BTjG-dhf5s",
       "title": "Daddy Yankee - Limbo",
       "artist": "DaddyYankeeVEVO",
       "tag": "拉丁 Top 100 #30"
     },
     {
-      "id": "HRtXB4m-A-U",
-      "title": "善惡簿 - 城隍爺 ｜ 超催淚台語歌：那些你以為神明才記住的帳，其實都刻在心裡｜感人故事、台灣宮廟文化、台式流行音樂",
-      "artist": "林知夏 Livia Lin",
-      "tag": "近30天高觀看新歌 #25"
+      "id": "dmjamY6hsfE",
+      "title": "泰拉 Tyla / 這是愛嗎 IS IT LOVE",
+      "artist": "台灣索尼音樂 Sony Music Taiwan",
+      "tag": "近30天高觀看新歌 #24"
     },
     {
       "id": "-5q5mZbe3V8",
@@ -1560,10 +1514,10 @@
       "tag": "華語 Top 100 #29"
     },
     {
-      "id": "7n9dth0CSrU",
-      "title": "超好聽中文歌曲｜台灣熱門MV榜歌曲《我以為放下了》《你只是路過》｜深夜單曲循環｜Fae Elowyn",
-      "artist": "Fae Elowyn ",
-      "tag": "近30天高觀看新歌 #26"
+      "id": "WIKqgE4BwAY",
+      "title": "BABYMETAL - ギミチョコ！！- Gimme chocolate!!",
+      "artist": "BABYMETAL",
+      "tag": "日本 Top 100 #29"
     },
     {
       "id": "hHUbLv4ThOo",
@@ -1578,10 +1532,10 @@
       "tag": "日本 Top 100 #30"
     },
     {
-      "id": "K1uuK4QdvGY",
-      "title": "ROSÉ & 火星人布魯諾 Bruno Mars - APT. (華納官方中字版)",
-      "artist": "華納音樂西洋日韓頻道",
-      "tag": "泰國 Top 100 #38"
+      "id": "qguo-j5PxBE",
+      "title": "Jeff Satur - ซ่อน (ไม่) หา l Ghost【 】",
+      "artist": "Jeff Satur",
+      "tag": "泰國 Top 100 #39"
     },
     {
       "id": "RqpKDkVzlqU",
@@ -1590,10 +1544,10 @@
       "tag": "拉丁 Top 100 #32"
     },
     {
-      "id": "V46uxjFOpAI",
-      "title": "寫給台灣的一首歌｜《蓬萊吟》",
-      "artist": "李緣一・沈三詩 | OriginOne x TriVerse",
-      "tag": "近30天高觀看新歌 #27"
+      "id": "HRtXB4m-A-U",
+      "title": "善惡簿 - 城隍爺 ｜ 超催淚台語歌：那些你以為神明才記住的帳，其實都刻在心裡｜感人故事、台灣宮廟文化、台式流行音樂",
+      "artist": "林知夏 Livia Lin",
+      "tag": "近30天高觀看新歌 #25"
     },
     {
       "id": "fE2h3lGlOsk",
@@ -1608,10 +1562,10 @@
       "tag": "華語 Top 100 #30"
     },
     {
-      "id": "sAAImB3MA8c",
-      "title": "《阿爸的野狼125》｜一首献给台湾父亲的歌｜听哭无数七八十年代长大的孩子 #台湾怀旧歌曲 #经典民谣",
-      "artist": "SamStudio13",
-      "tag": "近30天高觀看新歌 #28"
+      "id": "V46uxjFOpAI",
+      "title": "寫給台灣的一首歌｜《蓬萊吟》",
+      "artist": "李緣一・沈三詩 | OriginOne x TriVerse",
+      "tag": "近30天高觀看新歌 #27"
     },
     {
       "id": "3tmd-ClpJxA",
@@ -1626,10 +1580,10 @@
       "tag": "日本 Top 100 #31"
     },
     {
-      "id": "qguo-j5PxBE",
-      "title": "Jeff Satur - ซ่อน (ไม่) หา l Ghost【 】",
-      "artist": "Jeff Satur",
-      "tag": "泰國 Top 100 #39"
+      "id": "ks7p6DA0dKk",
+      "title": "Three Man Down - ข้างกัน (City) Feat.ออม TELEx TELEXs「 」",
+      "artist": "ThreeManDownOfficial",
+      "tag": "泰國 Top 100 #40"
     },
     {
       "id": "SmM0653YvXU",
@@ -1638,10 +1592,10 @@
       "tag": "拉丁 Top 100 #31"
     },
     {
-      "id": "b0gGO09Xmbc",
-      "title": "台灣魂 Soul of Taiwan｜J. Chen 阿文｜台語原創歌詞 MV Lyrics Video｜致敬台灣的血脈與傳承",
-      "artist": "J. Chen",
-      "tag": "近30天高觀看新歌 #29"
+      "id": "sAAImB3MA8c",
+      "title": "《阿爸的野狼125》｜一首献给台湾父亲的歌｜听哭无数七八十年代长大的孩子 #台湾怀旧歌曲 #经典民谣",
+      "artist": "SamStudio13",
+      "tag": "近30天高觀看新歌 #28"
     },
     {
       "id": "pcKR0LPwoYs",
@@ -1656,10 +1610,10 @@
       "tag": "華語 Top 100 #31"
     },
     {
-      "id": "wVKjaD7EEM0",
-      "title": "放袂落的人｜2026 最新台語情歌",
-      "artist": "Audio Dept.",
-      "tag": "近30天高觀看新歌 #30"
+      "id": "b0gGO09Xmbc",
+      "title": "台灣魂 Soul of Taiwan｜J. Chen 阿文｜台語原創歌詞 MV Lyrics Video｜致敬台灣的血脈與傳承",
+      "artist": "J. Chen",
+      "tag": "近30天高觀看新歌 #29"
     },
     {
       "id": "r7qovpFAGrQ",
@@ -1674,10 +1628,10 @@
       "tag": "日本 Top 100 #32"
     },
     {
-      "id": "ks7p6DA0dKk",
-      "title": "Three Man Down - ข้างกัน (City) Feat.ออม TELEx TELEXs「 」",
-      "artist": "ThreeManDownOfficial",
-      "tag": "泰國 Top 100 #40"
+      "id": "iaA1-ox6y_c",
+      "title": "ใครคนนั้น - พลพล x Labanoon「 」",
+      "artist": "Genierock",
+      "tag": "泰國 Top 100 #41"
     },
     {
       "id": "JWESLtAKKlU",
@@ -1686,10 +1640,10 @@
       "tag": "拉丁 Top 100 #33"
     },
     {
-      "id": "6Etm_bX0RU4",
-      "title": "《忘不掉的你》抒情歌曲 MV",
-      "artist": "EOS MV 東方星辰",
-      "tag": "近30天高觀看新歌 #31"
+      "id": "wVKjaD7EEM0",
+      "title": "放袂落的人｜2026 最新台語情歌",
+      "artist": "Audio Dept.",
+      "tag": "近30天高觀看新歌 #30"
     },
     {
       "id": "TQTlCHxyuu8",
@@ -1704,10 +1658,10 @@
       "tag": "華語 Top 100 #32"
     },
     {
-      "id": "eplEDiwoCO0",
-      "title": "🇹🇼台灣最美風景主題曲｜一首歌帶你環島！從九份夜景到墾丁海浪《一路繞著台灣唱》｜吳語晴 Rina Grace",
-      "artist": "Beauties Music",
-      "tag": "近30天高觀看新歌 #32"
+      "id": "6Etm_bX0RU4",
+      "title": "《忘不掉的你》抒情歌曲 MV",
+      "artist": "EOS MV 東方星辰",
+      "tag": "近30天高觀看新歌 #31"
     },
     {
       "id": "WcIcVapfqXw",
@@ -1722,10 +1676,10 @@
       "tag": "日本 Top 100 #33"
     },
     {
-      "id": "iaA1-ox6y_c",
-      "title": "ใครคนนั้น - พลพล x Labanoon「 」",
-      "artist": "Genierock",
-      "tag": "泰國 Top 100 #41"
+      "id": "XqQMisU5En8",
+      "title": "NONT TANONT - โต๊ะริม (melt)",
+      "artist": "LOVEiS",
+      "tag": "泰國 Top 100 #42"
     },
     {
       "id": "EPo5wWmKEaI",
@@ -1734,10 +1688,10 @@
       "tag": "拉丁 Top 100 #34"
     },
     {
-      "id": "xNtWtqjvL_E",
-      "title": "端陽好時光｜端午原創歌曲 MV｜PASSION YU 🌿🐉",
-      "artist": "PASSION YU",
-      "tag": "近30天高觀看新歌 #34"
+      "id": "eplEDiwoCO0",
+      "title": "🇹🇼台灣最美風景主題曲｜一首歌帶你環島！從九份夜景到墾丁海浪《一路繞著台灣唱》｜吳語晴 Rina Grace",
+      "artist": "Beauties Music",
+      "tag": "近30天高觀看新歌 #32"
     },
     {
       "id": "a7GITgqwDVg",
@@ -1752,10 +1706,10 @@
       "tag": "華語 Top 100 #33"
     },
     {
-      "id": "YVY8xyNWt-Y",
-      "title": "《靈魂沒偷懶 》抒情歌曲 MV",
-      "artist": "EOS MV 東方星辰",
-      "tag": "近30天高觀看新歌 #33"
+      "id": "xNtWtqjvL_E",
+      "title": "端陽好時光｜端午原創歌曲 MV｜PASSION YU 🌿🐉",
+      "artist": "PASSION YU",
+      "tag": "近30天高觀看新歌 #34"
     },
     {
       "id": "FTQbiNvZqaY",
@@ -1770,10 +1724,10 @@
       "tag": "日本 Top 100 #34"
     },
     {
-      "id": "XqQMisU5En8",
-      "title": "NONT TANONT - โต๊ะริม (melt)",
-      "artist": "LOVEiS",
-      "tag": "泰國 Top 100 #42"
+      "id": "MD2xgAvyhpo",
+      "title": "PONCHET - พี่ชอบหนูที่สุดเลย (I Like You The Most) ft.VARINZ【 】",
+      "artist": "PONCHET",
+      "tag": "泰國 Top 100 #43"
     },
     {
       "id": "58u-zkDLNPg",
@@ -1782,10 +1736,10 @@
       "tag": "拉丁 Top 100 #35"
     },
     {
-      "id": "TvIvHQe55jE",
-      "title": "你好台灣",
-      "artist": "小胡音樂- Music is my life",
-      "tag": "近30天高觀看新歌 #35"
+      "id": "YVY8xyNWt-Y",
+      "title": "《靈魂沒偷懶 》抒情歌曲 MV",
+      "artist": "EOS MV 東方星辰",
+      "tag": "近30天高觀看新歌 #33"
     },
     {
       "id": "CM4CkVFmTds",
@@ -1800,10 +1754,10 @@
       "tag": "華語 Top 100 #34"
     },
     {
-      "id": "kM93GyauR4I",
-      "title": "【經典翻唱】楊哲 vs 謝宜君《你哪會不識我》& 鄧麗君《甜蜜蜜》台語客家金曲與一代歌后風華",
-      "artist": "怀旧情歌 - Music 4K",
-      "tag": "近30天高觀看新歌 #36"
+      "id": "TvIvHQe55jE",
+      "title": "你好台灣",
+      "artist": "小胡音樂- Music is my life",
+      "tag": "近30天高觀看新歌 #35"
     },
     {
       "id": "syFZfO_wfMQ",
@@ -1816,6 +1770,54 @@
       "title": "怪獣の花唄 / Vaundy ： MUSIC VIDEO",
       "artist": "Vaundy",
       "tag": "日本 Top 100 #35"
+    },
+    {
+      "id": "FZlBKl-spfY",
+      "title": "F.HERO x MILLI Ft. Changbin (Stray Kids) - Mirror Mirror (Prod. by NINO)",
+      "artist": "High Cloud Entertainment",
+      "tag": "泰國 Top 100 #44"
+    },
+    {
+      "id": "YXnjy5YlDwk",
+      "title": "Marc Anthony - Vivir Mi Vida",
+      "artist": "marcanthonyVEVO",
+      "tag": "拉丁 Top 100 #36"
+    },
+    {
+      "id": "kM93GyauR4I",
+      "title": "【經典翻唱】楊哲 vs 謝宜君《你哪會不識我》& 鄧麗君《甜蜜蜜》台語客家金曲與一代歌后風華",
+      "artist": "怀旧情歌 - Music 4K",
+      "tag": "近30天高觀看新歌 #36"
+    },
+    {
+      "id": "7HDeem-JaSY",
+      "title": "(여자)아이들((G)I-DLE) - '퀸카 (Queencard)'",
+      "artist": "i-dle (아이들)",
+      "tag": "韓國 Top 100 #45"
+    },
+    {
+      "id": "0rp3pP2Xwhs",
+      "title": "茄子蛋EggPlantEgg - 愛情你比我想的閣較偉大 《當男人戀愛時》電影主題曲",
+      "artist": "茄子蛋EggPlantEgg",
+      "tag": "華語 Top 100 #35"
+    },
+    {
+      "id": "flBsWg14Rgc",
+      "title": "Like Sunny Days, Like Rainy Days 像晴天像雨天 (電視劇《難哄The First Frost》心動曲) - 汪蘇瀧Silence.W",
+      "artist": "Dreamer Music",
+      "tag": "華語 Top 100 #69"
+    },
+    {
+      "id": "C-u5WLJ9Yk4",
+      "title": "Britney Spears - ...Baby One More Time",
+      "artist": "BritneySpearsVEVO",
+      "tag": "歐美 Top 100 #41"
+    },
+    {
+      "id": "bw9CALKOvAI",
+      "title": "HYUNA - 'Bubble Pop!'",
+      "artist": "4Minute 포미닛(Official YouTube Channel)",
+      "tag": "日本 Top 100 #43"
     }
   ],
   "packs": [
