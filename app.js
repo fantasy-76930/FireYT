@@ -374,13 +374,16 @@ function applyAutoPicks(data) {
         .filter(Boolean)
     : [];
 
+  const hasKpopTop = countryPacks.some((pack) => pack.key === "kpop-top");
+  const curatedPacks = fallbackSongPacks.filter((pack) => pack.key !== "kpop" || !hasKpopTop);
+
   songPacks = [
-    ...fallbackSongPacks.map((pack) => {
+    ...curatedPacks.map((pack) => {
       if (pack.key !== "today") return { ...pack, songKeys: [...pack.songKeys] };
       return {
         ...pack,
-        title: "20 小時不重複",
-        subtitle: "用 20 小時估算每日播放量，盡量同一天不重複",
+        title: "20 小時不膩歌單",
+        subtitle: "跨語系穿插、同歌手至少錯開 8 首，當天不重複",
         mark: `${autoSongs.length}`,
         source: data.meta?.source || "YouTube Data API v3 / Taiwan daily pool",
         coverId: autoSongs[1]?.id || autoSongs[0].id,

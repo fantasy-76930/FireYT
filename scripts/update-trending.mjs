@@ -248,21 +248,118 @@ async function fetchCountryMusicPack(pack) {
   };
 }
 
-function mergeUniqueSongLists(lists, limit) {
-  const songs = [];
-  const seen = new Set();
+function normalizeIdentity(value) {
+  return String(value ?? "")
+    .normalize("NFKC")
+    .toLowerCase()
+    .replace(/\b(official|music|channel|records|recordings|vevo|topic)\b/gi, "")
+    .replace(/[\p{P}\p{S}\s]+/gu, "")
+    .trim();
+}
 
-  for (const list of lists) {
-    for (const song of list) {
-      if (song?.id && !seen.has(song.id)) {
-        seen.add(song.id);
-        songs.push(song);
+function artistIdentity(song) {
+  return normalizeIdentity(song?.artist);
+}
+
+function titleIdentity(song) {
+  return normalizeIdentity(
+    String(song?.title ?? "")
+      .replace(/\([^)]*\)|\[[^\]]*\]|（[^）]*）/g, " ")
+      .replace(/\b(feat|ft|live|remix|cover|version|ver|sped up|slowed|lyrics?)\b.*$/gi, " "),
+  );
+}
+
+function ensureTaiwanTopPack(popularSongs, packs) {
+  const taiwanPack = {
+    key: "taiwan-top",
+    title: "台灣 Top 100",
+    subtitle: `YouTube 台灣音樂熱門排行，取前 ${POPULAR_TARGET_COUNT} 首`,
+    mark: "TW100",
+    tone: "red",
+    source: "YouTube Data API v3 / Taiwan Music mostPopular",
+    targetSongCount: POPULAR_TARGET_COUNT,
+    actualSongCount: popularSongs.length,
+    songs: popularSongs,
+  };
+
+  return [taiwanPack, ...packs.filter((pack) => pack.key !== taiwanPack.key)];
+}
+
+function buildDiverseSongPool({ popularSongs, recentSongs, packs, limit }) {
+  const bucketEntries = [
+    ["popular", popularSongs],
+    ["recent", recentSongs],
+    ...packs.filter((pack) => pack.key !== "taiwan-top").map((pack) => [pack.key, pack.songs]),
+  ];
+  const buckets = new Map(bucketEntries.map(([key, songs]) => [key, [...(songs ?? [])]]));
+  const schedule = [
+    "popular",
+    "recent",
+    "kpop-top",
+    "popular",
+    "mandarin-top",
+    "recent",
+    "western-top",
+    "jpop-top",
+    "thai-top",
+    "latin-top",
+  ];
+  const output = [];
+  const seenIds = new Set();
+  const seenTitles = new Set();
+  const recentArtists = [];
+  const artistSpacing = 8;
+
+  const takeFromBucket = (bucket, enforceArtistSpacing) => {
+    const candidateIndex = bucket.findIndex((song) => {
+      const artist = artistIdentity(song);
+      const title = titleIdentity(song);
+      if (!song?.id || seenIds.has(song.id) || (title && seenTitles.has(title))) return false;
+      return !enforceArtistSpacing || !artist || !recentArtists.includes(artist);
+    });
+
+    if (candidateIndex < 0) return null;
+    return bucket.splice(candidateIndex, 1)[0];
+  };
+
+  const appendSong = (song) => {
+    output.push(song);
+    seenIds.add(song.id);
+    const title = titleIdentity(song);
+    const artist = artistIdentity(song);
+    if (title) seenTitles.add(title);
+    if (artist) {
+      recentArtists.push(artist);
+      if (recentArtists.length > artistSpacing) recentArtists.shift();
+    }
+  };
+
+  while (output.length < limit) {
+    let addedThisRound = false;
+
+    for (const key of schedule) {
+      const bucket = buckets.get(key);
+      if (!bucket?.length || output.length >= limit) continue;
+      const song = takeFromBucket(bucket, true) ?? takeFromBucket(bucket, false);
+      if (!song) continue;
+      appendSong(song);
+      addedThisRound = true;
+    }
+
+    if (!addedThisRound) break;
+  }
+
+  if (output.length < limit) {
+    for (const bucket of buckets.values()) {
+      while (bucket.length && output.length < limit) {
+        const song = bucket.shift();
+        if (!song?.id || seenIds.has(song.id)) continue;
+        appendSong(song);
       }
-      if (songs.length >= limit) return songs;
     }
   }
 
-  return songs;
+  return { songs: output.slice(0, limit), artistSpacing };
 }
 
 function rotateItems(items, offset) {
@@ -282,11 +379,32 @@ async function writePayload(payload) {
 
 function buildFallbackPayload(existing, reason) {
   const updatedLabel = todayTaipeiLabel();
+  if (
+    existing.meta?.updatedLabel === updatedLabel &&
+    existing.meta?.diversityPolicy &&
+    Array.isArray(existing.songs) &&
+    existing.songs.length >= TARGET_SONG_COUNT
+  ) {
+    return existing;
+  }
+
   const verifiedSongs = Array.isArray(existing.songs) ? existing.songs : [];
-  const popularSongs = verifiedSongs.slice(0, POPULAR_TARGET_COUNT);
-  const discoverySongs = verifiedSongs.slice(POPULAR_TARGET_COUNT);
+  const existingPacks = Array.isArray(existing.packs) ? existing.packs : [];
+  const storedTaiwanPack = existingPacks.find((pack) => pack.key === "taiwan-top");
+  const popularSongs = storedTaiwanPack?.songs?.length
+    ? storedTaiwanPack.songs.slice(0, POPULAR_TARGET_COUNT)
+    : verifiedSongs.filter((song) => String(song.tag).startsWith("台灣前排熱門")).slice(0, POPULAR_TARGET_COUNT);
+  const popularIds = new Set(popularSongs.map((song) => song.id));
+  const discoverySongs = verifiedSongs.filter((song) => !popularIds.has(song.id));
   const daySeed = Number(updatedLabel.replace(/\D/g, "")) * 37;
-  const rotatedSongs = [...popularSongs, ...rotateItems(discoverySongs, daySeed)];
+  const packs = ensureTaiwanTopPack(popularSongs, existingPacks);
+  const diversePool = buildDiverseSongPool({
+    popularSongs,
+    recentSongs: rotateItems(discoverySongs, daySeed),
+    packs,
+    limit: TARGET_SONG_COUNT,
+  });
+  const rotatedSongs = diversePool.songs;
 
   if (rotatedSongs.length < 50) {
     throw new Error(`Fallback pool is too small: ${rotatedSongs.length} songs.`);
@@ -301,9 +419,12 @@ function buildFallbackPayload(existing, reason) {
       actualSongCount: rotatedSongs.length,
       updateMode: "quota-fallback",
       fallbackReason: reason,
-      sourceTimestamp: "Daily order refreshed from the previous verified YouTube API pool while search quota resets.",
+      diversityPolicy: "Country and language interleave, similar-title dedupe, artist spacing",
+      artistSpacing: diversePool.artistSpacing,
+      sourceTimestamp: "Daily diverse order refreshed from the previous verified YouTube API pool while search quota resets.",
     },
     songs: rotatedSongs,
+    packs,
   };
 }
 
@@ -315,16 +436,20 @@ function isQuotaError(error) {
 async function buildLivePayload() {
   const popularSongs = await fetchTaiwanMusicPopular(POPULAR_TARGET_COUNT);
   const recentSongs = await fetchRecentTaiwanMusic(TARGET_SONG_COUNT);
-  const packs = [];
+  const countryPacks = [];
 
   for (const pack of COUNTRY_MUSIC_PACKS) {
-    packs.push(await fetchCountryMusicPack(pack));
+    countryPacks.push(await fetchCountryMusicPack(pack));
   }
 
-  const songs = mergeUniqueSongLists(
-    [popularSongs, recentSongs, ...packs.map((pack) => pack.songs)],
-    TARGET_SONG_COUNT,
-  );
+  const packs = ensureTaiwanTopPack(popularSongs, countryPacks);
+  const diversePool = buildDiverseSongPool({
+    popularSongs,
+    recentSongs,
+    packs,
+    limit: TARGET_SONG_COUNT,
+  });
+  const songs = diversePool.songs;
 
   if (songs.length < 50) {
     throw new Error(`Expected at least 50 combined YouTube music videos, found ${songs.length}.`);
@@ -345,6 +470,8 @@ async function buildLivePayload() {
       noRepeatWithinDay: true,
       countryTargetSongCount: COUNTRY_TARGET_COUNT,
       updateMode: "live-api",
+      diversityPolicy: "Country and language interleave, similar-title dedupe, artist spacing",
+      artistSpacing: diversePool.artistSpacing,
     },
     songs,
     packs,
