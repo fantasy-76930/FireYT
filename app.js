@@ -100,6 +100,102 @@ const fallbackSongs = {
     artist: "小宇 宋念宇",
     tag: "華語 R&B",
   },
+  workQuietBreath: {
+    id: "hfawljxgzPQ",
+    title: "靜靜地，深深呼吸",
+    artist: "Lanternwood Music",
+    tag: "輕吉他 Lo-fi",
+  },
+  workForestSilence: {
+    id: "sB06azXt6tU",
+    title: "森林正在呼吸",
+    artist: "Lanternwood Music",
+    tag: "森林系輕吉他",
+  },
+  workMidnightEdge: {
+    id: "4KAcdsxvGhg",
+    title: "深夜的一個人",
+    artist: "Lanternwood Music",
+    tag: "安靜 Lo-fi",
+  },
+  workEndlessStars: {
+    id: "077_XvWdBOE",
+    title: "無盡星空下",
+    artist: "Lanternwood Music",
+    tag: "星夜輕吉他",
+  },
+  workOldTeaShop: {
+    id: "EvI80ZqRL2U",
+    title: "老茶店的溫柔黃昏",
+    artist: "Lanternwood Music",
+    tag: "午後背景樂",
+  },
+  workFallingStars: {
+    id: "17kkgc8K1VA",
+    title: "星星落下的深夜",
+    artist: "Lanternwood Music",
+    tag: "夜間專注",
+  },
+  workGentleNight: {
+    id: "p5Nm1To0KhY",
+    title: "迎接溫柔的夜",
+    artist: "Lanternwood Music",
+    tag: "舒緩輕吉他",
+  },
+  workTouchingStars: {
+    id: "tmNF0VJdAdY",
+    title: "伸手可及的星夜",
+    artist: "Lanternwood Music",
+    tag: "低干擾 Lo-fi",
+  },
+  workTwoAm: {
+    id: "7-rL_MGWctQ",
+    title: "深夜兩點，只屬於自己的時間",
+    artist: "Lanternwood Music",
+    tag: "深夜工作",
+  },
+  workQuietCafe: {
+    id: "ZwstDNbSZ1g",
+    title: "安靜咖啡館的午後",
+    artist: "Lanternwood Music",
+    tag: "咖啡館 Lo-fi",
+  },
+  workOneAmStudy: {
+    id: "lTRiuFIWV54",
+    title: "1 A.M Study Session",
+    artist: "Lofi Girl",
+    tag: "專注 Lo-fi",
+  },
+  workFourAmStudy: {
+    id: "TURbeWK2wwg",
+    title: "4 A.M Study Session",
+    artist: "Lofi Girl",
+    tag: "深夜專注 Lo-fi",
+  },
+  workChillhopSummer: {
+    id: "OkjC4z5dFrg",
+    title: "Chillhop Essentials · Summer",
+    artist: "Chillhop Music",
+    tag: "柔和 Chillhop",
+  },
+  workMellowVibe: {
+    id: "tQvNJDUhzBQ",
+    title: "Mellow Vibe",
+    artist: "Dreamy",
+    tag: "低干擾節拍",
+  },
+  workDreamland: {
+    id: "DSWYAclv2I8",
+    title: "In Dreamland",
+    artist: "Chillpeach",
+    tag: "輕柔背景樂",
+  },
+  workCuteTwoAm: {
+    id: "rKi3oL2UDew",
+    title: "2:00 AM",
+    artist: "Chillpeach",
+    tag: "輕巧背景樂",
+  },
 };
 
 let songs = { ...fallbackSongs };
@@ -115,6 +211,34 @@ const fallbackSongPacks = [
     coverId: "w3r6Cru8e_4",
     heroId: "wY8n1ExAN-s",
     songKeys: ["cosmosNoOne", "idleGimme", "babyMonster", "loveIsPain", "diorGirl", "morning"],
+  },
+  {
+    key: "work",
+    title: "工作中只想背景樂",
+    subtitle: "輕吉他與低干擾 Lo-fi，讓旋律待在注意力後方",
+    mark: "FOCUS",
+    tone: "green",
+    source: "YouTube 公開音樂 · 手動精選",
+    coverId: "hfawljxgzPQ",
+    heroId: "hfawljxgzPQ",
+    songKeys: [
+      "workQuietBreath",
+      "workForestSilence",
+      "workMidnightEdge",
+      "workEndlessStars",
+      "workOldTeaShop",
+      "workFallingStars",
+      "workGentleNight",
+      "workTouchingStars",
+      "workTwoAm",
+      "workQuietCafe",
+      "workOneAmStudy",
+      "workFourAmStudy",
+      "workChillhopSummer",
+      "workMellowVibe",
+      "workDreamland",
+      "workCuteTwoAm",
+    ],
   },
   {
     key: "mandarin",
@@ -241,6 +365,7 @@ const songTitle = document.querySelector("#songTitle");
 const songEyebrow = document.querySelector("#songEyebrow");
 const playAll = document.querySelector("#playAll");
 const heroPlay = document.querySelector("#heroPlay");
+const workPlay = document.querySelector("#workPlay");
 const featuredImage = document.querySelector("#featuredImage");
 const nowTitle = document.querySelector("#nowTitle");
 const nowMeta = document.querySelector("#nowMeta");
@@ -278,8 +403,8 @@ const toneColors = {
 };
 const SONG_CARD_DISPLAY_LIMIT = 24;
 const ROTATION_BATCH_SIZE = 300;
-const ROTATION_STATE_KEY = "fantasy-tune-rotation-v1";
-const ROTATION_STATE_VERSION = 1;
+const ROTATION_STATE_KEY = "fantasy-tune-rotation-v2";
+const ROTATION_STATE_VERSION = 2;
 
 function getPack(key) {
   return songPacks.find((pack) => pack.key === key) ?? songPacks[0];
@@ -415,11 +540,15 @@ function chooseNextRotationBatch(catalog, state, previousIds = []) {
   };
 }
 
-function prepareRotationBatch(catalog) {
+function prepareRotationBatch(catalog, publishedSongs = []) {
   const today = taipeiDateKey();
   const savedState = readRotationState();
   const catalogById = new Map(catalog.map((song) => [song.id, song]));
   const savedSongs = (savedState?.activeIds ?? []).map((id) => catalogById.get(id)).filter(Boolean);
+  const publishedBatch = uniqueRotationCatalog(publishedSongs)
+    .map((song) => catalogById.get(song.id))
+    .filter(Boolean)
+    .slice(0, ROTATION_BATCH_SIZE);
 
   if (savedState?.date === today && savedSongs.length === ROTATION_BATCH_SIZE) {
     rotationState = savedState;
@@ -427,6 +556,7 @@ function prepareRotationBatch(catalog) {
   }
 
   const next = chooseNextRotationBatch(catalog, savedState, savedState?.activeIds ?? []);
+  const nextSongs = !savedState && publishedBatch.length === ROTATION_BATCH_SIZE ? publishedBatch : next.songs;
   const catalogIds = new Set(catalog.map((song) => song.id));
   const lastPlayed = Object.fromEntries(
     Object.entries(savedState?.lastPlayed ?? {}).filter(([id]) => catalogIds.has(id)),
@@ -434,14 +564,14 @@ function prepareRotationBatch(catalog) {
   const nextState = {
     version: ROTATION_STATE_VERSION,
     date: today,
-    activeIds: next.songs.map((song) => song.id),
+    activeIds: nextSongs.map((song) => song.id),
     cursor: next.cursor,
     batchNumber: (savedState?.batchNumber ?? 0) + 1,
     playSequence: savedState?.playSequence ?? 0,
     lastPlayed,
   };
   writeRotationState(nextState);
-  return next.songs;
+  return nextSongs;
 }
 
 function rotationSubtitle() {
@@ -464,7 +594,7 @@ function applyAutoPicks(data) {
       ? data.rotationSongs
       : data.songs,
   );
-  activeRotationSongs = prepareRotationBatch(rotationCatalog);
+  activeRotationSongs = prepareRotationBatch(rotationCatalog, data.songs);
   const autoSongs = normalizeAutoSongs(activeRotationSongs, "daily");
 
   if (autoSongs.length < 3) return;
@@ -640,7 +770,7 @@ function renderHero(pack) {
   nowMeta.textContent = `${pack.title} · ${pack.source} · ${packSongs.length} 首`;
   signalCount.textContent = packSongs.length;
   signalSource.textContent = pack.mark;
-  signalMode.textContent = pack.key === "shuffle" ? "MIX" : "LIVE";
+  signalMode.textContent = pack.key === "shuffle" ? "MIX" : pack.key === "work" ? "FOCUS" : "LIVE";
   miniList.innerHTML = packSongs
     .slice(0, 4)
     .map(
@@ -823,7 +953,7 @@ function restoreHashPosition() {
 async function copyShareLink() {
   const url = "https://fantasy-76930.github.io/Fantasy-Tune/";
   const title = "Fantasy Tune - 你不用找，我先挑好了";
-  const text = "近期熱門歌單、K-pop、華語新歌、療癒直播聲景，一鍵直接播放。";
+  const text = "近期熱門歌單、工作背景樂、K-pop、華語新歌與療癒聲景，一鍵直接播放。";
 
   try {
     if (navigator.share) {
@@ -885,6 +1015,7 @@ form.addEventListener("submit", (event) => {
 
 async function init() {
   await loadAutoPicks();
+  workPlay.href = playlistUrl(getSongs(getPack("work")));
   renderTicker();
   renderAmbientRooms();
   selectPack(selectedPackKey);

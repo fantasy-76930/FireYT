@@ -14,9 +14,18 @@ const POPULAR_TARGET_COUNT = 100;
 const COUNTRY_TARGET_COUNT = 100;
 const ROTATION_POOL_LIMIT = 2000;
 const MIN_ROTATION_POOL_SIZE = TARGET_SONG_COUNT * 2;
-const DIVERSITY_POLICY_VERSION = 3;
+const DIVERSITY_POLICY_VERSION = 4;
 const ROTATION_POLICY_VERSION = 1;
 const MAX_SINGLE_TRACK_SECONDS = 600;
+const CURATED_DAILY_SONGS = [
+  {
+    id: "hfawljxgzPQ",
+    title: "靜靜地，深深呼吸",
+    artist: "Lanternwood Music",
+    tag: "工作背景樂 · 輕吉他 Lo-fi",
+    durationSeconds: 11025,
+  },
+];
 const REPETITIVE_TITLE_PATTERN =
   /\b(?:loop(?:ed|ing)?|repeat(?:ed)?|extended|\d+\s*(?:hours?|minutes?|mins?)|(?:one|two|three|four|five|six|eight|ten)\s*hours?)\b|(?:\d+\s*(?:小時|小时|分鐘|分钟)|循環|循环|單曲循環|单曲循环|無限循環|无限循环|重複播放|重复播放|洗腦循環|洗脑循环|延長版|延长版)/i;
 // Manually reviewed main-feed videos with long near-identical audio passages.
@@ -319,8 +328,9 @@ function ensureTaiwanTopPack(popularSongs, packs) {
   return [taiwanPack, ...packs.filter((pack) => pack.key !== taiwanPack.key)];
 }
 
-function buildDiverseSongPool({ popularSongs, recentSongs, packs, archiveSongs = [], limit }) {
+function buildDiverseSongPool({ popularSongs, recentSongs, packs, archiveSongs = [], curatedSongs = [], limit }) {
   const bucketEntries = [
+    ["curated", curatedSongs],
     ["popular", popularSongs],
     ["recent", recentSongs],
     ...packs.filter((pack) => pack.key !== "taiwan-top").map((pack) => [pack.key, pack.songs]),
@@ -328,6 +338,7 @@ function buildDiverseSongPool({ popularSongs, recentSongs, packs, archiveSongs =
   ];
   const buckets = new Map(bucketEntries.map(([key, songs]) => [key, [...(songs ?? [])]]));
   const schedule = [
+    "curated",
     "popular",
     "recent",
     "kpop-top",
@@ -420,6 +431,17 @@ function circularBatch(items, offset, count) {
   );
 }
 
+function ensureCuratedDailySongs(songList) {
+  const curatedIds = new Set(CURATED_DAILY_SONGS.map((song) => song.id));
+  const remainingSongs = songList.filter((song) => !curatedIds.has(song.id));
+  const insertAt = Math.min(POPULAR_TARGET_COUNT, remainingSongs.length);
+  return [
+    ...remainingSongs.slice(0, insertAt),
+    ...CURATED_DAILY_SONGS,
+    ...remainingSongs.slice(insertAt),
+  ].slice(0, TARGET_SONG_COUNT);
+}
+
 function rotateItems(items, offset) {
   if (items.length < 2) return [...items];
   const safeOffset = offset % items.length;
@@ -445,7 +467,12 @@ function buildFallbackPayload(existing, reason) {
     existing.songs.every(isAllowedDailySong) &&
     Array.isArray(existing.rotationSongs) &&
     existing.rotationSongs.length >= MIN_ROTATION_POOL_SIZE &&
-    existing.rotationSongs.every(isAllowedDailySong)
+    existing.rotationSongs.every(isAllowedDailySong) &&
+    CURATED_DAILY_SONGS.every(
+      ({ id }) =>
+        existing.songs.some((song) => song.id === id) &&
+        existing.rotationSongs.some((song) => song.id === id),
+    )
   ) {
     return existing;
   }
@@ -468,10 +495,11 @@ function buildFallbackPayload(existing, reason) {
     recentSongs: rotateItems(discoverySongs, daySeed),
     packs,
     archiveSongs: verifiedSongs,
+    curatedSongs: CURATED_DAILY_SONGS,
     limit: ROTATION_POOL_LIMIT,
   });
   const rotationSongs = rotationPool.songs;
-  const rotatedSongs = circularBatch(rotationSongs, daySeed, TARGET_SONG_COUNT);
+  const rotatedSongs = ensureCuratedDailySongs(circularBatch(rotationSongs, daySeed, TARGET_SONG_COUNT));
 
   if (rotationSongs.length < MIN_ROTATION_POOL_SIZE) {
     throw new Error(`Fallback rotation pool is too small: ${rotationSongs.length} songs.`);
@@ -527,11 +555,12 @@ async function buildLivePayload(existing) {
     recentSongs,
     packs,
     archiveSongs,
+    curatedSongs: CURATED_DAILY_SONGS,
     limit: ROTATION_POOL_LIMIT,
   });
   const rotationSongs = rotationPool.songs;
   const daySeed = Number(todayTaipeiLabel().replace(/\D/g, "")) * 37;
-  const songs = circularBatch(rotationSongs, daySeed, TARGET_SONG_COUNT);
+  const songs = ensureCuratedDailySongs(circularBatch(rotationSongs, daySeed, TARGET_SONG_COUNT));
 
   if (rotationSongs.length < MIN_ROTATION_POOL_SIZE) {
     throw new Error(`Expected at least ${MIN_ROTATION_POOL_SIZE} rotation songs, found ${rotationSongs.length}.`);

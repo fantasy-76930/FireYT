@@ -416,6 +416,21 @@ a {
   background: rgb(4 40 57 / 62%);
 }
 
+.hero .work-action {
+  border-color: rgb(180 243 255 / 64%);
+  background: rgb(2 77 100 / 48%);
+}
+
+.work-action svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
 .secondary-action {
   color: var(--ink);
   border: 1px solid var(--line-strong);
@@ -1948,6 +1963,10 @@ a {
   .hero-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+
+  .work-action {
+    grid-column: 1 / -1;
   }
 
   .primary-action,

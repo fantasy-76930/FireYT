@@ -5,6 +5,7 @@ const dataPath = fileURLToPath(new URL("../data/auto-picks.json", import.meta.ur
 const data = JSON.parse(await readFile(dataPath, "utf8"));
 const batchSize = Number(data.meta?.rotationBatchSize ?? 300);
 const pool = Array.isArray(data.rotationSongs) ? data.rotationSongs : [];
+const requiredDailyIds = ["hfawljxgzPQ"];
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -18,7 +19,16 @@ assert(batchSize === 300, `Expected a 300-song batch, received ${batchSize}.`);
 assert(pool.length >= batchSize * 2, `Rotation pool requires at least ${batchSize * 2} songs, received ${pool.length}.`);
 assert(new Set(pool.map((song) => song.id)).size === pool.length, "Rotation pool contains duplicate video IDs.");
 assert(Array.isArray(data.songs) && data.songs.length === batchSize, "Published daily fallback batch is not 300 songs.");
+assert(new Set(data.songs.map((song) => song.id)).size === batchSize, "Published daily batch contains duplicate video IDs.");
 assert(data.songs.every((song) => pool.some((candidate) => candidate.id === song.id)), "Daily batch contains a song outside the rotation pool.");
+assert(
+  requiredDailyIds.every((id) => data.songs.some((song) => song.id === id)),
+  "Published daily batch is missing a required hand-picked song.",
+);
+assert(
+  requiredDailyIds.every((id) => pool.some((song) => song.id === id)),
+  "Rotation pool is missing a required hand-picked song.",
+);
 
 for (let index = 0; index < 20; index += 1) {
   const currentIds = new Set(batchAt(index).map((song) => song.id));
