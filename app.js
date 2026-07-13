@@ -198,6 +198,25 @@ const fallbackSongs = {
   },
 };
 
+const WORK_SONG_LIBRARY_KEYS = [
+  "workQuietBreath",
+  "workForestSilence",
+  "workMidnightEdge",
+  "workEndlessStars",
+  "workOldTeaShop",
+  "workFallingStars",
+  "workGentleNight",
+  "workTouchingStars",
+  "workTwoAm",
+  "workQuietCafe",
+  "workOneAmStudy",
+  "workFourAmStudy",
+  "workChillhopSummer",
+  "workMellowVibe",
+  "workDreamland",
+  "workCuteTwoAm",
+];
+
 let songs = { ...fallbackSongs };
 
 const fallbackSongPacks = [
@@ -221,24 +240,7 @@ const fallbackSongPacks = [
     source: "YouTube 公開音樂 · 手動精選",
     coverId: "hfawljxgzPQ",
     heroId: "hfawljxgzPQ",
-    songKeys: [
-      "workQuietBreath",
-      "workForestSilence",
-      "workMidnightEdge",
-      "workEndlessStars",
-      "workOldTeaShop",
-      "workFallingStars",
-      "workGentleNight",
-      "workTouchingStars",
-      "workTwoAm",
-      "workQuietCafe",
-      "workOneAmStudy",
-      "workFourAmStudy",
-      "workChillhopSummer",
-      "workMellowVibe",
-      "workDreamland",
-      "workCuteTwoAm",
-    ],
+    songKeys: [...WORK_SONG_LIBRARY_KEYS],
   },
   {
     key: "mandarin",
@@ -392,6 +394,7 @@ let activeRotationSongs = [];
 let rotationCatalog = [];
 let rotationState = null;
 let autoPickMeta = {};
+let workRotationState = null;
 
 const toneColors = {
   red: "#0b4f86",
@@ -405,6 +408,9 @@ const SONG_CARD_DISPLAY_LIMIT = 24;
 const ROTATION_BATCH_SIZE = 300;
 const ROTATION_STATE_KEY = "fantasy-tune-rotation-v2";
 const ROTATION_STATE_VERSION = 2;
+const WORK_ROTATION_BATCH_SIZE = 8;
+const WORK_ROTATION_STATE_KEY = "fantasy-tune-work-rotation-v1";
+const WORK_ROTATION_STATE_VERSION = 1;
 
 function getPack(key) {
   return songPacks.find((pack) => pack.key === key) ?? songPacks[0];
@@ -505,6 +511,98 @@ function writeRotationState(state) {
     localStorage.setItem(ROTATION_STATE_KEY, JSON.stringify(state));
   } catch {
     // In-memory rotation still works when browser storage is unavailable.
+  }
+}
+
+function readWorkRotationState() {
+  try {
+    const state = JSON.parse(localStorage.getItem(WORK_ROTATION_STATE_KEY) ?? "null");
+    return state?.version === WORK_ROTATION_STATE_VERSION ? state : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeWorkRotationState(state) {
+  workRotationState = state;
+  try {
+    localStorage.setItem(WORK_ROTATION_STATE_KEY, JSON.stringify(state));
+  } catch {
+    // The work playlist can still rotate in memory when storage is unavailable.
+  }
+}
+
+function chooseNextWorkBatch(previousKeys = [], batchNumber = 0) {
+  const previous = new Set(previousKeys);
+  const daySeed = taipeiDayNumber(taipeiDateKey());
+  const start = (daySeed * 5 + batchNumber * 3) % WORK_SONG_LIBRARY_KEYS.length;
+  const orderedKeys = Array.from(
+    { length: WORK_SONG_LIBRARY_KEYS.length },
+    (_, index) => WORK_SONG_LIBRARY_KEYS[(start + index) % WORK_SONG_LIBRARY_KEYS.length],
+  );
+  const nextKeys = orderedKeys.filter((key) => !previous.has(key)).slice(0, WORK_ROTATION_BATCH_SIZE);
+
+  if (nextKeys.length < WORK_ROTATION_BATCH_SIZE) {
+    const selected = new Set(nextKeys);
+    nextKeys.push(
+      ...orderedKeys.filter((key) => !selected.has(key)).slice(0, WORK_ROTATION_BATCH_SIZE - nextKeys.length),
+    );
+  }
+
+  return nextKeys;
+}
+
+function applyWorkBatch(songKeys, state) {
+  const workPack = getPack("work");
+  const batchSongs = songKeys.map((key) => songs[key]).filter(Boolean);
+  workPack.songKeys = songKeys;
+  workPack.subtitle = `第 ${state.batchNumber} 組 · 與上一組 0 重疊 · 每次播放換一批`;
+  workPack.mark = `${batchSongs.length}`;
+  workPack.coverId = batchSongs[0]?.id ?? workPack.coverId;
+  workPack.heroId = batchSongs[0]?.id ?? workPack.heroId;
+  workPlay.href = playlistUrl(batchSongs);
+}
+
+function prepareWorkRotation() {
+  const today = taipeiDateKey();
+  const savedState = readWorkRotationState();
+  const savedKeys = (savedState?.activeKeys ?? []).filter((key) => WORK_SONG_LIBRARY_KEYS.includes(key));
+
+  if (savedState?.date === today && savedKeys.length === WORK_ROTATION_BATCH_SIZE) {
+    workRotationState = savedState;
+    applyWorkBatch(savedKeys, savedState);
+    return;
+  }
+
+  const batchNumber = (savedState?.batchNumber ?? 0) + 1;
+  const activeKeys = chooseNextWorkBatch(savedKeys, batchNumber);
+  const nextState = {
+    version: WORK_ROTATION_STATE_VERSION,
+    date: today,
+    activeKeys,
+    batchNumber,
+  };
+  writeWorkRotationState(nextState);
+  applyWorkBatch(activeKeys, nextState);
+}
+
+function activateNextWorkBatch() {
+  const currentState = workRotationState ?? readWorkRotationState() ?? {};
+  const batchNumber = (currentState.batchNumber ?? 0) + 1;
+  const activeKeys = chooseNextWorkBatch(currentState.activeKeys ?? [], batchNumber);
+  const nextState = {
+    version: WORK_ROTATION_STATE_VERSION,
+    date: taipeiDateKey(),
+    activeKeys,
+    batchNumber,
+  };
+  writeWorkRotationState(nextState);
+  applyWorkBatch(activeKeys, nextState);
+  renderPacks();
+  if (selectedPackKey === "work") {
+    const workPack = getPack("work");
+    renderHero(workPack);
+    renderSongs(workPack);
   }
 }
 
@@ -996,11 +1094,16 @@ document.addEventListener("visibilitychange", () => {
 
 [heroPlay, playAll].forEach((button) => {
   button.addEventListener("click", () => {
-    if (selectedPackKey !== "today") return;
-    ensureCurrentRotationDate();
-    window.setTimeout(activateNextRotationBatch, 0);
+    if (selectedPackKey === "today") {
+      ensureCurrentRotationDate();
+      window.setTimeout(activateNextRotationBatch, 0);
+    } else if (selectedPackKey === "work") {
+      window.setTimeout(activateNextWorkBatch, 0);
+    }
   });
 });
+
+workPlay.addEventListener("click", () => window.setTimeout(activateNextWorkBatch, 0));
 
 packGrid.addEventListener("click", (event) => {
   const button = event.target.closest(".pack-card");
@@ -1015,7 +1118,7 @@ form.addEventListener("submit", (event) => {
 
 async function init() {
   await loadAutoPicks();
-  workPlay.href = playlistUrl(getSongs(getPack("work")));
+  prepareWorkRotation();
   renderTicker();
   renderAmbientRooms();
   selectPack(selectedPackKey);
