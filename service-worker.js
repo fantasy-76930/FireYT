@@ -1,8 +1,9 @@
-const CACHE_NAME = "fantasy-tune-v50";
+const CACHE_NAME = "fantasy-tune-v51";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./articles.html",
+  "./articles/2026-07-14-roadside-kindness.html",
   "./articles/2026-07-13-shirakawa-air-force-village.html",
   "./articles/2026-07-12-walking-back-to-myself.html",
   "./articles/2026-07-11-every-man-shoulders.html",
@@ -22,6 +23,8 @@ const APP_SHELL = [
   "./assets/icon-192.png",
   "./assets/icon-512.png",
   "./assets/og-image.png",
+  "./assets/article-2026-07-14-roadside-kindness-01.webp",
+  "./assets/article-2026-07-14-roadside-kindness-02.webp",
   "./assets/article-2026-07-13-shirakawa-village-01.webp",
   "./assets/article-2026-07-13-shirakawa-village-02.webp",
   "./assets/article-2026-07-13-shirakawa-village-03.webp",
