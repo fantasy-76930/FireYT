@@ -1391,6 +1391,10 @@ a {
   object-position: center 40%;
 }
 
+.article-shirakawa-cover {
+  object-position: center 48%;
+}
+
 .article-feature-copy,
 .article-card-body {
   display: grid;
@@ -1494,6 +1498,23 @@ a {
   margin-inline: auto;
   object-fit: contain;
   background: #eaf7fb;
+}
+
+.article-hero-image.article-shirakawa-hero {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.article-image-note {
+  max-width: 780px;
+  margin: 12px 18px 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.7;
 }
 
 .article-soundtrack {
@@ -1622,6 +1643,14 @@ a {
   object-fit: cover;
   border-radius: 6px;
   background: #eaf7fb;
+}
+
+.article-photo-pair.article-landscape-pair img {
+  aspect-ratio: 3 / 2;
+}
+
+.article-photo-pair.article-single-photo img {
+  grid-column: 1 / -1;
 }
 
 .article-photo-pair figcaption {
@@ -2168,6 +2197,10 @@ a {
   }
 
   .article-hero-image.article-portrait-hero {
+    min-height: 0;
+  }
+
+  .article-hero-image.article-shirakawa-hero {
     min-height: 0;
   }
 
