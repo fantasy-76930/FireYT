@@ -376,6 +376,13 @@ const form = document.querySelector("#searchForm");
 const input = document.querySelector("#searchInput");
 const resultGrid = document.querySelector("#resultGrid");
 const installButton = document.querySelector("#installButton");
+const installButtonLabel = document.querySelector("#installButtonLabel");
+const installGuide = document.querySelector("#install");
+const installNowButton = document.querySelector("#installNowButton");
+const installNowButtonLabel = document.querySelector("#installNowButtonLabel");
+const installStatus = document.querySelector("#installStatus");
+const installPlatformButtons = [...document.querySelectorAll("[data-install-platform]")];
+const installPanels = [...document.querySelectorAll("[data-install-panel]")];
 const shareButton = document.querySelector("#shareButton");
 const shareButtonLabel = document.querySelector("#shareButtonLabel");
 const visitorBadge = document.querySelector("#visitorBadge");
@@ -1071,18 +1078,118 @@ async function copyShareLink() {
   }
 }
 
+function detectInstallPlatform() {
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isIpadDesktopMode = userAgent.includes("macintosh") && navigator.maxTouchPoints > 1;
+  if (/iphone|ipad|ipod/.test(userAgent) || isIpadDesktopMode) return "ios";
+  if (userAgent.includes("android")) return "android";
+  return "desktop";
+}
+
+function isInstalledApp() {
+  return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+}
+
+function selectInstallPlatform(platform, shouldFocus = false) {
+  const validPlatform = installPanels.some((panel) => panel.dataset.installPanel === platform)
+    ? platform
+    : "desktop";
+
+  installPlatformButtons.forEach((button) => {
+    const isSelected = button.dataset.installPlatform === validPlatform;
+    button.setAttribute("aria-selected", String(isSelected));
+    button.tabIndex = isSelected ? 0 : -1;
+    if (isSelected && shouldFocus) button.focus();
+  });
+  installPanels.forEach((panel) => {
+    panel.hidden = panel.dataset.installPanel !== validPlatform;
+  });
+}
+
+function updateInstallButtonLabels(label) {
+  installButtonLabel.textContent = label;
+  installNowButtonLabel.textContent = label;
+}
+
+function markAppInstalled() {
+  updateInstallButtonLabels("已安裝");
+  installButton.disabled = true;
+  installNowButton.disabled = true;
+  installStatus.textContent = "Fantasy Tune 已經以 App 模式開啟，可以直接從主畫面使用。";
+}
+
+function setupInstallGuide() {
+  const platform = detectInstallPlatform();
+  selectInstallPlatform(platform);
+
+  if (isInstalledApp()) {
+    markAppInstalled();
+    return;
+  }
+
+  const platformMessage = {
+    ios: "已顯示 iPhone / iPad 的加入主畫面步驟。",
+    android: "已顯示 Android Chrome 的安裝步驟。",
+    desktop: "已顯示 Chrome 與 Edge 的電腦安裝步驟。",
+  };
+  installStatus.textContent = platformMessage[platform];
+}
+
+async function handleInstallAction() {
+  if (isInstalledApp()) {
+    markAppInstalled();
+    return;
+  }
+
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    const choice = await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    if (choice.outcome === "accepted") {
+      updateInstallButtonLabels("安裝中");
+      installButton.disabled = true;
+      installNowButton.disabled = true;
+      installStatus.textContent = "安裝已確認，Fantasy Tune 圖示即將出現在裝置上。";
+    } else {
+      updateInstallButtonLabels("安裝 App");
+      installStatus.textContent = "這次沒有安裝，之後仍可隨時再按「安裝 App」。";
+    }
+    return;
+  }
+
+  const platform = detectInstallPlatform();
+  selectInstallPlatform(platform);
+  const scrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+  installGuide.scrollIntoView({ behavior: scrollBehavior, block: "start" });
+  installStatus.textContent =
+    platform === "ios"
+      ? "iPhone 不會跳出安裝視窗，請依照下方三步加入主畫面。"
+      : "目前瀏覽器沒有提供直接安裝視窗，請依照下方三步完成。";
+}
+
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
   deferredInstallPrompt = event;
-  installButton.hidden = false;
+  updateInstallButtonLabels("直接安裝");
+  installStatus.textContent = "這個瀏覽器支援一鍵安裝，按「直接安裝」即可。";
 });
 
-installButton.addEventListener("click", async () => {
-  if (!deferredInstallPrompt) return;
-  deferredInstallPrompt.prompt();
-  await deferredInstallPrompt.userChoice;
+window.addEventListener("appinstalled", () => {
   deferredInstallPrompt = null;
-  installButton.hidden = true;
+  markAppInstalled();
+});
+
+[installButton, installNowButton].forEach((button) => button.addEventListener("click", handleInstallAction));
+
+installPlatformButtons.forEach((button, index) => {
+  button.addEventListener("click", () => selectInstallPlatform(button.dataset.installPlatform));
+  button.addEventListener("keydown", (event) => {
+    if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+    event.preventDefault();
+    const direction = event.key === "ArrowRight" ? 1 : -1;
+    const nextIndex = (index + direction + installPlatformButtons.length) % installPlatformButtons.length;
+    selectInstallPlatform(installPlatformButtons[nextIndex].dataset.installPlatform, true);
+  });
 });
 
 shareButton.addEventListener("click", copyShareLink);
@@ -1117,6 +1224,7 @@ form.addEventListener("submit", (event) => {
 });
 
 async function init() {
+  setupInstallGuide();
   await loadAutoPicks();
   prepareWorkRotation();
   renderTicker();

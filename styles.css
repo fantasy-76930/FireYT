@@ -642,6 +642,226 @@ a {
   color: var(--ink);
 }
 
+.install-guide {
+  scroll-margin-top: 88px;
+  border-bottom: 1px solid var(--line);
+  background: #f2fbfd;
+}
+
+.install-intro {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 22px;
+  padding: 34px 38px 28px;
+}
+
+.install-app-icon {
+  display: grid;
+  width: 74px;
+  height: 74px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgb(6 93 120 / 16%);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgb(7 56 82 / 12%);
+}
+
+.install-app-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.install-copy {
+  min-width: 0;
+}
+
+.install-copy .eyebrow {
+  margin-bottom: 7px;
+  color: var(--teal);
+}
+
+.install-copy h2 {
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: 2rem;
+  line-height: 1.12;
+}
+
+.install-copy > p:last-child {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.install-cta {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 18px;
+  color: #fff;
+  border: 1px solid var(--coral);
+  border-radius: 6px;
+  background: var(--coral);
+  box-shadow: 0 12px 24px rgb(220 75 31 / 18%);
+  cursor: pointer;
+  font-weight: 780;
+}
+
+.install-cta:hover {
+  border-color: var(--deep-ocean);
+  background: var(--deep-ocean);
+  transform: translateY(-1px);
+}
+
+.install-button {
+  color: var(--deep-ocean);
+  border-color: rgb(11 79 134 / 24%);
+  background: var(--ice);
+}
+
+.install-button:hover {
+  color: #fff;
+  border-color: var(--deep-ocean);
+  background: var(--deep-ocean);
+}
+
+.install-button svg,
+.install-cta svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.9;
+}
+
+.install-button:disabled,
+.install-cta:disabled {
+  color: var(--muted);
+  border-color: var(--line);
+  background: #fff;
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+.install-platform-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(calc(100% - 76px), 620px);
+  margin: 0 38px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: rgb(255 255 255 / 58%);
+}
+
+.install-platform-tabs button {
+  min-width: 0;
+  min-height: 42px;
+  padding: 0 14px;
+  color: var(--muted);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 760;
+}
+
+.install-platform-tabs button + button {
+  border-left: 1px solid var(--line);
+}
+
+.install-platform-tabs button[aria-selected="true"] {
+  color: var(--deep-ocean);
+  background: #fff;
+  box-shadow: inset 0 3px var(--teal);
+}
+
+.install-panels {
+  padding: 0 38px;
+}
+
+.install-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+}
+
+.install-steps[hidden] {
+  display: none;
+}
+
+.install-steps li {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-content: start;
+  gap: 5px 12px;
+  min-width: 0;
+  padding: 2px 28px;
+}
+
+.install-steps li:first-child {
+  padding-left: 0;
+}
+
+.install-steps li:last-child {
+  padding-right: 0;
+}
+
+.install-steps li + li {
+  border-left: 1px solid var(--line);
+}
+
+.install-steps li > span {
+  grid-row: span 2;
+  color: var(--coral);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.install-steps strong {
+  color: var(--ink);
+  font-size: 0.94rem;
+}
+
+.install-steps p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.62;
+}
+
+.install-support {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 38px 20px;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.install-support p {
+  margin: 0;
+}
+
+.install-support a {
+  color: var(--ocean);
+  font-weight: 760;
+}
+
 .content-map {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2005,6 +2225,75 @@ a {
     animation-duration: 36s;
   }
 
+  .install-intro {
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 14px;
+    padding: 26px 18px 22px;
+  }
+
+  .install-app-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .install-copy h2 {
+    font-size: 1.5rem;
+  }
+
+  .install-copy > p:last-child {
+    font-size: 0.78rem;
+  }
+
+  .install-cta {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .install-platform-tabs {
+    width: calc(100% - 36px);
+    margin-inline: 18px;
+  }
+
+  .install-platform-tabs button {
+    padding-inline: 7px;
+    font-size: 0.76rem;
+  }
+
+  .install-panels {
+    padding-inline: 18px;
+  }
+
+  .install-steps {
+    grid-template-columns: 1fr;
+    padding-block: 18px;
+  }
+
+  .install-steps li,
+  .install-steps li:first-child,
+  .install-steps li:last-child {
+    padding: 16px 0;
+  }
+
+  .install-steps li:first-child {
+    padding-top: 2px;
+  }
+
+  .install-steps li:last-child {
+    padding-bottom: 2px;
+  }
+
+  .install-steps li + li {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .install-support {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+    padding: 14px 18px 20px;
+  }
+
   .content-map {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2265,6 +2554,11 @@ a {
 }
 
 @media (max-width: 410px) {
+  .install-button {
+    padding-inline: 8px;
+    font-size: 0.78rem;
+  }
+
   .hero h1 {
     font-size: 2.58rem;
   }

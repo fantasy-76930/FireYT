@@ -34,7 +34,7 @@
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="icon" href="./assets/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=42" />
+    <link rel="stylesheet" href="./styles.css?v=43" />
   </head>
   <body>
     <div class="app-shell">
@@ -46,6 +46,7 @@
           <span>Fantasy Tune</span>
         </a>
         <nav class="primary-nav" aria-label="首頁區塊">
+          <a href="#install">安裝 App</a>
           <a href="#packs">選歌單</a>
           <a href="#today">今日排行</a>
           <a href="#ambient">療癒聲景</a>
@@ -62,13 +63,13 @@
             </svg>
             <span id="shareButtonLabel">分享</span>
           </button>
-          <button class="icon-button" id="installButton" type="button" hidden>
+          <button class="icon-button install-button" id="installButton" type="button" aria-controls="install">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 3v12"></path>
               <path d="m7 10 5 5 5-5"></path>
               <path d="M5 21h14"></path>
             </svg>
-            <span>安裝</span>
+            <span id="installButtonLabel">安裝 App</span>
           </button>
         </div>
       </header>
@@ -154,6 +155,152 @@
         <section class="ticker-strip" aria-label="今日音樂趨勢">
           <div class="ticker-window">
             <div class="ticker-track" id="tickerTrack"></div>
+          </div>
+        </section>
+
+        <section class="install-guide" id="install" aria-labelledby="installTitle">
+          <div class="install-intro">
+            <span class="install-app-icon" aria-hidden="true">
+              <img src="./assets/icon-192.png" alt="" />
+            </span>
+            <div class="install-copy">
+              <p class="eyebrow">Install Fantasy Tune</p>
+              <h2 id="installTitle">把網站放到主畫面，像 App 一樣打開</h2>
+              <p>安裝後會出現 Fantasy Tune 圖示，不必每次找網址；播放 YouTube 內容時仍需連接網路。</p>
+            </div>
+            <button class="install-cta" id="installNowButton" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v12"></path>
+                <path d="m7 10 5 5 5-5"></path>
+                <path d="M5 21h14"></path>
+              </svg>
+              <span id="installNowButtonLabel">安裝 App</span>
+            </button>
+          </div>
+
+          <div class="install-platform-tabs" role="tablist" aria-label="選擇安裝裝置">
+            <button
+              id="installTabIos"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="installPanelIos"
+              data-install-platform="ios"
+            >
+              iPhone / iPad
+            </button>
+            <button
+              id="installTabAndroid"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="installPanelAndroid"
+              data-install-platform="android"
+              tabindex="-1"
+            >
+              Android
+            </button>
+            <button
+              id="installTabDesktop"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="installPanelDesktop"
+              data-install-platform="desktop"
+              tabindex="-1"
+            >
+              電腦
+            </button>
+          </div>
+
+          <div class="install-panels">
+            <ol
+              class="install-steps"
+              id="installPanelIos"
+              role="tabpanel"
+              aria-labelledby="installTabIos"
+              data-install-panel="ios"
+            >
+              <li>
+                <span>01</span>
+                <strong>用 Safari 開啟本站</strong>
+                <p>在 iPhone 或 iPad 的 Safari 打開 Fantasy Tune。</p>
+              </li>
+              <li>
+                <span>02</span>
+                <strong>點「分享」</strong>
+                <p>點方框向上箭頭；若只看到「⋯」，先點它再選「分享」。</p>
+              </li>
+              <li>
+                <span>03</span>
+                <strong>加入主畫面</strong>
+                <p>選「加入主畫面」，開啟「以網頁 App 打開」，最後點「新增」。</p>
+              </li>
+            </ol>
+
+            <ol
+              class="install-steps"
+              id="installPanelAndroid"
+              role="tabpanel"
+              aria-labelledby="installTabAndroid"
+              data-install-panel="android"
+              hidden
+            >
+              <li>
+                <span>01</span>
+                <strong>用 Chrome 開啟本站</strong>
+                <p>在 Android 手機的 Chrome 打開 Fantasy Tune。</p>
+              </li>
+              <li>
+                <span>02</span>
+                <strong>點右上角「⋮」</strong>
+                <p>打開 Chrome 選單，找到「加到主畫面」。</p>
+              </li>
+              <li>
+                <span>03</span>
+                <strong>選「安裝」</strong>
+                <p>點「加到主畫面」後選「安裝」，再依畫面確認。</p>
+              </li>
+            </ol>
+
+            <ol
+              class="install-steps"
+              id="installPanelDesktop"
+              role="tabpanel"
+              aria-labelledby="installTabDesktop"
+              data-install-panel="desktop"
+              hidden
+            >
+              <li>
+                <span>01</span>
+                <strong>使用 Chrome 或 Edge</strong>
+                <p>在電腦瀏覽器開啟 Fantasy Tune。</p>
+              </li>
+              <li>
+                <span>02</span>
+                <strong>先按「安裝 App」</strong>
+                <p>若瀏覽器支援直接安裝，本站按鈕會立即顯示確認視窗。</p>
+              </li>
+              <li>
+                <span>03</span>
+                <strong>找不到視窗時</strong>
+                <p>Chrome 從「⋮ → 投放、儲存及分享」安裝；Edge 從「⋯ → 更多工具 → 應用程式」安裝。</p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="install-support">
+            <p id="installStatus" aria-live="polite">已替你顯示目前裝置的安裝方式。</p>
+            <p>
+              官方說明：
+              <a href="https://support.apple.com/zh-tw/guide/iphone/iphea86e5236/ios" target="_blank" rel="noreferrer">Apple</a>
+              <span aria-hidden="true">·</span>
+              <a
+                href="https://support.google.com/chrome/answer/9658361?hl=zh-Hant"
+                target="_blank"
+                rel="noreferrer"
+              >Chrome</a>
+            </p>
           </div>
         </section>
 
@@ -329,6 +476,6 @@
       </footer>
     </div>
 
-    <script src="./app.js?v=44" type="module"></script>
+    <script src="./app.js?v=45" type="module"></script>
   </body>
 </html>
