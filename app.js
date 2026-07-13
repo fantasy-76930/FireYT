@@ -1,5 +1,20 @@
 const AUTO_PICKS_URL = "./data/auto-picks.json";
 const AUTO_PICKS_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
+const HERO_BACKGROUNDS = [
+  "./assets/deepsea-background.webp",
+  "./assets/hero-ocean-01.webp",
+  "./assets/hero-ocean-02.webp",
+  "./assets/hero-ocean-03.webp",
+  "./assets/hero-ocean-04.webp",
+  "./assets/hero-ocean-05.webp",
+  "./assets/hero-ocean-06.webp",
+  "./assets/hero-ocean-07.webp",
+  "./assets/hero-ocean-08.webp",
+  "./assets/hero-ocean-09.webp",
+  "./assets/hero-ocean-10.webp",
+  "./assets/hero-ocean-11.webp",
+];
+const HERO_BACKGROUND_INTERVAL_MS = 12_000;
 
 const fallbackSongs = {
   cosmosNoOne: {
@@ -393,6 +408,8 @@ const signalMode = document.querySelector("#signalMode");
 const ambientGrid = document.querySelector("#ambientGrid");
 const ambientPlayAll = document.querySelector("#ambientPlayAll");
 const updateLabel = document.querySelector("#updateLabel");
+const heroBackdropLayers = [...document.querySelectorAll(".hero-backdrop-layer")];
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 let deferredInstallPrompt = null;
 let selectedPackKey = "today";
@@ -402,6 +419,10 @@ let rotationCatalog = [];
 let rotationState = null;
 let autoPickMeta = {};
 let workRotationState = null;
+let heroBackgroundIndex = 0;
+let activeHeroBackdropLayer = 0;
+let heroBackgroundTimer = null;
+let heroBackgroundLoadToken = 0;
 
 const toneColors = {
   red: "#0b4f86",
@@ -418,6 +439,73 @@ const ROTATION_STATE_VERSION = 2;
 const WORK_ROTATION_BATCH_SIZE = 8;
 const WORK_ROTATION_STATE_KEY = "fantasy-tune-work-rotation-v1";
 const WORK_ROTATION_STATE_VERSION = 1;
+
+function preloadHeroBackground(source) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.decoding = "async";
+    image.onload = resolve;
+    image.onerror = reject;
+    image.src = source;
+  });
+}
+
+function pauseHeroBackgroundRotation() {
+  window.clearTimeout(heroBackgroundTimer);
+  heroBackgroundTimer = null;
+  heroBackgroundLoadToken += 1;
+}
+
+function scheduleHeroBackgroundRotation(delay = HERO_BACKGROUND_INTERVAL_MS) {
+  window.clearTimeout(heroBackgroundTimer);
+  if (document.hidden || reducedMotionQuery.matches || heroBackdropLayers.length < 2) return;
+  heroBackgroundTimer = window.setTimeout(rotateHeroBackground, delay);
+}
+
+async function rotateHeroBackground() {
+  heroBackgroundTimer = null;
+  const nextBackgroundIndex = (heroBackgroundIndex + 1) % HERO_BACKGROUNDS.length;
+  const nextSource = HERO_BACKGROUNDS[nextBackgroundIndex];
+  const loadToken = ++heroBackgroundLoadToken;
+
+  try {
+    await preloadHeroBackground(nextSource);
+  } catch {
+    scheduleHeroBackgroundRotation();
+    return;
+  }
+
+  if (loadToken !== heroBackgroundLoadToken || document.hidden || reducedMotionQuery.matches) return;
+
+  const nextLayerIndex = activeHeroBackdropLayer === 0 ? 1 : 0;
+  const currentLayer = heroBackdropLayers[activeHeroBackdropLayer];
+  const nextLayer = heroBackdropLayers[nextLayerIndex];
+  nextLayer.style.backgroundImage = `url("${nextSource}")`;
+
+  window.requestAnimationFrame(() => {
+    nextLayer.classList.add("is-active");
+    currentLayer.classList.remove("is-active");
+    heroBackgroundIndex = nextBackgroundIndex;
+    activeHeroBackdropLayer = nextLayerIndex;
+    scheduleHeroBackgroundRotation();
+  });
+}
+
+function setupHeroBackgroundRotation() {
+  if (!heroBackdropLayers.length) return;
+  heroBackdropLayers[0].style.backgroundImage = `url("${HERO_BACKGROUNDS[0]}")`;
+  if (heroBackdropLayers.length < 2) return;
+
+  reducedMotionQuery.addEventListener?.("change", (event) => {
+    if (event.matches) pauseHeroBackgroundRotation();
+    else scheduleHeroBackgroundRotation(1_000);
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) pauseHeroBackgroundRotation();
+    else scheduleHeroBackgroundRotation(1_000);
+  });
+  scheduleHeroBackgroundRotation();
+}
 
 function getPack(key) {
   return songPacks.find((pack) => pack.key === key) ?? songPacks[0];
@@ -1224,6 +1312,7 @@ form.addEventListener("submit", (event) => {
 });
 
 async function init() {
+  setupHeroBackgroundRotation();
   setupInstallGuide();
   await loadAutoPicks();
   prepareWorkRotation();

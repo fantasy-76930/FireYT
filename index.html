@@ -34,7 +34,8 @@
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="icon" href="./assets/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=43" />
+    <link rel="preload" as="image" href="./assets/deepsea-background.webp" fetchpriority="high" />
+    <link rel="stylesheet" href="./styles.css?v=44" />
   </head>
   <body>
     <div class="app-shell">
@@ -76,6 +77,10 @@
 
       <main>
         <section class="hero" aria-labelledby="pageTitle">
+          <div class="hero-backdrop" aria-hidden="true">
+            <span class="hero-backdrop-layer is-active"></span>
+            <span class="hero-backdrop-layer"></span>
+          </div>
           <div class="hero-copy">
             <p class="eyebrow" id="updateLabel">更新 2026.07.08 · Taiwan first</p>
             <h1 id="pageTitle">
@@ -476,6 +481,6 @@
       </footer>
     </div>
 
-    <script src="./app.js?v=45" type="module"></script>
+    <script src="./app.js?v=46" type="module"></script>
   </body>
 </html>

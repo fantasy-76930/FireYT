@@ -269,7 +269,7 @@ a {
   overflow: hidden;
   padding: 82px 56px 62px;
   color: #fff;
-  background: #087f9f url("./assets/deepsea-background.webp") center 42% / cover no-repeat;
+  background: #087f9f;
 }
 
 .hero::before {
@@ -277,7 +277,35 @@ a {
   inset: 0;
   z-index: -1;
   content: "";
-  background: rgb(2 34 51 / 30%);
+  background: linear-gradient(90deg, rgb(2 28 43 / 48%) 0%, rgb(2 34 51 / 24%) 58%, rgb(2 34 51 / 30%) 100%);
+}
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-backdrop-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-position: center 42%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+  transition: opacity 1.8s ease;
+  will-change: opacity;
+}
+
+.hero-backdrop-layer:first-child {
+  background-image: url("./assets/deepsea-background.webp");
+}
+
+.hero-backdrop-layer.is-active {
+  opacity: 1;
 }
 
 .hero-copy {
@@ -2040,6 +2068,9 @@ a {
   .hero {
     min-height: 700px;
     padding: 68px 32px 48px;
+  }
+
+  .hero-backdrop-layer {
     background-position: 54% 42%;
   }
 
@@ -2144,11 +2175,14 @@ a {
   .hero {
     min-height: 740px;
     padding: 44px 18px 194px;
+  }
+
+  .hero-backdrop-layer {
     background-position: 58% 42%;
   }
 
   .hero::before {
-    background: rgb(2 34 51 / 36%);
+    background: linear-gradient(90deg, rgb(2 28 43 / 48%) 0%, rgb(2 34 51 / 34%) 100%);
   }
 
   .hero-copy {
