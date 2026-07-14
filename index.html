@@ -35,7 +35,7 @@
     <link rel="icon" href="./assets/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
     <link rel="preload" as="image" href="./assets/deepsea-background.webp" fetchpriority="high" />
-    <link rel="stylesheet" href="./styles.css?v=44" />
+    <link rel="stylesheet" href="./styles.css?v=45" />
   </head>
   <body>
     <div class="app-shell">
@@ -54,9 +54,16 @@
           <a href="#journal">音樂文章</a>
         </nav>
         <div class="topbar-actions">
-          <div class="visitor-counter" aria-label="今日到訪與總到訪人數">
-            <span>到訪</span>
+          <div class="visitor-counter" id="visitorCounter" aria-label="今日與累計瀏覽次數">
+            <span class="visitor-counter-copy">
+              <strong>
+                <span class="visitor-counter-short-label">到訪</span>
+                <span class="visitor-counter-long-label">今日瀏覽 / 累計瀏覽</span>
+              </strong>
+              <small>瀏覽次數，非精確人數</small>
+            </span>
             <img id="visitorBadge" alt="今日 / 總到訪" />
+            <span class="visitor-counter-fallback" id="visitorCounterFallback" hidden>統計暫時無法顯示</span>
           </div>
           <button class="icon-button share-button" id="shareButton" type="button">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -156,6 +163,8 @@
             </div>
           </article>
         </section>
+
+        <section class="mobile-visitor-strip" id="mobileVisitorCounterSlot" aria-label="網站瀏覽統計"></section>
 
         <section class="ticker-strip" aria-label="今日音樂趨勢">
           <div class="ticker-window">
@@ -480,6 +489,6 @@
       </footer>
     </div>
 
-    <script src="./app.js?v=46" type="module"></script>
+    <script src="./app.js?v=47" type="module"></script>
   </body>
 </html>

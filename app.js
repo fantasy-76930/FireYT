@@ -400,7 +400,11 @@ const installPlatformButtons = [...document.querySelectorAll("[data-install-plat
 const installPanels = [...document.querySelectorAll("[data-install-panel]")];
 const shareButton = document.querySelector("#shareButton");
 const shareButtonLabel = document.querySelector("#shareButtonLabel");
+const visitorCounter = document.querySelector("#visitorCounter");
 const visitorBadge = document.querySelector("#visitorBadge");
+const visitorCounterFallback = document.querySelector("#visitorCounterFallback");
+const mobileVisitorCounterSlot = document.querySelector("#mobileVisitorCounterSlot");
+const topbarActions = document.querySelector(".topbar-actions");
 const tickerTrack = document.querySelector("#tickerTrack");
 const signalCount = document.querySelector("#signalCount");
 const signalSource = document.querySelector("#signalSource");
@@ -1100,16 +1104,41 @@ function registerServiceWorker() {
 }
 
 function setupVisitorCounter() {
-  if (!visitorBadge) return;
+  if (!visitorCounter || !visitorBadge || !topbarActions || !mobileVisitorCounterSlot) return;
+
+  const mobileCounterQuery = window.matchMedia("(max-width: 760px)");
+  const placeCounter = () => {
+    if (mobileCounterQuery.matches) {
+      mobileVisitorCounterSlot.append(visitorCounter);
+      return;
+    }
+
+    topbarActions.insertBefore(visitorCounter, shareButton);
+  };
+
+  placeCounter();
+  mobileCounterQuery.addEventListener?.("change", placeCounter);
 
   if (!location.hostname.includes("fantasy-76930.github.io")) {
     visitorBadge.alt = "上線後開始記錄今日 / 總到訪";
-    visitorBadge.replaceWith(document.createTextNode("上線後開始記錄"));
+    visitorBadge.hidden = true;
+    if (visitorCounterFallback) {
+      visitorCounterFallback.hidden = false;
+      visitorCounterFallback.textContent = "上線後開始記錄";
+    }
     return;
   }
 
   const path = encodeURIComponent("fantasy-tune-home");
   const label = encodeURIComponent("TODAY/TOTAL");
+  visitorBadge.addEventListener(
+    "error",
+    () => {
+      visitorBadge.hidden = true;
+      if (visitorCounterFallback) visitorCounterFallback.hidden = false;
+    },
+    { once: true },
+  );
   visitorBadge.src = `https://api.visitorbadge.io/api/combined?path=${path}&label=${label}&labelColor=%230b4f86&countColor=%23ff6f32&style=flat-square`;
 }
 

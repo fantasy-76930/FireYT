@@ -224,11 +224,38 @@ a {
   white-space: nowrap;
 }
 
+.visitor-counter-copy {
+  display: inline-flex;
+  align-items: center;
+}
+
+.visitor-counter-copy strong {
+  font-size: inherit;
+  font-weight: 800;
+}
+
+.visitor-counter-copy small {
+  display: none;
+}
+
+.visitor-counter-long-label {
+  display: none;
+}
+
 .visitor-counter img {
   width: auto;
   max-width: 166px;
   height: 20px;
   object-fit: contain;
+}
+
+.visitor-counter-fallback {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.mobile-visitor-strip {
+  display: none;
 }
 
 .icon-button {
@@ -2158,8 +2185,54 @@ a {
     margin-left: 0;
   }
 
-  .visitor-counter {
+  .mobile-visitor-strip {
+    display: block;
+    margin: 10px 4px 0;
+  }
+
+  .mobile-visitor-strip .visitor-counter {
+    display: flex;
+    width: 100%;
+    min-height: 64px;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 11px 10px;
+    border-width: 1px 0;
+    border-radius: 0;
+    background: rgb(255 255 255 / 82%);
+  }
+
+  .mobile-visitor-strip .visitor-counter-copy {
+    display: grid;
+    gap: 2px;
+    flex: 1 1 auto;
+    justify-items: start;
+  }
+
+  .mobile-visitor-strip .visitor-counter-copy strong {
+    color: var(--ink-soft);
+    font-size: 0.78rem;
+  }
+
+  .mobile-visitor-strip .visitor-counter-short-label {
     display: none;
+  }
+
+  .mobile-visitor-strip .visitor-counter-long-label {
+    display: inline;
+  }
+
+  .mobile-visitor-strip .visitor-counter-copy small {
+    display: block;
+    color: var(--muted);
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .mobile-visitor-strip .visitor-counter img {
+    flex: 0 1 auto;
+    max-width: min(52vw, 188px);
+    height: 22px;
   }
 
   .icon-button {
