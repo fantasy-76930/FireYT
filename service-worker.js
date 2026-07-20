@@ -1,8 +1,9 @@
-const CACHE_NAME = "fantasy-tune-v54";
+const CACHE_NAME = "fantasy-tune-v55";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./articles.html",
+  "./articles/2026-07-20-as-if-seeing-you.html",
   "./articles/2026-07-15-time-forgot-to-say-goodbye.html",
   "./articles/2026-07-14-roadside-kindness.html",
   "./articles/2026-07-13-shirakawa-air-force-village.html",
@@ -24,6 +25,16 @@ const APP_SHELL = [
   "./assets/icon-192.png",
   "./assets/icon-512.png",
   "./assets/og-image.png",
+  "./assets/article-2026-07-20-as-if-seeing-you-01.webp",
+  "./assets/article-2026-07-20-as-if-seeing-you-02.webp",
+  "./assets/article-2026-07-20-as-if-seeing-you-03.webp",
+  "./assets/article-2026-07-20-as-if-seeing-you-04.webp",
+  "./assets/article-2026-07-20-as-if-seeing-you-05.webp",
+  "./assets/article-2026-07-20-as-if-seeing-you-06.webp",
+  "./assets/article-2026-07-20-as-if-seeing-you-07.webp",
+  "./assets/article-2026-07-20-as-if-seeing-you-08.webp",
+  "./assets/article-2026-07-20-as-if-seeing-you-09.webp",
+  "./assets/article-2026-07-20-as-if-seeing-you-10.webp",
   "./assets/article-2026-07-15-time-forgot-goodbye-01.webp",
   "./assets/article-2026-07-15-time-forgot-goodbye-02.webp",
   "./assets/article-2026-07-14-roadside-kindness-01.webp",
